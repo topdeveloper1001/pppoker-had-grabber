@@ -6,6 +6,6 @@ namespace DriveHUD.Importers.PPPoker.Model
     class RoundOverBRC
     {
         [ProtoMember(1)]
-        public long[] Pool { get; set; }
+        public long[] Pot { get; set; } // Original: Pool
     }
 }
