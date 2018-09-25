@@ -381,6 +381,11 @@ namespace DriveHUD.Importers.PPPoker
         {
             try
             {
+                if (package.PackageType == PackageType.HeartBeatREQ || package.PackageType == PackageType.HeartBeatRSP)
+                {
+                    return;
+                }
+
                 if (!SerializationHelper.TryDeserialize(package.Body, out T packageContent))
                 {
                     LogProvider.Log.Warn(Logger, $"Failed to deserialize {typeof(T)} package");
@@ -396,7 +401,7 @@ namespace DriveHUD.Importers.PPPoker
                 var json = JsonConvert.SerializeObject(packageJson, Formatting.Indented, new StringEnumConverter());
 
                 //protectedLogger.Log(json);
-                //LogProvider.Log.Info(json);
+                LogProvider.Log.Info(json);
             }
             catch (Exception e)
             {
