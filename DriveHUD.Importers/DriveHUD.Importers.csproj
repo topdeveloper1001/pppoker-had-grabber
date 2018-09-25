@@ -86,6 +86,8 @@
     <Compile Include="PPPoker\Model\PackageType.cs" />
     <Compile Include="PPPoker\Model\PackageTypeEnumerator.cs" />
     <Compile Include="PPPoker\Model\PPPokerPackage.cs" />
+    <Compile Include="PPPoker\Model\RoundOverBRC.cs" />
+    <Compile Include="PPPoker\Model\RoundStartBRC.cs" />
     <Compile Include="PPPoker\PPPImporter.cs" />
     <Compile Include="PPPoker\PPPokerPackageBuilder.cs" />
     <Compile Include="PPPoker\PPPokerPacketManager.cs" />

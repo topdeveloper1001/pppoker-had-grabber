@@ -15,26 +15,11 @@ namespace DriveHUD.Importers.PPPoker.Model
     internal enum PackageType : short
     {
         Unknown,
-
-        //ClubRoomTimeUpBRC,
-        //CroupierActionBRC,
+        
         DealerInfoRSP,
-        //ExchangeChipsREQ,
-        //ExchangeChipsRSP,
         HeartBeatREQ,
         HeartBeatRSP,
-        //MoneyREQ,
-        //MoneyRSP,
-        //PPCoinRSP,
-        //ReserveSeatREQ,
-        //ReserveSeatRSP,
-        //SeatStatusBRC,
-        //SitDownBRC,
-        //SitDownREQ,
-        //SitDownRSP,
-        //StandUpBRC,
-        //StandUpREQ,
-        //StandUpRSP,
-        //TableGameOverRSP,
+        RoundStartBRC,
+        RoundOverBRC,
     }
 }
