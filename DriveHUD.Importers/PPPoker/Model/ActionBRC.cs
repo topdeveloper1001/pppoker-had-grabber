@@ -15,6 +15,6 @@ namespace DriveHUD.Importers.PPPoker.Model
         public long Chips { get; set; }
 
         [ProtoMember(4)]
-        public long HandChips { get; set; }
+        public long RemainingChips { get; set; } // Original: hand_chips
     }
 }

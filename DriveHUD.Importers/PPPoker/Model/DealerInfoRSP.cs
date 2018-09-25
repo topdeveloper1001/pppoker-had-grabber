@@ -3,7 +3,7 @@
 namespace DriveHUD.Importers.PPPoker.Model
 {
     [ProtoContract]
-    class StartInfo
+    class PlayerInfo // Original: StartInfo
     {
         [ProtoMember(1)]
         public int SeatID { get; set; }
@@ -25,7 +25,7 @@ namespace DriveHUD.Importers.PPPoker.Model
         public int BigBlind { get; set; }
 
         [ProtoMember(4)]
-        public StartInfo[] StartInfoRecords { get; set; }
+        public PlayerInfo[] Players { get; set; }
 
         [ProtoMember(5)]
         public string GameID { get; set; }
