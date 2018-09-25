@@ -18,6 +18,7 @@ namespace DriveHUD.Importers.PPPoker.Model
 
         //ClubRoomTimeUpBRC,
         //CroupierActionBRC,
+        DealerInfoRSP,
         //ExchangeChipsREQ,
         //ExchangeChipsRSP,
         HeartBeatREQ,
