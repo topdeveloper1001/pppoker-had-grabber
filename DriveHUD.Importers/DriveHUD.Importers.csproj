@@ -80,7 +80,13 @@
     <Compile Include="PPPoker\CustomModulesNames.cs" />
     <Compile Include="PPPoker\IPPPHandBuilder.cs" />
     <Compile Include="PPPoker\IPPPImporter.cs" />
+    <Compile Include="PPPoker\Model\ActionBRC.cs" />
+    <Compile Include="PPPoker\Model\ActionNotifyBRC.cs" />
+    <Compile Include="PPPoker\Model\ActionREQ.cs" />
+    <Compile Include="PPPoker\Model\ActionType.cs" />
+    <Compile Include="PPPoker\Model\ChipsBackBRC.cs" />
     <Compile Include="PPPoker\Model\DealerInfoRSP.cs" />
+    <Compile Include="PPPoker\Model\HandCardRSP.cs" />
     <Compile Include="PPPoker\Model\HeartBeatREQ.cs" />
     <Compile Include="PPPoker\Model\HeartBeatRSP.cs" />
     <Compile Include="PPPoker\Model\PackageType.cs" />

@@ -16,7 +16,12 @@ namespace DriveHUD.Importers.PPPoker.Model
     {
         Unknown,
         
+        ActionBRC,
+        ActionNotifyBRC,
+        ActionREQ,
+        ChipsBackBRC,
         DealerInfoRSP,
+        HandCardRSP,
         HeartBeatREQ,
         HeartBeatRSP,
         RoundStartBRC,
