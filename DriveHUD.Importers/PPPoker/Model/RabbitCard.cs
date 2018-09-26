@@ -9,6 +9,6 @@ namespace DriveHUD.Importers.PPPoker.Model
         public int[] RabbitCards { get; set; } // Original name: rabbit_card
 
         [ProtoMember(2)]
-        public Street FinalStreet { get; set; } // Original name: finish_stage
+        public Round FinalStreet { get; set; } // Original name: finish_stage
     }
 }

@@ -96,7 +96,7 @@
     <Compile Include="PPPoker\Model\RabbitCard.cs" />
     <Compile Include="PPPoker\Model\RoundOverBRC.cs" />
     <Compile Include="PPPoker\Model\RoundStartBRC.cs" />
-    <Compile Include="PPPoker\Model\Street.cs" />
+    <Compile Include="PPPoker\Model\Round.cs" />
     <Compile Include="PPPoker\Model\WinnerRSP.cs" />
     <Compile Include="PPPoker\Model\WinningInfo.cs" />
     <Compile Include="PPPoker\Model\WinningProfit.cs" />
