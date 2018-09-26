@@ -41,7 +41,6 @@ namespace DriveHUD.Importers.PPPoker
 {
     internal class PPPImporter : /*TcpPacketImporter,*/ BaseImporter, IPPPImporter
     {
-        private const int Port = 4000;
         private const int NoDataDelay = 100;
         private bool IsAdvancedLogEnabled { get; set; }
 
@@ -77,7 +76,8 @@ namespace DriveHUD.Importers.PPPoker
 
         public /*override*/ bool Match(TcpPacket tcpPacket, IpPacket ipPacket)
         {
-            return tcpPacket.SourcePort == Port || tcpPacket.DestinationPort == Port;
+            return ipPacket.SourceAddress.Equals(PPPConstants.Address) && tcpPacket.SourcePort == PPPConstants.Port ||
+                ipPacket.DestinationAddress.Equals(PPPConstants.Address) && tcpPacket.DestinationPort == PPPConstants.Port;
         }
 
         public /*override*/ void AddPacket(CapturedPacket capturedPacket)
@@ -394,6 +394,8 @@ namespace DriveHUD.Importers.PPPoker
                 var packageJson = new PackageJson<T>
                 {
                     PackageType = package.PackageType,
+                    Direction = package.Direction,
+                    ClientPort = package.ClientPort,
                     Content = packageContent,
                     Time = package.Timestamp
                 };
@@ -438,6 +440,10 @@ namespace DriveHUD.Importers.PPPoker
         private class PackageJson<T>
         {
             public PackageType PackageType { get; set; }
+
+            public PackageDirection Direction { get; set; }
+
+            public int ClientPort { get; set; }
 
             public DateTime Time { get; set; }
 

@@ -20,6 +20,10 @@ namespace DriveHUD.Importers.PPPoker.Model
 
         public PackageType PackageType { get; set; }
 
+        public int ClientPort { get; set; }
+
+        public PackageDirection Direction { get; set; }
+
         public byte[] Body { get; set; }
 
 #if DEBUG

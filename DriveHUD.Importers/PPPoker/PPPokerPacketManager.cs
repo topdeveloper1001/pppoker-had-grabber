@@ -13,6 +13,7 @@
 using DriveHUD.Importers.AndroidBase;
 using DriveHUD.Importers.PPPoker.Model;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DriveHUD.Importers.PPPoker
@@ -54,6 +55,23 @@ namespace DriveHUD.Importers.PPPoker
 
             // PPPoker first four bytes contain packet length excluding the header itself, i. e. minus four bytes
             return BitConverter.ToInt32(numArray, 0) + packetHeaderLength;
+        }
+
+        public override bool TryParse(CapturedPacket capturedPacket, out IList<PPPokerPackage> packages)
+        {
+            bool result = base.TryParse(capturedPacket, out packages);
+
+            // Packages don't contain any client application ID, we're going to use client port for this
+            var direction = capturedPacket.Source.Address.Equals(PPPConstants.Address) && capturedPacket.Source.Port == PPPConstants.Port ? PackageDirection.Incoming : PackageDirection.Outgoing;
+            int clientPort = direction == PackageDirection.Incoming ? capturedPacket.Destination.Port : capturedPacket.Source.Port;
+
+            foreach (var package in packages)
+            {
+                package.Direction = direction;
+                package.ClientPort = clientPort;
+            }
+
+            return result;
         }
     }
 }
