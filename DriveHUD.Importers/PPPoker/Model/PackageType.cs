@@ -26,6 +26,7 @@ namespace DriveHUD.Importers.PPPoker.Model
         HeartBeatRSP,
         RoundStartBRC,
         RoundOverBRC,
+        SitDownBRC,
         WinnerRSP,
     }
 }
