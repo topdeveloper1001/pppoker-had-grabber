@@ -157,7 +157,7 @@ namespace DriveHUD.Importers.PPPoker
         {
             //var tableWindowProvider = ServiceLocator.Current.GetInstance<ITableWindowProvider>();
             var packetManager = ServiceLocator.Current.GetInstance<IPacketManager<PPPokerPackage>>();
-            //var handBuilder = ServiceLocator.Current.GetInstance<IPPPHandBuilder>();
+            var handBuilder = ServiceLocator.Current.GetInstance<IPPPHandBuilder>();
 
             //var connectionsService = ServiceLocator.Current.GetInstance<INetworkConnectionsService>();
             //connectionsService.SetLogger(Logger);
@@ -199,109 +199,45 @@ namespace DriveHUD.Importers.PPPoker
                         {
                             LogPackage(package);
                         }
+                        
+                        if (handBuilder.TryBuild(package, out HandHistory handHistory))
+                        {
+                            if (IsAdvancedLogEnabled)
+                            {
+                                LogProvider.Log.Info(Logger, $"Hand #{handHistory.HandId}, ClientPort={package.ClientPort}.");
+                            }
 
-                        //var process = connectionsService.GetProcess(capturedPacket);
-                        //var windowHandle = tableWindowProvider.GetTableWindowHandle(process);
+                            //var handHistoryData = new HandHistoryData
+                            //{
+                            //    Uuid = package.UserId,
+                            //    HandHistory = handHistory,
+                            //    WindowHandle = windowHandle
+                            //};
 
-                        //if (package.PackageType == PackageType.RequestJoinRoom)
-                        //{
-                        //    ParsePackage<RequestJoinRoom>(package,
-                        //      body =>
-                        //      {
-                        //          if (!usersRooms.ContainsKey(package.UserId))
-                        //          {
-                        //              usersRooms.Add(package.UserId, body.RoomId);
-                        //          }
-                        //          else
-                        //          {
-                        //              usersRooms[package.UserId] = body.RoomId;
-                        //          }
+                            //if (unexpectedRoomDetected)
+                            //{
+                            //    if (IsAdvancedLogEnabled)
+                            //    {
+                            //        LogProvider.Log.Info(Logger, $"Hand #{handHistory.HandId} user #{package.UserId} room #{package.RoomId}: unexpected room detected.");
+                            //    }
 
-                        //          LogProvider.Log.Info(Logger, $"User {package.UserId} entered room {body.RoomId}.");
-                        //      },
-                        //      () => LogProvider.Log.Info(Logger, $"User {package.UserId} entered room."));
+                            //    handHistoryData.WindowHandle = IntPtr.Zero;
+                            //}
 
-                        //    continue;
-                        //}
+                            //if (!pkCatcherService.CheckHand(handHistory))
+                            //{
+                            //    LogProvider.Log.Info(Logger, $"License doesn't support cash hand {handHistory.HandId}. [BB={handHistory.GameDescription.Limit.BigBlind}]");
 
-                        //// need to close HUD if user left room
-                        //if (package.PackageType == PackageType.RequestLeaveRoom)
-                        //{
-                        //    ParsePackage<RequestLeaveRoom>(package,
-                        //        body =>
-                        //        {
-                        //            LogProvider.Log.Info(Logger, $"User {package.UserId} left room {body.RoomId}.");
-                        //            handBuilder.CleanRoom(windowHandle.ToInt32(), body.RoomId);
-                        //        },
-                        //        () => LogProvider.Log.Info(Logger, $"User {package.UserId} left room {package.RoomId}."));
+                            //    if (handHistoryData.WindowHandle != IntPtr.Zero)
+                            //    {
+                            //        SendPreImporedData("Notifications_HudLayout_PreLoadingText_PK_NoLicense", windowHandle);
+                            //    }
 
-                        //    Task.Run(() =>
-                        //    {
-                        //        Task.Delay(DelayToProcessHands * 2).Wait();
+                            //    continue;
+                            //}
 
-                        //        var args = new TableClosedEventArgs(windowHandle.ToInt32());
-                        //        eventAggregator.GetEvent<TableClosedEvent>().Publish(args);
-                        //    });
-
-                        //    detectedTableWindows.Remove(windowHandle);
-                        //    continue;
-                        //}
-
-                        //var unexpectedRoomDetected = !usersRooms.TryGetValue(package.UserId, out int roomId) || roomId != package.RoomId;
-
-                        //// add detected window to list of detected tables
-                        //if (!unexpectedRoomDetected && !detectedTableWindows.Contains(windowHandle))
-                        //{
-                        //    detectedTableWindows.Add(windowHandle);
-
-                        //    if (package.PackageType == PackageType.NoticeGameSnapShot || handBuilder.IsRoomSnapShotAvailable(package))
-                        //    {
-                        //        SendPreImporedData("Notifications_HudLayout_PreLoadingText_PK", windowHandle);
-                        //    }
-                        //    else
-                        //    {
-                        //        SendPreImporedData("Notifications_HudLayout_PreLoadingText_PK_CanNotBeCapturedText", windowHandle);
-                        //    }
-                        //}
-
-                        //if (handBuilder.TryBuild(package, windowHandle.ToInt32(), out HandHistory handHistory))
-                        //{
-                        //    if (IsAdvancedLogEnabled)
-                        //    {
-                        //        LogProvider.Log.Info(Logger, $"Hand #{handHistory.HandId} user #{package.UserId} room #{package.RoomId}: Process={(process != null ? process.Id : 0)}, windows={windowHandle}.");
-                        //    }
-
-                        //    var handHistoryData = new HandHistoryData
-                        //    {
-                        //        Uuid = package.UserId,
-                        //        HandHistory = handHistory,
-                        //        WindowHandle = windowHandle
-                        //    };
-
-                        //    if (unexpectedRoomDetected)
-                        //    {
-                        //        if (IsAdvancedLogEnabled)
-                        //        {
-                        //            LogProvider.Log.Info(Logger, $"Hand #{handHistory.HandId} user #{package.UserId} room #{package.RoomId}: unexpected room detected.");
-                        //        }
-
-                        //        handHistoryData.WindowHandle = IntPtr.Zero;
-                        //    }
-
-                        //    if (!pkCatcherService.CheckHand(handHistory))
-                        //    {
-                        //        LogProvider.Log.Info(Logger, $"License doesn't support cash hand {handHistory.HandId}. [BB={handHistory.GameDescription.Limit.BigBlind}]");
-
-                        //        if (handHistoryData.WindowHandle != IntPtr.Zero)
-                        //        {
-                        //            SendPreImporedData("Notifications_HudLayout_PreLoadingText_PK_NoLicense", windowHandle);
-                        //        }
-
-                        //        continue;
-                        //    }
-
-                        //    ExportHandHistory(handHistoryData, handHistoriesToProcess);
-                        //}
+                            //ExportHandHistory(handHistoryData, handHistoriesToProcess);
+                        }
                     }
                 }
                 catch (Exception e)

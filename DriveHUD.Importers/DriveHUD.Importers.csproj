@@ -106,6 +106,7 @@
     <Compile Include="PPPoker\Model\WinningProfit.cs" />
     <Compile Include="PPPoker\PackageDirection.cs" />
     <Compile Include="PPPoker\PPPConstants.cs" />
+    <Compile Include="PPPoker\PPPHandBuilder.cs" />
     <Compile Include="PPPoker\PPPImporter.cs" />
     <Compile Include="PPPoker\PPPokerPackageBuilder.cs" />
     <Compile Include="PPPoker\PPPokerPacketManager.cs" />

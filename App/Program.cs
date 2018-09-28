@@ -20,6 +20,7 @@ namespace App
                 var unityContainer = new UnityContainer();
                 unityContainer.RegisterType<IPackageBuilder<PPPokerPackage>, PPPokerPackageBuilder>();
                 unityContainer.RegisterType<IPacketManager<PPPokerPackage>, PPPokerPacketManager>();
+                unityContainer.RegisterType<IPPPHandBuilder, PPPHandBuilder>();
 
                 var locator = new UnityServiceLocator(unityContainer);
                 ServiceLocator.SetLocatorProvider(() => locator);

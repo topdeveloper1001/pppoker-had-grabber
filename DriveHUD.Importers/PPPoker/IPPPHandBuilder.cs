@@ -17,10 +17,6 @@ namespace DriveHUD.Importers.PPPoker
 {
     internal interface IPPPHandBuilder
     {
-        bool TryBuild(PPPokerPackage package, int identifier, out HandHistory handHistory);
-
-        bool IsRoomSnapShotAvailable(PPPokerPackage package);
-
-        void CleanRoom(int identifier, int roomId);
+        bool TryBuild(PPPokerPackage package, out HandHistory handHistory);
     }
 }
