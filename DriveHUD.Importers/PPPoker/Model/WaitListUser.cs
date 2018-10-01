@@ -3,9 +3,10 @@
 namespace DriveHUD.Importers.PPPoker.Model
 {
     [ProtoContract]
-    class RoundOverBRC
+    class WaitListUser
     {
         [ProtoMember(1)]
-        public long[] Pool { get; set; }
+        public long UserID { get; set; }
+
     }
 }

@@ -3,18 +3,15 @@
 namespace DriveHUD.Importers.PPPoker.Model
 {
     [ProtoContract]
-    class ActionBRC
+    class RebuyBRC
     {
         [ProtoMember(1)]
-        public int SeatID { get; set; }
+        public int Code { get; set; }
 
         [ProtoMember(2)]
-        public ActionType ActionType { get; set; }
+        public int SeatID { get; set; }
 
         [ProtoMember(3)]
         public long Chips { get; set; }
-
-        [ProtoMember(4)]
-        public long HandChips { get; set; }
     }
 }

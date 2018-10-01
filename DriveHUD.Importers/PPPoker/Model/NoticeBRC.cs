@@ -3,12 +3,12 @@
 namespace DriveHUD.Importers.PPPoker.Model
 {
     [ProtoContract]
-    class RabbitCard
+    class NoticeBRC
     {
         [ProtoMember(1)]
-        public int[] RabbitCards { get; set; } // Original name: rabbit_card
+        public string Message { get; set; }
 
         [ProtoMember(2)]
-        public RoundStage FinishStage { get; set; }
+        public int Type { get; set; }
     }
 }

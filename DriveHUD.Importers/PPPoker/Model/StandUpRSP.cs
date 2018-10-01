@@ -3,12 +3,12 @@
 namespace DriveHUD.Importers.PPPoker.Model
 {
     [ProtoContract]
-    class StackInfo // Original: StartInfo
+    class StandUpRSP
     {
         [ProtoMember(1)]
-        public int SeatID { get; set; }
+        public StandUpCode Code { get; set; }
 
         [ProtoMember(2)]
-        public long Chips { get; set; }
+        public string Reason { get; set; }
     }
 }

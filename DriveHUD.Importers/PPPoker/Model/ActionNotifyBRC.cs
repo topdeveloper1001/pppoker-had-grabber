@@ -9,12 +9,12 @@ namespace DriveHUD.Importers.PPPoker.Model
         public int SeatID { get; set; }
 
         [ProtoMember(2)]
-        public long ChipsToCall { get; set; } // Original: call_need_chips
+        public long CallNeedChips { get; set; }
 
         [ProtoMember(3)]
-        public long MinAllowedRaise { get; set; } // Original: min_chipin
+        public long MinChipIn { get; set; }
 
         [ProtoMember(4)]
-        public long MaxAllowedRaise { get; set; } // Original: max_chipin
+        public long MaxChipIn { get; set; }
     }
 }

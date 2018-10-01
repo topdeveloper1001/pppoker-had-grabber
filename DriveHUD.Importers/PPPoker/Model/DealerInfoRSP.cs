@@ -15,7 +15,7 @@ namespace DriveHUD.Importers.PPPoker.Model
         public int BigBlind { get; set; }
 
         [ProtoMember(4)]
-        public StackInfo[] Stacks { get; set; }
+        public StartInfo[] Stacks { get; set; }
 
         [ProtoMember(5)]
         public string GameID { get; set; }

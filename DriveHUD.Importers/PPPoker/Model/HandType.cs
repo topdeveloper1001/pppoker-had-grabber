@@ -2,9 +2,9 @@
 {
     enum HandType
     {
-        Fold = -1,
         None,
-        HighCard,
+        Fold = -1,
+        HighCard = 1,
         Pair,
         TwoPairs,
         ThreOfAKind,

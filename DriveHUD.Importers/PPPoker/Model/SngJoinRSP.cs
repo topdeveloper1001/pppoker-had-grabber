@@ -3,15 +3,15 @@
 namespace DriveHUD.Importers.PPPoker.Model
 {
     [ProtoContract]
-    class UserInfo // Original name: UserBrief
+    class SngJoinRSP
     {
         [ProtoMember(1)]
-        public long Uid { get; set; }
+        public int Code { get; set; }
 
         [ProtoMember(2)]
-        public string Name { get; set; }
+        public int RoomID { get; set; }
 
         [ProtoMember(3)]
-        public string IconUrl { get; set; }
+        public string TempID { get; set; }
     }
 }

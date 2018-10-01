@@ -6,7 +6,7 @@ namespace DriveHUD.Importers.PPPoker.Model
     class RoundStartBRC
     {
         [ProtoMember(1)]
-        public Round Street { get; set; }
+        public RoundStage Street { get; set; }
 
         [ProtoMember(2)]
         public int[] Board { get; set; }

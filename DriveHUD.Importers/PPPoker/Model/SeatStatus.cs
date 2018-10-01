@@ -12,7 +12,7 @@ namespace DriveHUD.Importers.PPPoker.Model
         public ActionType ActionType { get; set; }
 
         [ProtoMember(3)]
-        public UserInfo Player { get; set; }
+        public UserBrief Player { get; set; }
 
         [ProtoMember(4)]
         public long RemainingChips { get; set; }

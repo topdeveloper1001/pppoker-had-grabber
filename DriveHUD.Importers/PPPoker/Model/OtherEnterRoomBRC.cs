@@ -3,9 +3,9 @@
 namespace DriveHUD.Importers.PPPoker.Model
 {
     [ProtoContract]
-    class RoundOverBRC
+    class OtherEnterRoomBRC
     {
         [ProtoMember(1)]
-        public long[] Pool { get; set; }
+        public UserBrief User { get; set; }
     }
 }
