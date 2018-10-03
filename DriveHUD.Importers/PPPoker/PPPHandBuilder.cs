@@ -534,15 +534,9 @@ namespace DriveHUD.Importers.PPPoker
             {
                 var player = GetPlayer(history, winner.SeatID + 1);
 
-                HandActionType handActionType;
-                if (winner.PoolID > 0)
-                {
-                    handActionType = winner.Chips < record.Pots[winner.PoolID] ? HandActionType.TIES_SIDE_POT : HandActionType.WINS_SIDE_POT;
-                }
-                else
-                {
-                    handActionType = winner.Chips < record.Pots[winner.PoolID] ? HandActionType.TIES : HandActionType.WINS;
-                }
+                // Note that pots are raked therefore it's not correct to use following condition for ties: winning < pot
+                // Following condition should be used instead: winning <= pot / 2. Works for raked and not raked pots.
+                HandActionType handActionType = winner.Chips <= record.Pots[winner.PoolID] / 2 ? HandActionType.TIES : HandActionType.WINS;
 
                 history.HandActions.Add(new WinningsAction(
                     player.PlayerName,
