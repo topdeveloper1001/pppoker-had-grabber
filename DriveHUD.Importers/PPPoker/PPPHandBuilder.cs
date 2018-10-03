@@ -85,7 +85,11 @@ namespace DriveHUD.Importers.PPPoker
 
             // Delay following actions until DealerInfoRSP message arrives
             // Otherwise these messages will not be processed becase ValidatePackages in BuildHand method will return false and package list will be cleared
-            if (package.PackageType == PackageType.SitDownRSP)
+            if (package.PackageType == PackageType.SelUserInfoRSP)
+            {
+                record.DelayedActions.Add(() => ParsePackage<SelUserInfoRSP>(package, m => ProcessSelUserInfoRSP(m, record)));
+            }
+            else if (package.PackageType == PackageType.SitDownRSP)
             {
                 record.DelayedActions.Add(() => ParsePackage<SitDownRSP>(package, m => ProcessSitDownRSP(m, record)));
             }
@@ -316,8 +320,14 @@ namespace DriveHUD.Importers.PPPoker
             };
         }
 
+        private void ProcessSelUserInfoRSP(SelUserInfoRSP message, ClientRecord record)
+        {
+            record.HeroUid = message.Brief.Uid;
+        }
+
         private void ProcessEnterRoomRSP(EnterRoomRSP message, ClientRecord record)
         {
+            // TODO: Deduplicate control blocks by introducing a common interface similar to IHoleCardInfo
             if (message.RoomType == RoomType.LobbyRoom)
             {
                 record.RoomID = message.RoomInfo.RoomID;
@@ -340,33 +350,22 @@ namespace DriveHUD.Importers.PPPoker
             foreach (var seat in message.TableStatus.Seat.Where(s => s.Player != null))
             {
                 record.Players[seat.SeatID] = UserBriefToRoomPlayer(seat.Player);
-                LogProvider.Log.Debug($"##Player {seat.Player.Name} was added");
             }
         }
 
         private void ProcessSitDownRSP(SitDownRSP message, ClientRecord record)
         {
-            if (message.Code == SitDownCode.OK)
-            {
-                record.HeroSeatID = message.SeatID;
-            }
+            record.HeroUid = record.Players[message.SeatID].ID;
         }
 
         private void ProcessSitDownBRC(SitDownBRC message, ClientRecord record)
         {
             record.Players[message.SeatID] = UserBriefToRoomPlayer(message.Brief);
-            LogProvider.Log.Debug($"##Player {message.Brief.Name} was added");
         }
 
         private void ProcessStandUpBRC(StandUpBRC message, ClientRecord record)
         {
-            LogProvider.Log.Debug($"##Player {record.Players[message.SeatID].Name} was removed");
             record.Players.Remove(message.SeatID);
-            
-            if (record.HeroSeatID == message.SeatID)
-            {
-                record.HeroSeatID = null;
-            }
         }
 
         private void ProcessDealerInfoRSP(DealerInfoRSP message, ClientRecord record, HandHistory history)
@@ -488,18 +487,17 @@ namespace DriveHUD.Importers.PPPoker
 
         private void ProcessHandCardRSP(HandCardRSP message, ClientRecord record, HandHistory history)
         {
-            if (!record.HeroSeatID.HasValue)
+            var roomHero = record.Players.Values.FirstOrDefault(p => p.ID == record.HeroUid);
+            if (roomHero == null)
             {
-                LogProvider.Log.Warn($"Hole cards were dealt to hero, but hero seat ID is null in hand {history.HandId}, room {record.RoomID}");
+                LogProvider.Log.Warn($"Hero is not seated in hand {history.HandId}, room {record.RoomID}, user {record.HeroUid}");
                 return;
             }
 
-            var roomHero = record.Players[record.HeroSeatID.Value];
             var hero = history.Players.FirstOrDefault(p => p.PlayerName == roomHero.ID.ToString());
-
             if (hero == null)
             {
-                LogProvider.Log.Warn($"Hero not found for hand {history.HandId}, room {record.RoomID}, user {roomHero.ID}");
+                LogProvider.Log.Warn($"Hero not found for hand {history.HandId}, room {record.RoomID}, user {record.HeroUid}");
                 return;
             }
 

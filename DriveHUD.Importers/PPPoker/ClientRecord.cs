@@ -30,7 +30,7 @@ namespace DriveHUD.Importers.PPPoker
 
         public Dictionary<int, RoomPlayer> Players { get; set; } = new Dictionary<int, RoomPlayer>(); // SeatID => RoomPlayer
 
-        public int? HeroSeatID { get; set; }
+        public long HeroUid { get; set; }
 
         public List<PPPokerPackage> Packages { get; set; } = new List<PPPokerPackage>();
 
