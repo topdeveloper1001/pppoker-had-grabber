@@ -24,6 +24,7 @@ namespace DriveHUD.Importers.PPPoker.Model
         ChipsBackBRC,
         ClubRoomREQ,
         ClubRoomRSP,
+        CroupierActionBRC,
         DealerInfoRSP,
         EnterRoomREQ,
         EnterRoomRSP,

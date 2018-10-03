@@ -92,6 +92,7 @@
     <Compile Include="PPPoker\Model\ClubRoomInfo.cs" />
     <Compile Include="PPPoker\Model\ClubRoomREQ.cs" />
     <Compile Include="PPPoker\Model\ClubRoomRSP.cs" />
+    <Compile Include="PPPoker\Model\CroupierActionBRC.cs" />
     <Compile Include="PPPoker\Model\DealerInfoRSP.cs" />
     <Compile Include="PPPoker\Model\EnterRoomREQ.cs" />
     <Compile Include="PPPoker\Model\EnterRoomRSP.cs" />
