@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandHistories.Objects", "HandHistories.Objects\HandHistories.Objects.csproj", "{794DC88F-DC07-4CB6-8B7B-394B71BD6CD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandHistories.Parser", "HandHistories.Parser\HandHistories.Parser.csproj", "{899BBE11-5941-4367-8F19-51375074841B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{794DC88F-DC07-4CB6-8B7B-394B71BD6CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{794DC88F-DC07-4CB6-8B7B-394B71BD6CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{794DC88F-DC07-4CB6-8B7B-394B71BD6CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{899BBE11-5941-4367-8F19-51375074841B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{899BBE11-5941-4367-8F19-51375074841B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{899BBE11-5941-4367-8F19-51375074841B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{899BBE11-5941-4367-8F19-51375074841B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -195,6 +195,10 @@
       <Project>{794dc88f-dc07-4cb6-8b7b-394b71bd6cd9}</Project>
       <Name>HandHistories.Objects</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HandHistories.Parser\HandHistories.Parser.csproj">
+      <Project>{899bbe11-5941-4367-8f19-51375074841b}</Project>
+      <Name>HandHistories.Parser</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -22,7 +22,7 @@ using HandHistories.Objects.Cards;
 using HandHistories.Objects.GameDescription;
 using HandHistories.Objects.Hand;
 using HandHistories.Objects.Players;
-//using HandHistories.Parser.Utils;
+using HandHistories.Parser.Utils;
 //using Model;
 using System;
 using System.Collections.Generic;
@@ -195,9 +195,6 @@ namespace DriveHUD.Importers.PPPoker
                         case PackageType.ActionBRC:
                             ParsePackage<ActionBRC>(package, m => ProcessActionBRC(m, record, history));
                             break;
-                        case PackageType.ChipsBackBRC:
-                            ParsePackage<ChipsBackBRC>(package, m => ProcessChipsBackBRC(m, record, history));
-                            break;
                         case PackageType.HandCardRSP:
                             ParsePackage<HandCardRSP>(package, m => ProcessHandCardRSP(m, record, history));
                             break;
@@ -232,11 +229,11 @@ namespace DriveHUD.Importers.PPPoker
                 return;
             }
 
-            //HandHistoryUtils.UpdateAllInActions(handHistory);
-            //HandHistoryUtils.CalculateBets(handHistory);
-            //HandHistoryUtils.CalculateUncalledBets(handHistory, true);
-            //HandHistoryUtils.CalculateTotalPot(handHistory);
-            //HandHistoryUtils.RemoveSittingOutPlayers(handHistory);
+            HandHistoryUtils.UpdateAllInActions(handHistory);
+            HandHistoryUtils.CalculateBets(handHistory);
+            HandHistoryUtils.CalculateUncalledBets(handHistory, true);
+            HandHistoryUtils.CalculateTotalPot(handHistory);
+            HandHistoryUtils.RemoveSittingOutPlayers(handHistory);
 
             if (!handHistory.GameDescription.IsTournament)
             {
@@ -473,16 +470,6 @@ namespace DriveHUD.Importers.PPPoker
 
                 history.HandActions.Add(action);
             }
-        }
-
-        private void ProcessChipsBackBRC(ChipsBackBRC message, ClientRecord record, HandHistory history)
-        {
-            history.HandActions.Add(new HandAction(
-                GetPlayerName(history, message.SeatID + 1),
-                HandActionType.UNCALLED_BET,
-                message.Chips,
-                history.CommunityCards.Street
-            ));
         }
 
         private void ProcessHandCardRSP(HandCardRSP message, ClientRecord record, HandHistory history)

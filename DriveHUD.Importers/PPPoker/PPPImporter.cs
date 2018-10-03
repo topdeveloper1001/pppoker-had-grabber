@@ -289,7 +289,6 @@ namespace DriveHUD.Importers.PPPoker
                 case PackageType.RoundStartBRC:
                 case PackageType.RoundOverBRC:
                 case PackageType.ActionBRC:
-                case PackageType.ChipsBackBRC:
                 case PackageType.HandCardRSP:
                 case PackageType.ShowHandRSP:
                 case PackageType.WinnerRSP:
