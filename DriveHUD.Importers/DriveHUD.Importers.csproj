@@ -141,6 +141,7 @@
     <Compile Include="PPPoker\Model\RoomStatus.cs" />
     <Compile Include="PPPoker\Model\RoomType.cs" />
     <Compile Include="PPPoker\Model\SeatStatusBRC.cs" />
+    <Compile Include="PPPoker\Model\SelUserInfoRSP.cs" />
     <Compile Include="PPPoker\Model\ShowHandInfo.cs" />
     <Compile Include="PPPoker\Model\ShowHandRSP.cs" />
     <Compile Include="PPPoker\Model\ShowMyCardBRC.cs" />

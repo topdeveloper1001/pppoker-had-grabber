@@ -49,6 +49,7 @@ namespace DriveHUD.Importers.PPPoker.Model
         RoundStartBRC,
         RoundOverBRC,
         SeatStatusBRC,
+        SelUserInfoRSP,
         ShowHandRSP,
         ShowMyCardBRC,
         SitDownBRC,
