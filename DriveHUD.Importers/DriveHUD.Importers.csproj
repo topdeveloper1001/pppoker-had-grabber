@@ -77,6 +77,7 @@
     <Compile Include="Base\IBaseImporter.cs" />
     <Compile Include="IBackgroundProcess.cs" />
     <Compile Include="INetworkBaseImporter.cs" />
+    <Compile Include="PPPoker\ClientRecord.cs" />
     <Compile Include="PPPoker\CustomModulesNames.cs" />
     <Compile Include="PPPoker\IPPPHandBuilder.cs" />
     <Compile Include="PPPoker\IPPPImporter.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="PPPoker\Model\GameComingRSP.cs" />
     <Compile Include="PPPoker\Model\GetUserMarksREQ.cs" />
     <Compile Include="PPPoker\Model\GetUserMarksRSP.cs" />
+    <Compile Include="PPPoker\Model\IHoleCardInfo.cs" />
     <Compile Include="PPPoker\Model\ItemClassInfo.cs" />
     <Compile Include="PPPoker\Model\LeaveRoomRSP.cs" />
     <Compile Include="PPPoker\Model\MarkColor.cs" />
@@ -170,6 +172,7 @@
     <Compile Include="PPPoker\Model\WinningInfo.cs" />
     <Compile Include="PPPoker\Model\WinningProfit.cs" />
     <Compile Include="PPPoker\PackageDirection.cs" />
+    <Compile Include="PPPoker\Player.cs" />
     <Compile Include="PPPoker\PPPConstants.cs" />
     <Compile Include="PPPoker\PPPHandBuilder.cs" />
     <Compile Include="PPPoker\PPPImporter.cs" />

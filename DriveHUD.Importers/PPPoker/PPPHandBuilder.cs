@@ -27,13 +27,41 @@ using HandHistories.Objects.Players;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 
 namespace DriveHUD.Importers.PPPoker
 {
     class PPPHandBuilder : IPPPHandBuilder
     {
-        private readonly Dictionary<int, List<PPPokerPackage>> clientPackages = new Dictionary<int, List<PPPokerPackage>>();
+        private static readonly Dictionary<ActionType, HandActionType> BlindActionMapping = new Dictionary<ActionType, HandActionType>
+        {
+            { ActionType.Ante, HandActionType.ANTE },
+            { ActionType.ForceBigBlind, HandActionType.POSTS },
+            { ActionType.SmallBlind, HandActionType.SMALL_BLIND },
+            { ActionType.BigBlind, HandActionType.BIG_BLIND },
+            { ActionType.Straddle, HandActionType.STRADDLE },
+        };
+
+        private static readonly Dictionary<ActionType, HandActionType> ActionMapping = new Dictionary<ActionType, HandActionType>
+        {
+            { ActionType.Fold, HandActionType.FOLD },
+            { ActionType.SystemFold, HandActionType.FOLD },
+            { ActionType.Check, HandActionType.CHECK },
+            { ActionType.SystemCheck, HandActionType.CHECK },
+            { ActionType.Call, HandActionType.CALL },
+            { ActionType.Bet, HandActionType.BET },
+            { ActionType.Raise, HandActionType.RAISE },
+        };
+
+        private static readonly HashSet<HandActionType> InvestingHandActionTypes = new HashSet<HandActionType>
+        {
+            HandActionType.CALL,
+            HandActionType.BET,
+            HandActionType.RAISE,
+        };
+
+        private readonly Dictionary<int, ClientRecord> clientRecords = new Dictionary<int, ClientRecord>();
 
         public bool TryBuild(PPPokerPackage package, out HandHistory handHistory)
         {
@@ -44,29 +72,65 @@ namespace DriveHUD.Importers.PPPoker
                 return false;
             }
 
-            if (!clientPackages.TryGetValue(package.ClientPort, out List<PPPokerPackage> packages))
+            if (!clientRecords.TryGetValue(package.ClientPort, out ClientRecord record))
             {
-                packages = new List<PPPokerPackage>();
-                clientPackages.Add(package.ClientPort, packages);
+                record = clientRecords[package.ClientPort] = new ClientRecord { Port = package.ClientPort };
             }
 
-            packages.Add(package);
+            if (package.PackageType == PackageType.EnterRoomRSP)
+            {
+                ParsePackage<EnterRoomRSP>(package, m => ProcessEnterRoomRSP(m, record));
+                return false;
+            }
+
+            // Delay following actions until DealerInfoRSP message arrives
+            // Otherwise these messages will not be processed becase ValidatePackages in BuildHand method will return false and package list will be cleared
+            if (package.PackageType == PackageType.SitDownRSP)
+            {
+                record.DelayedActions.Add(() => ParsePackage<SitDownRSP>(package, m => ProcessSitDownRSP(m, record)));
+            }
+            else if (package.PackageType == PackageType.BlindStatusBRC)
+            {
+                record.DelayedActions.Add(() => ParsePackage<BlindStatusBRC>(package, m => ProcessBlindStatusBRC(m, record)));
+            }
+            else if (package.PackageType == PackageType.SitDownBRC)
+            {
+                record.DelayedActions.Add(() => ParsePackage<SitDownBRC>(package, m => ProcessSitDownBRC(m, record)));
+            }
+            else if (package.PackageType == PackageType.StandUpBRC)
+            {
+                record.DelayedActions.Add(() => ParsePackage<StandUpBRC>(package, m => ProcessStandUpBRC(m, record)));
+            }
+
+            if (package.PackageType == PackageType.DealerInfoRSP)
+            {
+                if (record.DelayedActions.Count > 0)
+                {
+                    foreach (var action in record.DelayedActions)
+                    {
+                        action();
+                    }
+                    record.DelayedActions.Clear();
+                }
+            }
+
+            record.Packages.Add(package);
 
             if (package.PackageType == PackageType.WinnerRSP)
             {
-                handHistory = BuildHand(packages, package.ClientPort);
+                handHistory = BuildHand(record);
             }
 
             return handHistory != null;
         }
 
-        private bool ValidatePackages(List<PPPokerPackage> packages, int clientPort)
+        private bool ValidatePackages(ClientRecord record)
         {
-            var dealerInfoPackage = packages.FirstOrDefault(x => x.PackageType == PackageType.DealerInfoRSP);
+            var dealerInfoPackage = record.Packages.FirstOrDefault(x => x.PackageType == PackageType.DealerInfoRSP);
 
             if (dealerInfoPackage == null)
             {
-                LogProvider.Log.Warn(CustomModulesNames.PPPCatcher, $"Hand cannot be built because dealer data is missing. [{clientPort}]");
+                LogProvider.Log.Warn(CustomModulesNames.PPPCatcher, $"Hand cannot be built because DealerInfoRSP message is missing. [{record.Port}]");
                 return false;
             }
 
@@ -74,40 +138,39 @@ namespace DriveHUD.Importers.PPPoker
 
             ParsePackage<DealerInfoRSP>(dealerInfoPackage, x =>
             {
-                isValid = packages.Any(p => p.PackageType == PackageType.WinnerRSP);
+                isValid = record.Packages.Any(p => p.PackageType == PackageType.WinnerRSP);
                 if (!isValid)
                 {
-                    LogProvider.Log.Warn(CustomModulesNames.PPPCatcher, $"Hand #{x.GameID} cannot be built because winner data is missing. [{clientPort}]");
+                    LogProvider.Log.Warn(CustomModulesNames.PPPCatcher, $"Hand GameID = {x.GameID} cannot be built because WinnerRSP message is missing. [{record.Port}]");
                 }
             });
 
             return isValid;
         }
 
-        private HandHistory BuildHand(List<PPPokerPackage> packages, int clientPort)
+        private HandHistory BuildHand(ClientRecord record)
         {
-            HandHistory handHistory = null;
+            HandHistory history = null;
 
             try
             {
-                if (!ValidatePackages(packages, clientPort))
+                if (!ValidatePackages(record))
                 {
-                    packages.Clear();
-                    return handHistory;
+                    return history;
                 }
 
                 var isGameStarted = false;
 
-                foreach (var package in packages)
+                foreach (var package in record.Packages)
                 {
                     if (package.PackageType == PackageType.DealerInfoRSP)
                     {
-                        handHistory = new HandHistory
+                        history = new HandHistory
                         {
                             DateOfHandUtc = package.Timestamp.ToUniversalTime()
                         };
 
-                        ParsePackage<DealerInfoRSP>(package, x => ProcessDealerInfoRSP(x, handHistory));
+                        ParsePackage<DealerInfoRSP>(package, m => ProcessDealerInfoRSP(m, record, history));
                         isGameStarted = true;
                         continue;
                     }
@@ -117,56 +180,53 @@ namespace DriveHUD.Importers.PPPoker
                         continue;
                     }
 
-                    //switch (package.PackageType)
-                    //{
-                    //    case PackageType.NoticeGameElectDealer:
-                    //        ParsePackage<NoticeGameElectDealer>(package, x => ProcessNoticeGameElectDealer(x, handHistory));
-                    //        break;
-                    //    case PackageType.NoticeGameBlind:
-                    //        ParsePackage<NoticeGameBlind>(package, x => ProcessNoticeGameBlind(x, handHistory));
-                    //        break;
-                    //    case PackageType.NoticeGameAnte:
-                    //        ParsePackage<NoticeGameAnte>(package, x => ProcessNoticeGameAnte(x, handHistory));
-                    //        break;
-                    //    case PackageType.NoticeGameHoleCard:
-                    //        ParsePackage<NoticeGameHoleCard>(package, x => ProcessNoticeGameHoleCard(x, handHistory, userId));
-                    //        break;
-                    //    case PackageType.NoticePlayerAction:
-                    //        ParsePackage<NoticePlayerAction>(package, x => ProcessNoticePlayerAction(x, handHistory));
-                    //        break;
-                    //    case PackageType.NoticeGameCommunityCards:
-                    //        ParsePackage<NoticeGameCommunityCards>(package, x => ProcessNoticeGameCommunityCards(x, handHistory));
-                    //        break;
-                    //    case PackageType.NoticeGameShowDown:
-                    //        ParsePackage<NoticeGameShowDown>(package, x => ProcessNoticeGameShowDown(x, handHistory));
-                    //        break;
-                    //    case PackageType.NoticeGameSettlement:
-                    //        ParsePackage<NoticeGameSettlement>(package, x => ProcessNoticeGameSettlement(x, handHistory));
-                    //        break;
-                    //}
+                    switch (package.PackageType)
+                    {
+                        case PackageType.RoundStartBRC:
+                            ParsePackage<RoundStartBRC>(package, m => ProcessRoundStartBRC(m, record, history));
+                            break;
+                        case PackageType.RoundOverBRC:
+                            ParsePackage<RoundOverBRC>(package, m => ProcessRoundOverBRC(m, record, history));
+                            break;
+                        case PackageType.ActionBRC:
+                            ParsePackage<ActionBRC>(package, m => ProcessActionBRC(m, record, history));
+                            break;
+                        case PackageType.ChipsBackBRC:
+                            ParsePackage<ChipsBackBRC>(package, m => ProcessChipsBackBRC(m, record, history));
+                            break;
+                        case PackageType.HandCardRSP:
+                            ParsePackage<HandCardRSP>(package, m => ProcessHandCardRSP(m, record, history));
+                            break;
+                        case PackageType.ShowHandRSP:
+                            ParsePackage<ShowHandRSP>(package, m => ProcessShowHandRSP(m, record, history));
+                            break;
+                        case PackageType.WinnerRSP:
+                            ParsePackage<WinnerRSP>(package, m => ProcessWinnerRSP(m, record, history));
+                            break;
+                    }
                 }
 
-                AdjustHandHistory(handHistory);
+                AdjustHandHistory(history);
 
-                return handHistory;
+                return history;
             }
             catch (Exception e)
             {
-                LogProvider.Log.Error(CustomModulesNames.PPPCatcher, $"Failed to build hand #{handHistory?.HandId ?? 0} room #{handHistory?.GameDescription.Identifier ?? 0} [{clientPort}]", e);
+                LogProvider.Log.Error(CustomModulesNames.PPPCatcher, $"Failed to build hand #{history?.HandId ?? 0} room #{history?.GameDescription.Identifier ?? 0} [{record.Port}]", e);
                 return null;
             }
             finally
             {
-                packages.Clear();
+                record.Packages.Clear();
             }
         }
 
         private void AdjustHandHistory(HandHistory handHistory)
         {
-            //if (handHistory == null)
-            //{
-            //    return;
-            //}
+            if (handHistory == null)
+            {
+                return;
+            }
 
             //HandHistoryUtils.UpdateAllInActions(handHistory);
             //HandHistoryUtils.CalculateBets(handHistory);
@@ -174,25 +234,25 @@ namespace DriveHUD.Importers.PPPoker
             //HandHistoryUtils.CalculateTotalPot(handHistory);
             //HandHistoryUtils.RemoveSittingOutPlayers(handHistory);
 
-            //if (!handHistory.GameDescription.IsTournament)
-            //{
-            //    const decimal divider = 100m;
+            if (!handHistory.GameDescription.IsTournament)
+            {
+                const decimal divider = 100m;
 
-            //    handHistory.HandActions.ForEach(a => a.Amount = a.Amount / divider);
+                handHistory.HandActions.ForEach(a => a.Amount = a.Amount / divider);
 
-            //    handHistory.GameDescription.Limit.SmallBlind /= divider;
-            //    handHistory.GameDescription.Limit.BigBlind /= divider;
-            //    handHistory.GameDescription.Limit.Ante /= divider;
+                handHistory.GameDescription.Limit.SmallBlind /= divider;
+                handHistory.GameDescription.Limit.BigBlind /= divider;
+                handHistory.GameDescription.Limit.Ante /= divider;
 
-            //    handHistory.Players.ForEach(p =>
-            //    {
-            //        p.Bet /= divider;
-            //        p.StartingStack /= divider;
-            //        p.Win /= divider;
-            //    });
+                handHistory.Players.ForEach(p =>
+                {
+                    p.Bet /= divider;
+                    p.StartingStack /= divider;
+                    p.Win /= divider;
+                });
 
-            //    handHistory.TotalPot /= divider;
-            //}
+                handHistory.TotalPot /= divider;
+            }
         }
 
         private void ParsePackage<T>(PPPokerPackage package, Action<T> action)
@@ -208,6 +268,7 @@ namespace DriveHUD.Importers.PPPoker
 
         private bool TryParseHandID(string gameId, out long handId)
         {
+            DateTime BaseTime = new DateTime(2018, 1, 1) + TimeSpan.FromHours(8); // pppoker.net time is 8 hours ahead of UTC timezone (China Standard Time), no daylight saving time
             const int Base = 100000000;
             const int PartCount = 4;
 
@@ -225,15 +286,17 @@ namespace DriveHUD.Importers.PPPoker
                 return false;
             }
 
-            if (!long.TryParse(parts[0], out long result))
+            if (!DateTime.TryParseExact(parts[0], "yyMMddHHmmss", null, DateTimeStyles.None, out DateTime dt))
             {
                 return false;
             }
 
+            long result = Convert.ToInt64((dt - BaseTime).TotalSeconds);
+
             result *= Base;
 
             string sessionPlusTable = parts[1] + parts[3];
-            result += Convert.ToUInt32(sessionPlusTable.GetHashCode()) % Base;
+            result += unchecked((uint)sessionPlusTable.GetHashCode()) % Base;
 
             if (!int.TryParse(parts[2], out int handNumber))
             {
@@ -245,264 +308,291 @@ namespace DriveHUD.Importers.PPPoker
             return true;
         }
 
-        private void ProcessDealerInfoRSP(DealerInfoRSP dealerInfo, HandHistory handHistory)
+        private RoomPlayer UserBriefToRoomPlayer(UserBrief brief)
         {
-            if (!TryParseHandID(dealerInfo.GameID, out long handId))
-            {
-                //throw new DHInternalException(new NonLocalizableString($"Failed to parse hand id from '{noticeResetGame.GameId}'."));
-                throw new Exception($"Failed to parse hand id from '{dealerInfo.GameID}'.");
-            }
-
-            //var players = dealerInfo.Players ?? throw new HandBuilderException(handId, "NoticeResetGame.Players must be not null.");
-            var players = dealerInfo.Stacks ?? throw new Exception("DealerInfoRSP.Players must be not null.");
-
-            handHistory.HandId = handId;
-
-            //foreach (var playerInfo in dealerInfo.Stacks)
-            //{
-            //    var player = new Player
-            //    {
-            //        PlayerName = playerInfo.Playerid.ToString(),
-            //        PlayerNick = playerInfo.Name,
-            //        StartingStack = playerInfo.Stake,
-            //        SeatNumber = playerInfo.Seatid + 1,
-            //        IsSittingOut = !playerInfo.InGame
-            //    };
-
-            //    handHistory.Players.Add(player);
-            //}
+            return new RoomPlayer {
+                ID = brief.Uid,
+                Name = brief.Name,
+            };
         }
 
-        //private void ProcessNoticeGameElectDealer(NoticeGameElectDealer noticeGameElectDealer, HandHistory handHistory)
-        //{
-        //    handHistory.DealerButtonPosition = noticeGameElectDealer.DealerSeatId + 1;
-        //}
+        private void ProcessEnterRoomRSP(EnterRoomRSP message, ClientRecord record)
+        {
+            if (message.RoomType == RoomType.LobbyRoom)
+            {
+                record.RoomID = message.RoomInfo.RoomID;
+                record.RoomName = message.RoomInfo.RoomName;
+                record.IsTournament = false;
+                record.Ante = message.RoomInfo.Ante;
+                record.BigBlind = message.RoomInfo.Blind;
+                record.MaxPlayers = message.RoomInfo.SeatNum;
+            }
+            else if (message.RoomType == RoomType.MttRoom)
+            {
+                record.RoomID = message.SngRoomInfo.RoomID;
+                record.RoomName = message.SngRoomInfo.RoomName;
+                record.IsTournament = true;
+                record.Ante = message.SngRoomInfo.Ante;
+                record.BigBlind = message.SngRoomInfo.Blind;
+                record.MaxPlayers = message.SngRoomInfo.SeatNum;
+            }
 
-        //private void ProcessNoticeGameAnte(NoticeGameAnte noticeGameAnte, HandHistory handHistory)
-        //{
-        //    if (noticeGameAnte.SeatList == null ||
-        //        noticeGameAnte.AmountList == null ||
-        //        noticeGameAnte.SeatList.Length != noticeGameAnte.AmountList.Length)
-        //    {
-        //        return;
-        //    }
+            foreach (var seat in message.TableStatus.Seat.Where(s => s.Player != null))
+            {
+                record.Players[seat.SeatID] = UserBriefToRoomPlayer(seat.Player);
+                LogProvider.Log.Debug($"##Player {seat.Player.Name} was added");
+            }
+        }
 
-        //    for (var i = 0; i < noticeGameAnte.SeatList.Length; i++)
-        //    {
-        //        var seat = noticeGameAnte.SeatList[i] + 1;
-        //        var ante = noticeGameAnte.AmountList[i];
+        private void ProcessSitDownRSP(SitDownRSP message, ClientRecord record)
+        {
+            if (message.Code == SitDownCode.OK)
+            {
+                record.HeroSeatID = message.SeatID;
+            }
+        }
 
-        //        var anteAction = new HandAction(GetPlayerName(handHistory, seat),
-        //            HandActionType.ANTE,
-        //            ante,
-        //            Street.Preflop);
+        private void ProcessSitDownBRC(SitDownBRC message, ClientRecord record)
+        {
+            record.Players[message.SeatID] = UserBriefToRoomPlayer(message.Brief);
+            LogProvider.Log.Debug($"##Player {message.Brief.Name} was added");
+        }
 
-        //        handHistory.HandActions.Add(anteAction);
-        //    }
-        //}
+        private void ProcessStandUpBRC(StandUpBRC message, ClientRecord record)
+        {
+            LogProvider.Log.Debug($"##Player {record.Players[message.SeatID].Name} was removed");
+            record.Players.Remove(message.SeatID);
+            
+            if (record.HeroSeatID == message.SeatID)
+            {
+                record.HeroSeatID = null;
+            }
+        }
 
-        //private void ProcessNoticeGameBlind(NoticeGameBlind noticeGameBlind, HandHistory handHistory)
-        //{
-        //    if (!roomsData.TryGetValue(noticeGameBlind.RoomId, out NoticeGameSnapShot noticeGameSnapShot))
-        //    {
-        //        throw new HandBuilderException(handHistory.HandId, $"NoticeGameSnapShot has not been found for room #{noticeGameBlind.RoomId}.");
-        //    }
+        private void ProcessDealerInfoRSP(DealerInfoRSP message, ClientRecord record, HandHistory history)
+        {
+            if (!TryParseHandID(message.GameID, out long handId))
+            {
+                //throw new DHInternalException(new NonLocalizableString($"Failed to parse hand id from '{noticeResetGame.GameId}'."));
+                throw new Exception($"Failed to parse hand id from '{message.GameID}'.");
+            }
 
-        //    var gameRoomInfo = noticeGameSnapShot.Params ?? throw new HandBuilderException(handHistory.HandId, "NoticeGameSnapShot.Params must be not empty.");
+            LogProvider.Log.Info($"Parsed GameID = {message.GameID} into HandID = {handId}");
 
-        //    var ante = Math.Abs(handHistory.HandActions.Where(x => x.HandActionType == HandActionType.ANTE).MaxOrDefault(x => x.Amount));
+            history.HandId = handId;
 
-        //    if (ante != 0)
-        //    {
-        //        ante = ante < gameRoomInfo.RuleAnteAmount ? gameRoomInfo.RuleAnteAmount : ante;
-        //    }
+            history.GameDescription = new GameDescriptor(
+                EnumPokerSites.PPPoker,
+                GameType.NoLimitHoldem,
+                Limit.FromSmallBlindBigBlind(record.SmallBlind, record.BigBlind, record.IsTournament ? Currency.Chips : Currency.All, record.Ante > 0, record.Ante),
+                TableType.FromTableTypeDescriptions(record.Ante > 0 ? TableTypeDescription.Ante : TableTypeDescription.Regular),
+                SeatType.FromMaxPlayers(record.MaxPlayers),
+                null
+            );
 
-        //    handHistory.GameDescription = new GameDescriptor(
-        //        EnumPokerSites.PPPoker,
-        //        GameType.NoLimitHoldem,
-        //        Limit.FromSmallBlindBigBlind(noticeGameBlind.SBAmount, noticeGameBlind.BBAmount, Currency.YUAN, ante != 0, ante),
-        //        TableType.FromTableTypeDescriptions(gameRoomInfo.GameMode == 3 ? TableTypeDescription.ShortDeck : TableTypeDescription.Regular),
-        //        SeatType.FromMaxPlayers(gameRoomInfo.PlayerCountMax), null);
+            history.GameDescription.Identifier = record.RoomID;
+            history.TableName = record.RoomName;
 
-        //    handHistory.GameDescription.Identifier = noticeGameBlind.RoomId;
+            foreach (var stackInfo in message.Stacks)
+            {
+                var roomPlayer = record.Players[stackInfo.SeatID];
 
-        //    handHistory.TableName = gameRoomInfo.GameName;
+                var player = new Player
+                {
+                    PlayerName = roomPlayer.ID.ToString(),
+                    PlayerNick = roomPlayer.Name,
+                    StartingStack = stackInfo.Chips,
+                    SeatNumber = stackInfo.SeatID + 1,
+                    IsSittingOut = false
+                };
 
-        //    if (noticeGameBlind.SBAmount > 0)
-        //    {
-        //        handHistory.HandActions.Add(new HandAction(GetPlayerName(handHistory, noticeGameBlind.SBSeatId + 1),
-        //                HandActionType.SMALL_BLIND,
-        //                noticeGameBlind.SBAmount,
-        //                Street.Preflop));
-        //    }
+                history.Players.Add(player);
+            }
 
-        //    handHistory.HandActions.Add(new HandAction(GetPlayerName(handHistory, noticeGameBlind.BBSeatId + 1),
-        //         HandActionType.BIG_BLIND,
-        //         noticeGameBlind.BBAmount,
-        //         Street.Preflop));
+            history.DealerButtonPosition = message.Dealer + 1;
+        }
 
-        //    if (noticeGameBlind.StraddleSeatList != null && noticeGameBlind.StraddleSeatList.Length > 0 &&
-        //        noticeGameBlind.StraddleAmountList != null && noticeGameBlind.StraddleAmountList.Length == noticeGameBlind.StraddleSeatList.Length)
-        //    {
-        //        for (var straddleIndex = 0; straddleIndex < noticeGameBlind.StraddleSeatList.Length; straddleIndex++)
-        //        {
-        //            var straddleSeat = noticeGameBlind.StraddleSeatList[straddleIndex];
-        //            var straddleAmount = noticeGameBlind.StraddleAmountList[straddleIndex];
+        private void ProcessBlindStatusBRC(BlindStatusBRC message, ClientRecord record)
+        {
+            record.BigBlind = message.Blind;
+            record.Ante = message.Ante;
+        }
 
-        //            if (straddleSeat < 0 || straddleAmount <= 0)
-        //            {
-        //                continue;
-        //            }
+        private void ProcessRoundStartBRC(RoundStartBRC message, ClientRecord record, HandHistory history)
+        {
+            if (message.Board != null)
+            {
+                foreach (int card_value in message.Board)
+                {
+                    history.CommunityCards.Add(ConvertToCard(card_value));
+                }
+            }
+        }
 
-        //            handHistory.HandActions.Add(new HandAction(GetPlayerName(handHistory, straddleSeat + 1),
-        //                HandActionType.STRADDLE,
-        //                straddleAmount,
-        //                Street.Preflop));
-        //        }
-        //    }
+        private void ProcessRoundOverBRC(RoundOverBRC message, ClientRecord record, HandHistory history)
+        {
+            record.Pots = message.Pool;
+        }
 
-        //    if (noticeGameBlind.PostSeatList != null)
-        //    {
-        //        foreach (var postSeat in noticeGameBlind.PostSeatList)
-        //        {
-        //            handHistory.HandActions.Add(new HandAction(GetPlayerName(handHistory, postSeat + 1),
-        //                HandActionType.POSTS,
-        //                noticeGameBlind.BBAmount,
-        //                Street.Preflop));
-        //        }
-        //    }
-        //}
+        private void ProcessActionBRC(ActionBRC message, ClientRecord record, HandHistory history)
+        {
+            var playerName = GetPlayerName(history, message.SeatID + 1);
 
-        //private void ProcessNoticeGameHoleCard(NoticeGameHoleCard noticeGameHoleCard, HandHistory handHistory, uint userId)
-        //{
-        //    if (noticeGameHoleCard.HoldCards == null)
-        //    {
-        //        return;
-        //    }
+            if (BlindActionMapping.ContainsKey(message.ActionType))
+            {
+                history.HandActions.Add(new HandAction(
+                    playerName,
+                    BlindActionMapping[message.ActionType],
+                    message.Chips,
+                    Street.Preflop
+                ));
+            }
+            else if (ActionMapping.ContainsKey(message.ActionType))
+            {
+                HandAction action;
 
-        //    var cards = noticeGameHoleCard.HoldCards.Select(c => ConvertCardItem(c)).ToArray();
+                var handActionType = ActionMapping[message.ActionType];
+                if (InvestingHandActionTypes.Contains(handActionType) && message.HandChips == 0)
+                {
+                    action = new AllInAction(
+                        playerName,
+                        message.Chips,
+                        history.CommunityCards.Street,
+                        false, // TODO: Find out when IsRaiseAllIn should be true
+                        ActionMapping[message.ActionType]
+                    );
+                }
+                else
+                {
+                    action = new HandAction(
+                        playerName,
+                        ActionMapping[message.ActionType],
+                        message.Chips,
+                        history.CommunityCards.Street
+                    );
+                }
 
-        //    var hero = handHistory.Players.FirstOrDefault(x => x.PlayerName == userId.ToString());
+                history.HandActions.Add(action);
+            }
+        }
 
-        //    if (hero == null)
-        //    {
-        //        LogProvider.Log.Warn($"Hero not found for hand {handHistory.HandId}, room {noticeGameHoleCard.RoomId}, user {userId}");
-        //        return;
-        //    }
+        private void ProcessChipsBackBRC(ChipsBackBRC message, ClientRecord record, HandHistory history)
+        {
+            history.HandActions.Add(new HandAction(
+                GetPlayerName(history, message.SeatID + 1),
+                HandActionType.UNCALLED_BET,
+                message.Chips,
+                history.CommunityCards.Street
+            ));
+        }
 
-        //    handHistory.Hero = hero;
-        //    hero.HoleCards = HoleCards.FromCards(hero.PlayerName, cards);
-        //}
+        private void ProcessHandCardRSP(HandCardRSP message, ClientRecord record, HandHistory history)
+        {
+            if (!record.HeroSeatID.HasValue)
+            {
+                LogProvider.Log.Warn($"Hole cards were dealt to hero, but hero seat ID is null in hand {history.HandId}, room {record.RoomID}");
+                return;
+            }
 
-        //private void ProcessNoticePlayerAction(NoticePlayerAction noticePlayerAction, HandHistory handHistory)
-        //{
-        //    var actionType = ParseHandActionType(noticePlayerAction);
+            var roomHero = record.Players[record.HeroSeatID.Value];
+            var hero = history.Players.FirstOrDefault(p => p.PlayerName == roomHero.ID.ToString());
 
-        //    if (actionType == HandActionType.UNKNOWN)
-        //    {
-        //        return;
-        //    }
+            if (hero == null)
+            {
+                LogProvider.Log.Warn($"Hero not found for hand {history.HandId}, room {record.RoomID}, user {roomHero.ID}");
+                return;
+            }
 
+            history.Hero = hero;
 
-        //    HandAction action;
+            hero.HoleCards = HoleCards.FromCards(hero.PlayerName, GetCards(message));
+        }
 
-        //    if (actionType == HandActionType.ALL_IN)
-        //    {
-        //        var player = GetPlayer(handHistory, noticePlayerAction.LastActionSeatId + 1);
+        private void ProcessShowHandRSP(ShowHandRSP message, ClientRecord record, HandHistory history)
+        {
+            foreach (var handInfo in message.Info)
+            {
+                var player = GetPlayer(history, handInfo.SeatID + 1);
 
-        //        var playerPutInPot = Math.Abs(handHistory.HandActions.Where(x => x.PlayerName == player.PlayerName).Sum(x => x.Amount));
-        //        var allInAmount = player.StartingStack - playerPutInPot;
+                history.HandActions.Add(new HandAction(
+                    player.PlayerName,
+                    HandActionType.SHOW,
+                    0,
+                    Street.Showdown
+                ));
 
-        //        action = new AllInAction(player.PlayerName,
-        //            allInAmount,
-        //            handHistory.CommunityCards.Street, false);
-        //    }
-        //    else
-        //    {
-        //        action = new HandAction(GetPlayerName(handHistory, noticePlayerAction.LastActionSeatId + 1),
-        //            actionType,
-        //            noticePlayerAction.Amount,
-        //            handHistory.CommunityCards.Street);
-        //    }
+                if (player.hasHoleCards)
+                {
+                    continue;
+                }
 
-        //    handHistory.HandActions.Add(action);
-        //}
+                player.HoleCards = HoleCards.FromCards(player.PlayerName, GetCards(handInfo));
+            }
+        }
 
-        //private void ProcessNoticeGameCommunityCards(NoticeGameCommunityCards noticeGameCommunityCards, HandHistory handHistory)
-        //{
-        //    if (noticeGameCommunityCards.Cards == null)
-        //    {
-        //        LogProvider.Log.Warn(CustomModulesNames.PPPCatcher, $"NoticeGameCommunityCards.Cards must be not null.");
-        //        return;
-        //    }
+        private void ProcessWinnerRSP(WinnerRSP message, ClientRecord record, HandHistory history)
+        {
+            foreach (var winner in message.Winner)
+            {
+                var player = GetPlayer(history, winner.SeatID + 1);
 
-        //    foreach (var cardItem in noticeGameCommunityCards.Cards)
-        //    {
-        //        var card = ConvertCardItem(cardItem);
-        //        handHistory.CommunityCards.AddCard(card);
-        //    }
-        //}
+                HandActionType handActionType;
+                if (winner.PoolID > 0)
+                {
+                    handActionType = winner.Chips < record.Pots[winner.PoolID] ? HandActionType.TIES_SIDE_POT : HandActionType.WINS_SIDE_POT;
+                }
+                else
+                {
+                    handActionType = winner.Chips < record.Pots[winner.PoolID] ? HandActionType.TIES : HandActionType.WINS;
+                }
 
-        //private void ProcessNoticeGameShowDown(NoticeGameShowDown noticeGameShowDown, HandHistory handHistory)
-        //{
-        //    if (noticeGameShowDown.Shows == null)
-        //    {
-        //        return;
-        //    }
+                history.HandActions.Add(new WinningsAction(
+                    player.PlayerName,
+                    handActionType,
+                    winner.Chips,
+                    winner.PoolID
+                ));
 
-        //    foreach (var show in noticeGameShowDown.Shows)
-        //    {
-        //        var player = GetPlayer(handHistory, show.SeatId + 1);
-
-        //        if (handHistory.HandActions.Any(x => x.PlayerName == player.PlayerName && x.HandActionType == HandActionType.SHOW))
-        //        {
-        //            continue;
-        //        }
-
-        //        var showAction = new HandAction(player.PlayerName,
-        //            HandActionType.SHOW,
-        //            0,
-        //            Street.Showdown);
-
-        //        handHistory.HandActions.Add(showAction);
-
-        //        if (player.hasHoleCards)
-        //        {
-        //            continue;
-        //        }
-
-        //        if (show.Cards == null)
-        //        {
-        //            LogProvider.Log.Warn(CustomModulesNames.PPPCatcher, $"NoticeGameShowDown.Show.Cards must be not null.");
-        //            continue;
-        //        }
-
-        //        var cards = show.Cards.Select(c => ConvertCardItem(c)).ToArray();
-        //        player.HoleCards = HoleCards.FromCards(player.PlayerName, cards);
-        //    }
-        //}
-
-        //private void ProcessNoticeGameSettlement(NoticeGameSettlement noticeGameSettlement, HandHistory handHistory)
-        //{
-        //    if (noticeGameSettlement.Winners == null)
-        //    {
-        //        throw new HandBuilderException(handHistory.HandId, $"NoticeGameSettlement.Winners must be not null.");
-        //    }
-
-        //    foreach (var winner in noticeGameSettlement.Winners)
-        //    {
-        //        var player = GetPlayer(handHistory, winner.SeatId + 1);
-
-        //        var winningAction = new WinningsAction(player.PlayerName,
-        //             HandActionType.WINS, winner.Amount, 0);
-
-        //        handHistory.HandActions.Add(winningAction);
-
-        //        player.Win = winner.Amount;
-        //    }
-        //}
+                player.Win = winner.Chips;
+            }
+        }
 
         #region Static helpers
+
+        private static readonly ReadOnlyDictionary<int, int> SuitMapping = new ReadOnlyDictionary<int, int>(new Dictionary<int, int>
+        {
+            [0] = 1,
+            [1] = 0,
+            [2] = 2,
+            [3] = 3,
+        });
+
+        private static Card ConvertToCard(int value)
+        {
+            const int RankCount = 13;
+            // Ad = 0001 0000 1110
+            // Ac = 0010 0000 1110
+            // Ah = 0011 0000 1110
+            // As = 0100 0000 1110
+
+            int rank = (value & 0xF) - 2;
+            int suit = ((value & 0xF00) >> 8) - 1;
+
+            int card_number = SuitMapping[suit] * RankCount + rank;
+
+            return Card.GetCardFromIntValue(card_number);
+        }
+
+        private static Card[] GetCards(IHoleCardInfo cardInfo)
+        {
+            var card_values = new List<int> { cardInfo.Card1, cardInfo.Card2 };
+            if (cardInfo.Card3 > 0)
+            {
+                card_values.Add(cardInfo.Card3);
+                card_values.Add(cardInfo.Card4);
+            }
+            return card_values.Select(v => ConvertToCard(v)).ToArray();
+        }
 
         private static string GetPlayerName(HandHistory handHistory, int seat)
         {
@@ -522,44 +612,6 @@ namespace DriveHUD.Importers.PPPoker
 
             return player;
         }
-
-        //private static HandActionType ParseHandActionType(NoticePlayerAction noticePlayerAction)
-        //{
-        //    switch (noticePlayerAction.ActionType)
-        //    {
-        //        case ActionType.Allin:
-        //            return HandActionType.ALL_IN;
-        //        case ActionType.Bet:
-        //            return HandActionType.BET;
-        //        case ActionType.Call:
-        //        case ActionType.CallMuck:
-        //            return HandActionType.CALL;
-        //        case ActionType.Check:
-        //            return HandActionType.CHECK;
-        //        case ActionType.Fold:
-        //            return HandActionType.FOLD;
-        //        case ActionType.Post:
-        //            return HandActionType.POSTS;
-        //        case ActionType.Raise:
-        //            return HandActionType.RAISE;
-        //        default:
-        //            return HandActionType.UNKNOWN;
-        //    }
-        //}
-
-        //private static readonly ReadOnlyDictionary<int, int> suitConversionTable = new ReadOnlyDictionary<int, int>(new Dictionary<int, int>
-        //{
-        //    [0] = 1,
-        //    [1] = 0,
-        //    [2] = 2,
-        //    [3] = 3
-        //});
-
-        //private static Card ConvertCardItem(CardItem cardItem)
-        //{
-        //    var card = suitConversionTable[cardItem.Suit] * 13 + cardItem.Rank;
-        //    return Card.GetCardFromIntValue(card);
-        //}
 
         #endregion
     }

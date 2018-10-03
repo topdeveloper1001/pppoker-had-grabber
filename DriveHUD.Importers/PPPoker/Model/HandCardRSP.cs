@@ -3,7 +3,7 @@
 namespace DriveHUD.Importers.PPPoker.Model
 {
     [ProtoContract]
-    class HandCardRSP
+    class HandCardRSP : IHoleCardInfo
     {
         [ProtoMember(1)]
         public int Card1 { get; set; }

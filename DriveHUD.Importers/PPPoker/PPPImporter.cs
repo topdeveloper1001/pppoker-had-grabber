@@ -207,6 +207,8 @@ namespace DriveHUD.Importers.PPPoker
                                 LogProvider.Log.Info(Logger, $"Hand #{handHistory.HandId}, ClientPort={package.ClientPort}.");
                             }
 
+                            LogProvider.Log.Info(SerializationHelper.SerializeObject(handHistory));
+
                             //var handHistoryData = new HandHistoryData
                             //{
                             //    Uuid = package.UserId,
@@ -274,32 +276,26 @@ namespace DriveHUD.Importers.PPPoker
         /// <param name="package">Package to check</param>
         /// <returns></returns>
         protected static bool IsAllowedPackage(PPPokerPackage package)
-        {            
+        {
             switch (package.PackageType)
             {
-                //case PackageType.NoticeBuyin:
-                //case PackageType.NoticeGameAnte:
-                //case PackageType.NoticeGameBlind:
-                //case PackageType.NoticeGameCommunityCards:
-                //case PackageType.NoticeGameElectDealer:
-                //case PackageType.NoticeGameHoleCard:
-                //case PackageType.NoticeGamePost:
-                //case PackageType.NoticeGameRoundEnd:
-                //case PackageType.NoticeGameSettlement:
-                //case PackageType.NoticeGameShowCard:
-                //case PackageType.NoticeGameShowDown:
-                //case PackageType.NoticeGameSnapShot:
-                //case PackageType.NoticePlayerAction:
-                //case PackageType.NoticePlayerShowCard:
-                //case PackageType.NoticePlayerStayPosition:
-                //case PackageType.NoticeResetGame:
-                //case PackageType.NoticeStartGame:
-                //case PackageType.RequestLeaveRoom:
-                //case PackageType.RequestJoinRoom:
-                //    return true;
+                case PackageType.EnterRoomRSP:
+                case PackageType.SitDownRSP:
+                case PackageType.SitDownBRC:
+                case PackageType.StandUpBRC:
+                case PackageType.BlindStatusBRC:
+                case PackageType.DealerInfoRSP:
+                case PackageType.RoundStartBRC:
+                case PackageType.RoundOverBRC:
+                case PackageType.ActionBRC:
+                case PackageType.ChipsBackBRC:
+                case PackageType.HandCardRSP:
+                case PackageType.ShowHandRSP:
+                case PackageType.WinnerRSP:
+                    return true;
 
                 default:
-                    return true;
+                    return false;
             }
         }
 
