@@ -104,6 +104,8 @@
     <Compile Include="PPPoker\Model\IHoleCardInfo.cs" />
     <Compile Include="PPPoker\Model\IRoomInfo.cs" />
     <Compile Include="PPPoker\Model\ItemClassInfo.cs" />
+    <Compile Include="PPPoker\Model\ItemInfo.cs" />
+    <Compile Include="PPPoker\Model\ItemListRSP.cs" />
     <Compile Include="PPPoker\Model\LeaveRoomRSP.cs" />
     <Compile Include="PPPoker\Model\MarkColor.cs" />
     <Compile Include="PPPoker\Model\MoneyRSP.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="PPPoker\Model\MttListRSP.cs" />
     <Compile Include="PPPoker\Model\MttRewardPercentType.cs" />
     <Compile Include="PPPoker\Model\MttRoomInfo.cs" />
+    <Compile Include="PPPoker\Model\MttScoreRSP.cs" />
     <Compile Include="PPPoker\Model\MttStatusRSP.cs" />
     <Compile Include="PPPoker\Model\MultiBoard.cs" />
     <Compile Include="PPPoker\Model\HandCardRSP.cs" />
