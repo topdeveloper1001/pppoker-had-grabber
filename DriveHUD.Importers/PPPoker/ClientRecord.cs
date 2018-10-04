@@ -12,6 +12,8 @@ namespace DriveHUD.Importers.PPPoker
     {
         public int RoomID { get; set; }
 
+        public int TableID { get; set; }
+
         public string RoomName { get; set; }
 
         public int Port { get; set; }

@@ -341,6 +341,7 @@ namespace DriveHUD.Importers.PPPoker
             IRoomInfo roomInfo = isTournament ? (IRoomInfo)message.SngRoomInfo : (IRoomInfo)message.RoomInfo;
 
             record.RoomID = roomInfo.RoomID;
+            record.TableID = message.TableStatus.Tid;
             record.RoomName = roomInfo.RoomName.Length > 0 ? roomInfo.RoomName : roomInfo.TempID;
             record.IsTournament = isTournament;
             record.Ante = roomInfo.Ante;
@@ -390,7 +391,7 @@ namespace DriveHUD.Importers.PPPoker
             );
 
             history.GameDescription.Identifier = record.RoomID;
-            history.TableName = record.RoomName;
+            history.TableName = $"{record.RoomName}-{record.TableID}";
 
             foreach (var stackInfo in message.Stacks)
             {
