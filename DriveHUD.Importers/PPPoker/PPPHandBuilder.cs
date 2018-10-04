@@ -61,6 +61,12 @@ namespace DriveHUD.Importers.PPPoker
             HandActionType.RAISE,
         };
 
+        private static readonly HashSet<RoomType> TournamentRoomTypes = new HashSet<RoomType>
+        {
+            RoomType.SngRoom,
+            RoomType.MttRoom,
+        };
+
         private readonly Dictionary<int, ClientRecord> clientRecords = new Dictionary<int, ClientRecord>();
 
         public bool TryBuild(PPPokerPackage package, out HandHistory handHistory)
@@ -235,6 +241,8 @@ namespace DriveHUD.Importers.PPPoker
             HandHistoryUtils.CalculateTotalPot(handHistory);
             HandHistoryUtils.RemoveSittingOutPlayers(handHistory);
 
+            HandHistoryUtils.CalculateRake(handHistory);
+
             if (!handHistory.GameDescription.IsTournament)
             {
                 const decimal divider = 100m;
@@ -253,6 +261,11 @@ namespace DriveHUD.Importers.PPPoker
                 });
 
                 handHistory.TotalPot /= divider;
+
+                if (handHistory.Rake.HasValue)
+                {
+                    handHistory.Rake /= divider;
+                }
             }
         }
 
@@ -324,25 +337,15 @@ namespace DriveHUD.Importers.PPPoker
 
         private void ProcessEnterRoomRSP(EnterRoomRSP message, ClientRecord record)
         {
-            // TODO: Deduplicate control blocks by introducing a common interface similar to IHoleCardInfo
-            if (message.RoomType == RoomType.LobbyRoom)
-            {
-                record.RoomID = message.RoomInfo.RoomID;
-                record.RoomName = message.RoomInfo.RoomName.Length > 0 ? message.RoomInfo.RoomName : message.RoomInfo.TempID;
-                record.IsTournament = false;
-                record.Ante = message.RoomInfo.Ante;
-                record.BigBlind = message.RoomInfo.Blind;
-                record.MaxPlayers = message.RoomInfo.SeatNum;
-            }
-            else if (message.RoomType == RoomType.SngRoom || message.RoomType == RoomType.MttRoom)
-            {
-                record.RoomID = message.SngRoomInfo.RoomID;
-                record.RoomName = message.SngRoomInfo.RoomName.Length > 0 ? message.SngRoomInfo.RoomName : message.SngRoomInfo.TempID;
-                record.IsTournament = true;
-                record.Ante = message.SngRoomInfo.Ante;
-                record.BigBlind = message.SngRoomInfo.Blind;
-                record.MaxPlayers = message.SngRoomInfo.SeatNum;
-            }
+            bool isTournament = TournamentRoomTypes.Contains(message.RoomType);
+            IRoomInfo roomInfo = isTournament ? (IRoomInfo)message.SngRoomInfo : (IRoomInfo)message.RoomInfo;
+
+            record.RoomID = roomInfo.RoomID;
+            record.RoomName = roomInfo.RoomName.Length > 0 ? roomInfo.RoomName : roomInfo.TempID;
+            record.IsTournament = isTournament;
+            record.Ante = roomInfo.Ante;
+            record.BigBlind = roomInfo.Blind;
+            record.MaxPlayers = roomInfo.SeatNum;
 
             foreach (var seat in message.TableStatus.Seat.Where(s => s.Player != null))
             {
@@ -532,7 +535,7 @@ namespace DriveHUD.Importers.PPPoker
                     winner.PoolID
                 ));
 
-                player.Win = winner.Chips;
+                player.Win += winner.Chips;
             }
         }
 

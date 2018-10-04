@@ -100,6 +100,7 @@
     <Compile Include="PPPoker\Model\GetUserMarksREQ.cs" />
     <Compile Include="PPPoker\Model\GetUserMarksRSP.cs" />
     <Compile Include="PPPoker\Model\IHoleCardInfo.cs" />
+    <Compile Include="PPPoker\Model\IRoomInfo.cs" />
     <Compile Include="PPPoker\Model\ItemClassInfo.cs" />
     <Compile Include="PPPoker\Model\LeaveRoomRSP.cs" />
     <Compile Include="PPPoker\Model\MarkColor.cs" />

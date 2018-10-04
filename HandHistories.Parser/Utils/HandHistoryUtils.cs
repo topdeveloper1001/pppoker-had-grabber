@@ -14,6 +14,7 @@ using HandHistories.Objects.Actions;
 using HandHistories.Objects.Cards;
 using HandHistories.Objects.Hand;
 using HandHistories.Objects.Players;
+using HandHistories.Parser.Utils.Pot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -231,6 +232,11 @@ namespace HandHistories.Parser.Utils
             orderedHandActions.AddRange(OrderStreetHandActions(handHistory.HandActions, orderedPlayersDictionary, x => x.Street == Street.Summary));
 
             handHistory.HandActions = orderedHandActions;
+        }
+
+        public static void CalculateRake(HandHistory history)
+        {
+            history.Rake = PotCalculator.CalculateRake(history);
         }
 
         private static Dictionary<string, int> OrderedPlayersToDict(IEnumerable<Player> orderedPlayers)

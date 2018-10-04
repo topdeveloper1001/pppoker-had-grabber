@@ -3,7 +3,7 @@
 namespace DriveHUD.Importers.PPPoker.Model
 {
     [ProtoContract]
-    class SngRoomInfo
+    class SngRoomInfo : IRoomInfo
     {
         [ProtoMember(1)]
         public int RoomID { get; set; }
