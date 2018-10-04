@@ -231,7 +231,7 @@ namespace DriveHUD.Importers.PPPoker
 
             HandHistoryUtils.UpdateAllInActions(handHistory);
             HandHistoryUtils.CalculateBets(handHistory);
-            HandHistoryUtils.CalculateUncalledBets(handHistory, true);
+            HandHistoryUtils.CalculateUncalledBets(handHistory, false);
             HandHistoryUtils.CalculateTotalPot(handHistory);
             HandHistoryUtils.RemoveSittingOutPlayers(handHistory);
 
@@ -328,16 +328,16 @@ namespace DriveHUD.Importers.PPPoker
             if (message.RoomType == RoomType.LobbyRoom)
             {
                 record.RoomID = message.RoomInfo.RoomID;
-                record.RoomName = message.RoomInfo.RoomName;
+                record.RoomName = message.RoomInfo.RoomName.Length > 0 ? message.RoomInfo.RoomName : message.RoomInfo.TempID;
                 record.IsTournament = false;
                 record.Ante = message.RoomInfo.Ante;
                 record.BigBlind = message.RoomInfo.Blind;
                 record.MaxPlayers = message.RoomInfo.SeatNum;
             }
-            else if (message.RoomType == RoomType.MttRoom)
+            else if (message.RoomType == RoomType.SngRoom || message.RoomType == RoomType.MttRoom)
             {
                 record.RoomID = message.SngRoomInfo.RoomID;
-                record.RoomName = message.SngRoomInfo.RoomName;
+                record.RoomName = message.SngRoomInfo.RoomName.Length > 0 ? message.SngRoomInfo.RoomName : message.SngRoomInfo.TempID;
                 record.IsTournament = true;
                 record.Ante = message.SngRoomInfo.Ante;
                 record.BigBlind = message.SngRoomInfo.Blind;
@@ -380,7 +380,7 @@ namespace DriveHUD.Importers.PPPoker
             history.GameDescription = new GameDescriptor(
                 EnumPokerSites.PPPoker,
                 GameType.NoLimitHoldem,
-                Limit.FromSmallBlindBigBlind(record.SmallBlind, record.BigBlind, record.IsTournament ? Currency.Chips : Currency.All, record.Ante > 0, record.Ante),
+                Limit.FromSmallBlindBigBlind(record.SmallBlind, record.BigBlind, Currency.All, record.Ante > 0, record.Ante),
                 TableType.FromTableTypeDescriptions(record.Ante > 0 ? TableTypeDescription.Ante : TableTypeDescription.Regular),
                 SeatType.FromMaxPlayers(record.MaxPlayers),
                 null
