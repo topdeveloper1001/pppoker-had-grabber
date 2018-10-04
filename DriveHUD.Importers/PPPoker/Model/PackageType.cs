@@ -21,6 +21,7 @@ namespace DriveHUD.Importers.PPPoker.Model
         ActionREQ,
         AnteBRC,
         BlindStatusBRC,
+        ChangeTableRSP,
         ChipsBackBRC,
         ClubRoomREQ,
         ClubRoomRSP,

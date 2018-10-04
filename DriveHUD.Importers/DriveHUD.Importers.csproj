@@ -88,6 +88,7 @@
     <Compile Include="PPPoker\Model\AnteBRC.cs" />
     <Compile Include="PPPoker\Model\AnteInfo.cs" />
     <Compile Include="PPPoker\Model\BlindStatusBRC.cs" />
+    <Compile Include="PPPoker\Model\ChangeTableRSP.cs" />
     <Compile Include="PPPoker\Model\ChipsBackBRC.cs" />
     <Compile Include="PPPoker\Model\ClubRoomInfo.cs" />
     <Compile Include="PPPoker\Model\ClubRoomREQ.cs" />
