@@ -295,6 +295,8 @@ namespace DriveHUD.Importers.PPPoker
                 case PackageType.ShowHandRSP:
                 case PackageType.WinnerRSP:
                 case PackageType.ShowMyCardBRC:
+                case PackageType.UserSngOverRSP:
+                case PackageType.TableGameOverRSP:
                     return true;
 
                 default:

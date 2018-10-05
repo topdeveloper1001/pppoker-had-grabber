@@ -121,8 +121,10 @@ namespace DriveHUD.Importers.PPPoker
                 record.DelayedActions.Add(() => ParsePackage<StandUpBRC>(package, m => ProcessStandUpBRC(m, record)));
             }
 
-            if (package.PackageType == PackageType.DealerInfoRSP)
+            if (package.PackageType == PackageType.DealerInfoRSP || package.PackageType == PackageType.TableGameOverRSP)
             {
+                handHistory = BuildHand(record);
+
                 if (record.DelayedActions.Count > 0)
                 {
                     foreach (var action in record.DelayedActions)
@@ -134,11 +136,6 @@ namespace DriveHUD.Importers.PPPoker
             }
 
             record.Packages.Add(package);
-
-            if (package.PackageType == PackageType.WinnerRSP)
-            {
-                handHistory = BuildHand(record);
-            }
 
             return handHistory != null;
         }
@@ -222,6 +219,9 @@ namespace DriveHUD.Importers.PPPoker
                         case PackageType.ShowMyCardBRC:
                             ParsePackage<ShowMyCardBRC>(package, m => ProcessShowMyCardBRC(m, record, history));
                             break;
+                        case PackageType.UserSngOverRSP:
+                            ParsePackage<UserSngOverRSP>(package, m => ProcessUserSngOverRSP(m, record, history));
+                            break;
                     }
                 }
 
@@ -240,39 +240,51 @@ namespace DriveHUD.Importers.PPPoker
             }
         }
 
-        private void AdjustHandHistory(HandHistory handHistory)
+        private void AdjustHandHistory(HandHistory history)
         {
-            if (handHistory == null)
+            const decimal divider = 100m;
+
+            if (history == null)
             {
                 return;
             }
 
-            HandHistoryUtils.UpdateAllInActions(handHistory);
-            HandHistoryUtils.CalculateBets(handHistory);
-            HandHistoryUtils.CalculateUncalledBets(handHistory, false);
-            HandHistoryUtils.CalculateTotalPot(handHistory);
-            HandHistoryUtils.RemoveSittingOutPlayers(handHistory);
+            HandHistoryUtils.UpdateAllInActions(history);
+            HandHistoryUtils.CalculateBets(history);
+            HandHistoryUtils.CalculateUncalledBets(history, false);
+            HandHistoryUtils.CalculateTotalPot(history);
+            HandHistoryUtils.RemoveSittingOutPlayers(history);
 
-            if (!handHistory.GameDescription.IsTournament)
+            if (history.GameDescription.IsTournament)
             {
-                const decimal divider = 100m;
+                history.GameDescription.Tournament.BuyIn.PrizePoolValue /= divider;
+                history.GameDescription.Tournament.BuyIn.KnockoutValue /= divider;
+                history.GameDescription.Tournament.BuyIn.Rake /= divider;
+                history.GameDescription.Tournament.Addon /= divider;
+                history.GameDescription.Tournament.Rebuy /= divider;
+                history.GameDescription.Tournament.Winning /= divider;
+                history.GameDescription.Tournament.Bounty /= divider;
+                history.GameDescription.Tournament.TotalPrize /= divider;
+            }
 
-                handHistory.HandActions.ForEach(a => a.Amount = a.Amount / divider);
+            history.HandActions.ForEach(a => a.Amount = a.Amount / divider);
 
-                handHistory.GameDescription.Limit.SmallBlind /= divider;
-                handHistory.GameDescription.Limit.BigBlind /= divider;
-                handHistory.GameDescription.Limit.Ante /= divider;
+            history.GameDescription.Limit.SmallBlind /= divider;
+            history.GameDescription.Limit.BigBlind /= divider;
+            history.GameDescription.Limit.Ante /= divider;
 
-                handHistory.Players.ForEach(p =>
-                {
-                    p.Bet /= divider;
-                    p.StartingStack /= divider;
-                    p.Win /= divider;
-                });
+            history.Players.ForEach(p =>
+            {
+                p.Bet /= divider;
+                p.StartingStack /= divider;
+                p.Win /= divider;
+            });
 
-                handHistory.TotalPot /= divider;
+            history.TotalPot /= divider;
 
-                HandHistoryUtils.CalculateRake(handHistory);
+            if (!history.GameDescription.IsTournament)
+            {
+                HandHistoryUtils.CalculateRake(history);
             }
         }
 
@@ -342,9 +354,15 @@ namespace DriveHUD.Importers.PPPoker
             record.HeroUid = message.Brief.Uid;
         }
 
+        private static readonly DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         private static DateTime TimestampToDateTime(long timestamp)
         {
-            return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(timestamp);
+            return Epoch.AddSeconds(timestamp);
+        }
+
+        private static long DateTimeToTimestamp(DateTime dt)
+        {
+            return Convert.ToInt64((dt - Epoch).TotalSeconds);
         }
 
         private void ProcessEnterRoomRSP(EnterRoomRSP message, ClientRecord record)
@@ -362,7 +380,8 @@ namespace DriveHUD.Importers.PPPoker
             record.IsTournament = isTournament;
             if (isTournament)
             {
-                record.TournamentID = $"{record.RoomID}-{message.MttRoomInfo.MttStartTime}";
+                long startTimestamp = message.RoomType == RoomType.MttRoom ? message.MttRoomInfo.MttStartTime : DateTimeToTimestamp(DateTime.UtcNow);
+                record.TournamentID = $"{record.RoomID}-{startTimestamp}";
                 record.TournamentName = $"{record.RoomName}";
                 record.TournamentBuyIn = message.SngRoomInfo.BuyIn;
                 record.TournamentReBuy = message.MttRoomInfo.ReBuyIn;
@@ -607,6 +626,12 @@ namespace DriveHUD.Importers.PPPoker
             AddShowCardsAction(history, GetPlayer(history, message.SeatID + 1), GetCards(message));
         }
 
+        private void ProcessUserSngOverRSP(UserSngOverRSP message, ClientRecord record, HandHistory history)
+        {
+            history.GameDescription.Tournament.FinishPosition = message.Rank;
+            history.GameDescription.Tournament.TotalPrize = message.Money;
+        }
+
         #region Static helpers
 
         private static readonly ReadOnlyDictionary<int, int> SuitMapping = new ReadOnlyDictionary<int, int>(new Dictionary<int, int>
@@ -635,12 +660,13 @@ namespace DriveHUD.Importers.PPPoker
 
         private static Card[] GetCards(IHoleCardInfo cardInfo)
         {
-            var card_values = new List<int> { cardInfo.Card1, cardInfo.Card2 };
-            if (cardInfo.Card3 > 0)
-            {
-                card_values.Add(cardInfo.Card3);
-                card_values.Add(cardInfo.Card4);
-            }
+            var card_values = new List<int>();
+
+            if (cardInfo.Card1 > 0) card_values.Add(cardInfo.Card1);
+            if (cardInfo.Card2 > 0) card_values.Add(cardInfo.Card2);
+            if (cardInfo.Card3 > 0) card_values.Add(cardInfo.Card3);
+            if (cardInfo.Card4 > 0) card_values.Add(cardInfo.Card4);
+
             return card_values.Select(v => ConvertToCard(v)).ToArray();
         }
 
