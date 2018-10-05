@@ -330,6 +330,11 @@ namespace DriveHUD.Importers.PPPoker
             record.HeroUid = message.Brief.Uid;
         }
 
+        private static DateTime TimestampToDateTime(long timestamp)
+        {
+            return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(timestamp);
+        }
+
         private void ProcessEnterRoomRSP(EnterRoomRSP message, ClientRecord record)
         {
             bool isTournament = TournamentRoomTypes.Contains(message.RoomType);
@@ -348,8 +353,11 @@ namespace DriveHUD.Importers.PPPoker
                 record.TournamentID = $"{record.RoomID}-{message.MttRoomInfo.MttStartTime}";
                 record.TournamentName = $"{record.RoomName}";
                 record.TournamentBuyIn = message.SngRoomInfo.BuyIn;
+                record.TournamentReBuy = message.MttRoomInfo.ReBuyIn;
+                record.TournamentAddOn = message.MttRoomInfo.AddOnBuyIn;
                 record.TournamentBounty = message.MttRoomInfo.HunterReward;
                 record.TournamentHasFixedRewards = message.SngRoomInfo.FixedReward;
+                record.TournamentStartDate = message.RoomType == RoomType.MttRoom ? TimestampToDateTime(message.MttRoomInfo.MttStartTime) : DateTime.UtcNow;
             }
 
             foreach (var seat in message.TableStatus.Seat.Where(s => s.Player != null))
@@ -397,7 +405,10 @@ namespace DriveHUD.Importers.PPPoker
                 {
                     TournamentId = record.TournamentID,
                     TournamentName = record.TournamentName,
+                    StartDate = record.TournamentStartDate,
                     BuyIn = Buyin.FromBuyinRake(prizePoolValue, rake, Currency.All, record.TournamentBounty > 0, record.TournamentBounty),
+                    Rebuy = record.TournamentReBuy,
+                    Addon = record.TournamentAddOn,
                     Speed = TournamentSpeed.Regular, // I didn't discover any reliable way to determine tournament speed from protocol messages
                 };
             }

@@ -42,7 +42,13 @@ namespace DriveHUD.Importers.PPPoker
 
         public string TournamentName { get; set; }
 
+        public DateTime TournamentStartDate { get; set; }
+
         public long TournamentBuyIn { get; set; }
+
+        public long TournamentReBuy { get; set; }
+
+        public long TournamentAddOn { get; set; }
 
         public long TournamentBounty { get; set; }
 

@@ -93,10 +93,10 @@ namespace DriveHUD.Importers.PPPoker.Model
         public bool IsPlayed { get; set; }
 
         [ProtoMember(30)]
-        public long Rebuyin { get; set; }
+        public long ReBuyIn { get; set; }
 
         [ProtoMember(31)]
-        public long AddonBuyin { get; set; }
+        public long AddOnBuyIn { get; set; }
 
         [ProtoMember(32)]
         public MttRewardPercentType PercentType { get; set; }
