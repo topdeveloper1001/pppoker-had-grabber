@@ -279,6 +279,8 @@ namespace DriveHUD.Importers.PPPoker
         {
             switch (package.PackageType)
             {
+                case PackageType.GetUserMarksREQ:
+                case PackageType.GetUserMarksRSP:
                 case PackageType.SelUserInfoRSP:
                 case PackageType.EnterRoomRSP:
                 case PackageType.SitDownRSP:

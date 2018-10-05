@@ -88,6 +88,15 @@ namespace DriveHUD.Importers.PPPoker
                 ParsePackage<EnterRoomRSP>(package, m => ProcessEnterRoomRSP(m, record));
                 return false;
             }
+            // We use both GetUserMarksREQ and GetUserMarksRSP to get Uid and to be sure that no packets are lost and we successfully determined who is hero
+            else if (package.PackageType == PackageType.GetUserMarksREQ)
+            {
+                ParsePackage<GetUserMarksREQ>(package, m => ProcessGetUserMarksREQ(m, record));
+            }
+            else if (package.PackageType == PackageType.GetUserMarksRSP)
+            {
+                ParsePackage<GetUserMarksRSP>(package, m => ProcessGetUserMarksRSP(m, record));
+            }
 
             // Delay following actions until DealerInfoRSP message arrives
             // Otherwise these messages will not be processed becase ValidatePackages in BuildHand method will return false and package list will be cleared
@@ -364,6 +373,16 @@ namespace DriveHUD.Importers.PPPoker
             {
                 record.Players[seat.SeatID] = UserBriefToRoomPlayer(seat.Player);
             }
+        }
+
+        private void ProcessGetUserMarksREQ(GetUserMarksREQ message, ClientRecord record)
+        {
+            record.HeroUid = message.Uid;
+        }
+
+        private void ProcessGetUserMarksRSP(GetUserMarksRSP message, ClientRecord record)
+        {
+            record.HeroUid = message.Uid;
         }
 
         private void ProcessSitDownRSP(SitDownRSP message, ClientRecord record)
