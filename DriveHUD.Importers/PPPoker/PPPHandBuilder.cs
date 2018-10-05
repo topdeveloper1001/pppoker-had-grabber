@@ -241,8 +241,6 @@ namespace DriveHUD.Importers.PPPoker
             HandHistoryUtils.CalculateTotalPot(handHistory);
             HandHistoryUtils.RemoveSittingOutPlayers(handHistory);
 
-            HandHistoryUtils.CalculateRake(handHistory);
-
             if (!handHistory.GameDescription.IsTournament)
             {
                 const decimal divider = 100m;
@@ -262,10 +260,7 @@ namespace DriveHUD.Importers.PPPoker
 
                 handHistory.TotalPot /= divider;
 
-                if (handHistory.Rake.HasValue)
-                {
-                    handHistory.Rake /= divider;
-                }
+                HandHistoryUtils.CalculateRake(handHistory);
             }
         }
 
@@ -343,10 +338,19 @@ namespace DriveHUD.Importers.PPPoker
             record.RoomID = roomInfo.RoomID;
             record.TableID = message.TableStatus.Tid;
             record.RoomName = roomInfo.RoomName.Length > 0 ? roomInfo.RoomName : roomInfo.TempID;
-            record.IsTournament = isTournament;
             record.Ante = roomInfo.Ante;
             record.BigBlind = roomInfo.Blind;
             record.MaxPlayers = roomInfo.SeatNum;
+
+            record.IsTournament = isTournament;
+            if (isTournament)
+            {
+                record.TournamentID = $"{record.RoomID}-{message.MttRoomInfo.MttStartTime}";
+                record.TournamentName = $"{record.RoomName}";
+                record.TournamentBuyIn = message.SngRoomInfo.BuyIn;
+                record.TournamentBounty = message.MttRoomInfo.HunterReward;
+                record.TournamentHasFixedRewards = message.SngRoomInfo.FixedReward;
+            }
 
             foreach (var seat in message.TableStatus.Seat.Where(s => s.Player != null))
             {
@@ -381,13 +385,30 @@ namespace DriveHUD.Importers.PPPoker
 
             history.HandId = handId;
 
+            TournamentDescriptor tournament = null;
+            if (record.IsTournament)
+            {
+                const int RakeProportion = 10;
+
+                long rake = record.TournamentHasFixedRewards ? 0 : record.TournamentBuyIn / RakeProportion;
+                long prizePoolValue = record.TournamentBuyIn - rake - record.TournamentBounty;
+
+                tournament = new TournamentDescriptor
+                {
+                    TournamentId = record.TournamentID,
+                    TournamentName = record.TournamentName,
+                    BuyIn = Buyin.FromBuyinRake(prizePoolValue, rake, Currency.All, record.TournamentBounty > 0, record.TournamentBounty),
+                    Speed = TournamentSpeed.Regular, // I didn't discover any reliable way to determine tournament speed from protocol messages
+                };
+            }
+
             history.GameDescription = new GameDescriptor(
                 EnumPokerSites.PPPoker,
                 GameType.NoLimitHoldem,
                 Limit.FromSmallBlindBigBlind(record.SmallBlind, record.BigBlind, Currency.All, record.Ante > 0, record.Ante),
                 TableType.FromTableTypeDescriptions(record.Ante > 0 ? TableTypeDescription.Ante : TableTypeDescription.Regular),
                 SeatType.FromMaxPlayers(record.MaxPlayers),
-                null
+                tournament
             );
 
             history.GameDescription.Identifier = record.RoomID;
@@ -395,6 +416,11 @@ namespace DriveHUD.Importers.PPPoker
 
             foreach (var stackInfo in message.Stacks)
             {
+                if (!record.Players.ContainsKey(stackInfo.SeatID))
+                {
+                    throw new Exception($"Can't find a player sitting on seat #{stackInfo.SeatID} for hand {handId}. Total known players: {record.Players.Count}. Total participating players: {message.Stacks.Length}.");
+                }
+
                 var roomPlayer = record.Players[stackInfo.SeatID];
 
                 var player = new Player

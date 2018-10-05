@@ -190,14 +190,14 @@ namespace DriveHUD.Importers.PPPoker
 
                     foreach (var package in packages)
                     {
-                        if (!IsAllowedPackage(package))
-                        {
-                            continue;
-                        }
-
                         if (IsAdvancedLogEnabled)
                         {
                             LogPackage(package);
+                        }
+
+                        if (!IsAllowedPackage(package))
+                        {
+                            continue;
                         }
                         
                         if (handBuilder.TryBuild(package, out HandHistory handHistory))

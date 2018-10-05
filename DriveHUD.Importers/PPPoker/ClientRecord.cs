@@ -26,8 +26,6 @@ namespace DriveHUD.Importers.PPPoker
 
         public decimal SmallBlind { get { return BigBlind / 2; } }
 
-        public bool IsTournament { get; set; }
-
         public int MaxPlayers { get; set; }
 
         public Dictionary<int, RoomPlayer> Players { get; set; } = new Dictionary<int, RoomPlayer>(); // SeatID => RoomPlayer
@@ -37,5 +35,17 @@ namespace DriveHUD.Importers.PPPoker
         public List<PPPokerPackage> Packages { get; set; } = new List<PPPokerPackage>();
 
         public List<Action> DelayedActions { get; set; } = new List<Action>();
+
+        public bool IsTournament { get; set; }
+
+        public string TournamentID { get; set; }
+
+        public string TournamentName { get; set; }
+
+        public long TournamentBuyIn { get; set; }
+
+        public long TournamentBounty { get; set; }
+
+        public bool TournamentHasFixedRewards { get; set; }
     }
 }
