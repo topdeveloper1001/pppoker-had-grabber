@@ -219,6 +219,9 @@ namespace DriveHUD.Importers.PPPoker
                         case PackageType.WinnerRSP:
                             ParsePackage<WinnerRSP>(package, m => ProcessWinnerRSP(m, record, history));
                             break;
+                        case PackageType.ShowMyCardBRC:
+                            ParsePackage<ShowMyCardBRC>(package, m => ProcessShowMyCardBRC(m, record, history));
+                            break;
                     }
                 }
 
@@ -553,25 +556,28 @@ namespace DriveHUD.Importers.PPPoker
             hero.HoleCards = HoleCards.FromCards(hero.PlayerName, GetCards(message));
         }
 
+        private void AddShowCardsAction(HandHistory history, Player player, Card[] cards)
+        {
+            history.HandActions.Add(new HandAction(
+                player.PlayerName,
+                HandActionType.SHOW,
+                0,
+                Street.Showdown
+            ));
+
+            if (player.hasHoleCards)
+            {
+                return;
+            }
+
+            player.HoleCards = HoleCards.FromCards(player.PlayerName, cards);
+        }
+
         private void ProcessShowHandRSP(ShowHandRSP message, ClientRecord record, HandHistory history)
         {
             foreach (var handInfo in message.Info)
             {
-                var player = GetPlayer(history, handInfo.SeatID + 1);
-
-                history.HandActions.Add(new HandAction(
-                    player.PlayerName,
-                    HandActionType.SHOW,
-                    0,
-                    Street.Showdown
-                ));
-
-                if (player.hasHoleCards)
-                {
-                    continue;
-                }
-
-                player.HoleCards = HoleCards.FromCards(player.PlayerName, GetCards(handInfo));
+                AddShowCardsAction(history, GetPlayer(history, handInfo.SeatID + 1), GetCards(handInfo));
             }
         }
 
@@ -594,6 +600,11 @@ namespace DriveHUD.Importers.PPPoker
 
                 player.Win += winner.Chips;
             }
+        }
+
+        private void ProcessShowMyCardBRC(ShowMyCardBRC message, ClientRecord record, HandHistory history)
+        {
+            AddShowCardsAction(history, GetPlayer(history, message.SeatID + 1), GetCards(message));
         }
 
         #region Static helpers

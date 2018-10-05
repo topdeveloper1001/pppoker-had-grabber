@@ -294,6 +294,7 @@ namespace DriveHUD.Importers.PPPoker
                 case PackageType.HandCardRSP:
                 case PackageType.ShowHandRSP:
                 case PackageType.WinnerRSP:
+                case PackageType.ShowMyCardBRC:
                     return true;
 
                 default:

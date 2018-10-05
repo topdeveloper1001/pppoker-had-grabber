@@ -3,7 +3,7 @@
 namespace DriveHUD.Importers.PPPoker.Model
 {
     [ProtoContract]
-    class ShowMyCardBRC
+    class ShowMyCardBRC : IHoleCardInfo
     {
         [ProtoMember(1)]
         public int SeatID { get; set; }
