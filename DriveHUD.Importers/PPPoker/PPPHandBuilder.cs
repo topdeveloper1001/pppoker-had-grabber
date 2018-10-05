@@ -662,10 +662,18 @@ namespace DriveHUD.Importers.PPPoker
         {
             var card_values = new List<int>();
 
-            if (cardInfo.Card1 > 0) card_values.Add(cardInfo.Card1);
-            if (cardInfo.Card2 > 0) card_values.Add(cardInfo.Card2);
-            if (cardInfo.Card3 > 0) card_values.Add(cardInfo.Card3);
-            if (cardInfo.Card4 > 0) card_values.Add(cardInfo.Card4);
+            // We have to add hole cards by pairs, otherwise Player.HoleCards will throw an exception
+            if (cardInfo.Card1 > 0 && cardInfo.Card2 > 0)
+            {
+                card_values.Add(cardInfo.Card1);
+                card_values.Add(cardInfo.Card2);
+            }
+
+            if (cardInfo.Card3 > 0 && cardInfo.Card4 > 0)
+            {
+                card_values.Add(cardInfo.Card3);
+                card_values.Add(cardInfo.Card4);
+            }
 
             return card_values.Select(v => ConvertToCard(v)).ToArray();
         }
