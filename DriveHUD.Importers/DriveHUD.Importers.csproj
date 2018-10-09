@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FDB0CAFC-5795-417A-80F6-8C54E83FA641}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DriveHUD.Importers</RootNamespace>
+    <AssemblyName>DriveHUD.Importers</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PacketDotNet, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PacketDotNet.0.16.0\lib\PacketDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.4.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.4.0\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpPcap, Version=4.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpPcap.4.4.0\lib\SharpPcap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AndroidBase\CaptureDevice.cs" />
+    <Compile Include="AndroidBase\CapturedPacket.cs" />
+    <Compile Include="AndroidBase\IPackageBuilder.cs" />
+    <Compile Include="AndroidBase\IPacketManager.cs" />
+    <Compile Include="AndroidBase\ITcpImporter.cs" />
+    <Compile Include="AndroidBase\ITcpPacketImporter.cs" />
+    <Compile Include="AndroidBase\PacketExtensions.cs" />
+    <Compile Include="AndroidBase\PacketManager.cs" />
+    <Compile Include="AndroidBase\PacketsSet.cs" />
+    <Compile Include="AndroidBase\SubPacket.cs" />
+    <Compile Include="AndroidBase\TcpImporter.cs" />
+    <Compile Include="Base\BaseImporter.cs" />
+    <Compile Include="Base\IBaseImporter.cs" />
+    <Compile Include="IBackgroundProcess.cs" />
+    <Compile Include="INetworkBaseImporter.cs" />
+    <Compile Include="PPPoker\ClientRecord.cs" />
+    <Compile Include="PPPoker\CustomModulesNames.cs" />
+    <Compile Include="PPPoker\IPPPHandBuilder.cs" />
+    <Compile Include="PPPoker\IPPPImporter.cs" />
+    <Compile Include="PPPoker\Model\ActionBRC.cs" />
+    <Compile Include="PPPoker\Model\ActionNotifyBRC.cs" />
+    <Compile Include="PPPoker\Model\ActionREQ.cs" />
+    <Compile Include="PPPoker\Model\ActionType.cs" />
+    <Compile Include="PPPoker\Model\AnteBRC.cs" />
+    <Compile Include="PPPoker\Model\AnteInfo.cs" />
+    <Compile Include="PPPoker\Model\BlindStatusBRC.cs" />
+    <Compile Include="PPPoker\Model\ChangeTableRSP.cs" />
+    <Compile Include="PPPoker\Model\ChipsBackBRC.cs" />
+    <Compile Include="PPPoker\Model\ClubRoomInfo.cs" />
+    <Compile Include="PPPoker\Model\ClubRoomREQ.cs" />
+    <Compile Include="PPPoker\Model\ClubRoomRSP.cs" />
+    <Compile Include="PPPoker\Model\CroupierActionBRC.cs" />
+    <Compile Include="PPPoker\Model\DealerInfoRSP.cs" />
+    <Compile Include="PPPoker\Model\EnterRoomREQ.cs" />
+    <Compile Include="PPPoker\Model\EnterRoomRSP.cs" />
+    <Compile Include="PPPoker\Model\GameComingRSP.cs" />
+    <Compile Include="PPPoker\Model\GameSetPlayStatus.cs" />
+    <Compile Include="PPPoker\Model\GetUserMarksREQ.cs" />
+    <Compile Include="PPPoker\Model\GetUserMarksRSP.cs" />
+    <Compile Include="PPPoker\Model\IHoleCardInfo.cs" />
+    <Compile Include="PPPoker\Model\IRoomInfo.cs" />
+    <Compile Include="PPPoker\Model\ItemClassInfo.cs" />
+    <Compile Include="PPPoker\Model\ItemInfo.cs" />
+    <Compile Include="PPPoker\Model\ItemListRSP.cs" />
+    <Compile Include="PPPoker\Model\LeaveRoomRSP.cs" />
+    <Compile Include="PPPoker\Model\MarkColor.cs" />
+    <Compile Include="PPPoker\Model\MoneyRSP.cs" />
+    <Compile Include="PPPoker\Model\MttInfoRSP.cs" />
+    <Compile Include="PPPoker\Model\MttItem.cs" />
+    <Compile Include="PPPoker\Model\MttJoinREQ.cs" />
+    <Compile Include="PPPoker\Model\MttJoinRSP.cs" />
+    <Compile Include="PPPoker\Model\MttListRSP.cs" />
+    <Compile Include="PPPoker\Model\MttRewardPercentType.cs" />
+    <Compile Include="PPPoker\Model\MttRoomInfo.cs" />
+    <Compile Include="PPPoker\Model\MttScoreRSP.cs" />
+    <Compile Include="PPPoker\Model\MttStatusRSP.cs" />
+    <Compile Include="PPPoker\Model\MultiBoard.cs" />
+    <Compile Include="PPPoker\Model\HandCardRSP.cs" />
+    <Compile Include="PPPoker\Model\HandType.cs" />
+    <Compile Include="PPPoker\Model\HeartBeatREQ.cs" />
+    <Compile Include="PPPoker\Model\HeartBeatRSP.cs" />
+    <Compile Include="PPPoker\Model\InsurancePoolInfo.cs" />
+    <Compile Include="PPPoker\Model\Item.cs" />
+    <Compile Include="PPPoker\Model\MttRewardInfo.cs" />
+    <Compile Include="PPPoker\Model\NoticeBRC.cs" />
+    <Compile Include="PPPoker\Model\OfficialDescType.cs" />
+    <Compile Include="PPPoker\Model\OfficialLocation.cs" />
+    <Compile Include="PPPoker\Model\OtherEnterRoomBRC.cs" />
+    <Compile Include="PPPoker\Model\OtherLeaveRoomBRC.cs" />
+    <Compile Include="PPPoker\Model\PackageType.cs" />
+    <Compile Include="PPPoker\Model\PackageTypeEnumerator.cs" />
+    <Compile Include="PPPoker\Model\PineCard.cs" />
+    <Compile Include="PPPoker\Model\PinePlayerResult.cs" />
+    <Compile Include="PPPoker\Model\PinePlayingStatus.cs" />
+    <Compile Include="PPPoker\Model\PineResultScore.cs" />
+    <Compile Include="PPPoker\Model\PineRoomInfo.cs" />
+    <Compile Include="PPPoker\Model\PineRoomStatus.cs" />
+    <Compile Include="PPPoker\Model\PlayingStatus.cs" />
+    <Compile Include="PPPoker\Model\PPCoinRSP.cs" />
+    <Compile Include="PPPoker\Model\PreActionREQ.cs" />
+    <Compile Include="PPPoker\Model\PreActionRSP.cs" />
+    <Compile Include="PPPoker\Model\ProfitInfo.cs" />
+    <Compile Include="PPPoker\Model\RebuyBRC.cs" />
+    <Compile Include="PPPoker\Model\RebuyNotifyRSP.cs" />
+    <Compile Include="PPPoker\Model\RoomInfo.cs" />
+    <Compile Include="PPPoker\Model\RoomMode.cs" />
+    <Compile Include="PPPoker\Model\RoomStatus.cs" />
+    <Compile Include="PPPoker\Model\RoomType.cs" />
+    <Compile Include="PPPoker\Model\SeatStatusBRC.cs" />
+    <Compile Include="PPPoker\Model\SelUserInfoRSP.cs" />
+    <Compile Include="PPPoker\Model\ShowHandInfo.cs" />
+    <Compile Include="PPPoker\Model\ShowHandRSP.cs" />
+    <Compile Include="PPPoker\Model\ShowMyCardBRC.cs" />
+    <Compile Include="PPPoker\Model\SignUpType.cs" />
+    <Compile Include="PPPoker\Model\SitDownCode.cs" />
+    <Compile Include="PPPoker\Model\SitDownRSP.cs" />
+    <Compile Include="PPPoker\Model\SngItem.cs" />
+    <Compile Include="PPPoker\Model\SngJoinREQ.cs" />
+    <Compile Include="PPPoker\Model\SngJoinRSP.cs" />
+    <Compile Include="PPPoker\Model\SngOverBRC.cs" />
+    <Compile Include="PPPoker\Model\SngRoomInfo.cs" />
+    <Compile Include="PPPoker\Model\StandUpBRC.cs" />
+    <Compile Include="PPPoker\Model\StandUpCode.cs" />
+    <Compile Include="PPPoker\Model\StandUpRSP.cs" />
+    <Compile Include="PPPoker\Model\StartInfo.cs" />
+    <Compile Include="PPPoker\Model\PPPokerPackage.cs" />
+    <Compile Include="PPPoker\Model\RabbitCard.cs" />
+    <Compile Include="PPPoker\Model\RoundOverBRC.cs" />
+    <Compile Include="PPPoker\Model\RoundStartBRC.cs" />
+    <Compile Include="PPPoker\Model\RoundStage.cs" />
+    <Compile Include="PPPoker\Model\SeatStatus.cs" />
+    <Compile Include="PPPoker\Model\SitDownBRC.cs" />
+    <Compile Include="PPPoker\Model\TableGameOverRSP.cs" />
+    <Compile Include="PPPoker\Model\TableStatus.cs" />
+    <Compile Include="PPPoker\Model\UserBrief.cs" />
+    <Compile Include="PPPoker\Model\UserMarkInfo.cs" />
+    <Compile Include="PPPoker\Model\UserSngOverRSP.cs" />
+    <Compile Include="PPPoker\Model\WaitListUser.cs" />
+    <Compile Include="PPPoker\Model\WinnerRSP.cs" />
+    <Compile Include="PPPoker\Model\WinningInfo.cs" />
+    <Compile Include="PPPoker\Model\WinningProfit.cs" />
+    <Compile Include="PPPoker\PackageDirection.cs" />
+    <Compile Include="PPPoker\Player.cs" />
+    <Compile Include="PPPoker\PPPConstants.cs" />
+    <Compile Include="PPPoker\PPPHandBuilder.cs" />
+    <Compile Include="PPPoker\PPPImporter.cs" />
+    <Compile Include="PPPoker\PPPokerPackageBuilder.cs" />
+    <Compile Include="PPPoker\PPPokerPacketManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DriveHUD.Common\DriveHUD.Common.csproj">
+      <Project>{dc4bc8a6-fa78-4a3e-90de-aa256a11d954}</Project>
+      <Name>DriveHUD.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DriveHUD.Entities\DriveHUD.Entities.csproj">
+      <Project>{9b87446d-a73d-4036-aa7b-a74eb5c968dc}</Project>
+      <Name>DriveHUD.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HandHistories.Objects\HandHistories.Objects.csproj">
+      <Project>{794dc88f-dc07-4cb6-8b7b-394b71bd6cd9}</Project>
+      <Name>HandHistories.Objects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HandHistories.Parser\HandHistories.Parser.csproj">
+      <Project>{899bbe11-5941-4367-8f19-51375074841b}</Project>
+      <Name>HandHistories.Parser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

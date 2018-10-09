@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{794DC88F-DC07-4CB6-8B7B-394B71BD6CD9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HandHistories.Objects</RootNamespace>
+    <AssemblyName>HandHistories.Objects</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\AllInAction.cs" />
+    <Compile Include="Actions\HandAction.cs" />
+    <Compile Include="Actions\HandActionType.cs" />
+    <Compile Include="Actions\StreetAction.cs" />
+    <Compile Include="Actions\WinningsAction.cs" />
+    <Compile Include="Cards\BoardCards.cs" />
+    <Compile Include="Cards\Card.cs" />
+    <Compile Include="Cards\Card.Enums.cs" />
+    <Compile Include="Cards\CardGroup.cs" />
+    <Compile Include="Cards\HoleCards.cs" />
+    <Compile Include="Cards\Street.cs" />
+    <Compile Include="GameDescription\Buyin.cs" />
+    <Compile Include="GameDescription\Currency.cs" />
+    <Compile Include="GameDescription\GameDescriptor.cs" />
+    <Compile Include="GameDescription\GameTypes.cs" />
+    <Compile Include="GameDescription\GameTypeUtils.cs" />
+    <Compile Include="GameDescription\Limit.cs" />
+    <Compile Include="GameDescription\LimitClassEnum.cs" />
+    <Compile Include="GameDescription\LimitEnum.cs" />
+    <Compile Include="GameDescription\LimitGameTypePair.cs" />
+    <Compile Include="GameDescription\PokerFormat.cs" />
+    <Compile Include="GameDescription\PokerFormatUtils.cs" />
+    <Compile Include="GameDescription\SeatType.cs" />
+    <Compile Include="GameDescription\TableType.cs" />
+    <Compile Include="GameDescription\TableTypeDescription.cs" />
+    <Compile Include="GameDescription\TournamentDescriptor.cs" />
+    <Compile Include="GameDescription\TournamentSpeed.cs" />
+    <Compile Include="Hand\HandHistory.cs" />
+    <Compile Include="Hand\HandHistorySummary.cs" />
+    <Compile Include="Hand\HandParseError.cs" />
+    <Compile Include="ITimeStamped.cs" />
+    <Compile Include="Players\Player.cs" />
+    <Compile Include="Players\PlayerList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\HandAction.StreetExtension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DriveHUD.Common\DriveHUD.Common.csproj">
+      <Project>{dc4bc8a6-fa78-4a3e-90de-aa256a11d954}</Project>
+      <Name>DriveHUD.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DriveHUD.Entities\DriveHUD.Entities.csproj">
+      <Project>{9b87446d-a73d-4036-aa7b-a74eb5c968dc}</Project>
+      <Name>DriveHUD.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

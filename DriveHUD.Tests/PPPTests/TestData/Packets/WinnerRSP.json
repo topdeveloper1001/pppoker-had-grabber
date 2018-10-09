@@ -1,0 +1,48 @@
+﻿{
+  "Winner": [
+    {
+      "SeatID": 1,
+      "PoolID": 0,
+      "Chips": 112300,
+      "Type": "TwoPairs",
+      "InsuranceChips": 0,
+      "Uid": 1071057,
+      "JackpotFee": 0
+    },
+    {
+      "SeatID": 1,
+      "PoolID": 1,
+      "Chips": 269900,
+      "Type": "TwoPairs",
+      "InsuranceChips": 0,
+      "Uid": 1071057,
+      "JackpotFee": 0
+    }
+  ],
+  "Profit": [
+    {
+      "SeatID": 4,
+      "Chips": -4500,
+      "InsuranceChips": 0
+    },
+    {
+      "SeatID": 2,
+      "Chips": -37900,
+      "InsuranceChips": 0
+    },
+    {
+      "SeatID": 3,
+      "Chips": -179900,
+      "InsuranceChips": 0
+    },
+    {
+      "SeatID": 1,
+      "Chips": 202300,
+      "InsuranceChips": 0
+    }
+  ],
+  "Rabbit": {
+    "RabbitCards": null,
+    "FinishStage": "River"
+  }
+}
