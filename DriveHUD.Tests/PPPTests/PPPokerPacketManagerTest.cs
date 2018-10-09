@@ -30,5 +30,28 @@ namespace DriveHUD.Tests.PPPTests
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [TestCase(@"Packets\SngJoinREQ.txt", 1)]
+        [TestCase(@"Packets\MultiplePackets.txt", 2)]
+        public void TryParsePacketTest(string file, int expected)
+        {
+            var bytes = ReadPacketFile(file);
+            var packetManager = new PPPokerPacketManager();
+
+            var capturedPacket = new CapturedPacket
+            {
+                Bytes = bytes,
+                CreatedTimeStamp = DateTime.Parse("08/02/2018 12:28:28"),
+                Destination = new IPEndPoint(IPAddress.Parse("192.168.0.105"), 27633),
+                Source = new IPEndPoint(IPAddress.Parse("47.52.92.161"), 4000),
+                SequenceNumber = 1962805251
+            };
+
+            var result = packetManager.TryParse(capturedPacket, out IList<PPPokerPackage> actualPackages);
+
+            Assert.IsTrue(result);
+            Assert.IsNotNull(actualPackages);
+            Assert.That(actualPackages.Count, Is.EqualTo(expected));
+        }
     }
 }

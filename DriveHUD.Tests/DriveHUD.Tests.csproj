@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="PPPTests\TestData\Packets\MultiplePackets.txt" />
     <Content Include="PPPTests\TestData\Packets\SngJoinREQ.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
