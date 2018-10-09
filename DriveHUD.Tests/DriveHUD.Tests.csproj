@@ -81,11 +81,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="PPPTests\TestData\Packets\ActionBRC.json" />
+    <None Include="PPPTests\TestData\Packets\DealerInfoRSP.json" />
+    <None Include="PPPTests\TestData\Packets\EnterRoomRSP.json" />
+    <None Include="PPPTests\TestData\Packets\SitDownBRC.json" />
+    <None Include="PPPTests\TestData\Packets\WinnerRSP.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="PPPTests\TestData\Packets\ActionBRC.txt" />
+    <Content Include="PPPTests\TestData\Packets\DealerInfoRSP.txt" />
+    <Content Include="PPPTests\TestData\Packets\EnterRoomRSP.txt" />
     <Content Include="PPPTests\TestData\Packets\MultiplePackets.txt" />
+    <Content Include="PPPTests\TestData\Packets\SitDownBRC.txt" />
     <Content Include="PPPTests\TestData\Packets\SngJoinREQ.txt" />
+    <Content Include="PPPTests\TestData\Packets\WinnerRSP.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

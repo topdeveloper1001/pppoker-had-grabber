@@ -1,0 +1,31 @@
+﻿{
+  "SeatID": 2,
+  "Chips": 50000,
+  "Brief": {
+    "Uid": 984681,
+    "Name": "TejonSF",
+    "IconUrl": "http://www.pppoker.club/poker/resource/j.png"
+  },
+  "Status": {
+    "SeatID": 2,
+    "ActionType": "Sit",
+    "Player": {
+      "Uid": 984681,
+      "Name": "TejonSF",
+      "IconUrl": "http://www.pppoker.club/poker/resource/j.png"
+    },
+    "RemainingChips": 50000,
+    "InvestedChips": 0,
+    "HasCard": false,
+    "SeatReserve": false,
+    "Country": "US",
+    "VipLevel": 0,
+    "WaitBlind": false,
+    "RebuyLeftTime": 0,
+    "RebuyWaitAuth": false,
+    "ClubID": 0,
+    "Longitude": -360,
+    "Latitude": -360,
+    "ClubName": ""
+  }
+}
