@@ -96,6 +96,8 @@
     <Content Include="PPPTests\TestData\Packets\192.168.88.15.60473-209.200.155.113.4000.txt" />
     <Content Include="PPPTests\TestData\Packets\192.168.88.15.63679-209.200.155.113.4000-pkgt.txt" />
     <Content Include="PPPTests\TestData\Packets\192.168.88.15.63679-209.200.155.113.4000.txt" />
+    <Content Include="PPPTests\TestData\Packets\192.168.88.15.64256-209.200.155.113.4000-pkgt.txt" />
+    <Content Include="PPPTests\TestData\Packets\192.168.88.15.64256-209.200.155.113.4000.txt" />
     <Content Include="PPPTests\TestData\Packets\209.200.155.113.4000-192.168.88.15.60473-pkgt.txt" />
     <Content Include="PPPTests\TestData\Packets\209.200.155.113.4000-192.168.88.15.60473.txt" />
     <None Include="PPPTests\TestData\Packets\ActionBRC.json" />
@@ -108,6 +110,8 @@
   <ItemGroup>
     <Content Include="PPPTests\TestData\Packets\209.200.155.113.4000-192.168.88.15.63679-pkgt.txt" />
     <Content Include="PPPTests\TestData\Packets\209.200.155.113.4000-192.168.88.15.63679.txt" />
+    <Content Include="PPPTests\TestData\Packets\209.200.155.113.4000-192.168.88.15.64256-pkgt.txt" />
+    <Content Include="PPPTests\TestData\Packets\209.200.155.113.4000-192.168.88.15.64256.txt" />
     <Content Include="PPPTests\TestData\Packets\ActionBRC.txt" />
     <Content Include="PPPTests\TestData\Packets\DealerInfoRSP.txt" />
     <Content Include="PPPTests\TestData\Packets\EnterRoomRSP.txt" />

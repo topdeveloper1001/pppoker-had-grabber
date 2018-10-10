@@ -111,6 +111,8 @@ namespace DriveHUD.Tests.PPPTests
         [TestCase(@"Packets\209.200.155.113.4000-192.168.88.15.60473.txt", @"Packets\209.200.155.113.4000-192.168.88.15.60473-pkgt.txt")]
         [TestCase(@"Packets\192.168.88.15.63679-209.200.155.113.4000.txt", @"Packets\192.168.88.15.63679-209.200.155.113.4000-pkgt.txt")]
         [TestCase(@"Packets\209.200.155.113.4000-192.168.88.15.63679.txt", @"Packets\209.200.155.113.4000-192.168.88.15.63679-pkgt.txt")]
+        [TestCase(@"Packets\192.168.88.15.64256-209.200.155.113.4000.txt", @"Packets\192.168.88.15.64256-209.200.155.113.4000-pkgt.txt")]
+        [TestCase(@"Packets\209.200.155.113.4000-192.168.88.15.64256.txt", @"Packets\209.200.155.113.4000-192.168.88.15.64256-pkgt.txt")]
         public void TryParseTest(string file, string expectedPackageTypesFile)
         {
             var packets = ReadCapturedPackets(file, null);

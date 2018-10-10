@@ -92,9 +92,14 @@ namespace DriveHUD.Importers.PPPoker.Model
         StandUpBRC,
         StandUpRSP,
         TableGameOverRSP,
+        TextBRC,
         UserCroupierInUsingREQ,
         UserCroupierInUsingRSP,
+        UserCroupierREQ,
+        UserCroupierRSP,
         UserSngOverRSP,
+        UserTotalDataREQ,
+        UserTotalDataRSP,
         WinnerRSP,
     }
 }
