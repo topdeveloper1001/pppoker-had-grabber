@@ -372,6 +372,7 @@ namespace DriveHUD.Importers.PPPoker
 
             record.RoomID = roomInfo.RoomID;
             record.TableID = message.TableStatus.Tid;
+            record.IsOmaha = message.RoomType == RoomType.OmahaRoom;
             record.RoomName = roomInfo.RoomName.Length > 0 ? roomInfo.RoomName : roomInfo.TempID;
             record.Ante = roomInfo.Ante;
             record.BigBlind = roomInfo.Blind;
@@ -456,7 +457,7 @@ namespace DriveHUD.Importers.PPPoker
 
             history.GameDescription = new GameDescriptor(
                 EnumPokerSites.PPPoker,
-                GameType.NoLimitHoldem,
+                record.IsOmaha ? GameType.PotLimitOmaha : GameType.NoLimitHoldem,
                 Limit.FromSmallBlindBigBlind(record.SmallBlind, record.BigBlind, Currency.All, record.Ante > 0, record.Ante),
                 TableType.FromTableTypeDescriptions(record.Ante > 0 ? TableTypeDescription.Ante : TableTypeDescription.Regular),
                 SeatType.FromMaxPlayers(record.MaxPlayers),
