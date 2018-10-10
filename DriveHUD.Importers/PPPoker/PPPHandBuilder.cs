@@ -52,6 +52,7 @@ namespace DriveHUD.Importers.PPPoker
             { ActionType.Call, HandActionType.CALL },
             { ActionType.Bet, HandActionType.BET },
             { ActionType.Raise, HandActionType.RAISE },
+            { ActionType.Pot, HandActionType.RAISE },
         };
 
         private static readonly HashSet<HandActionType> InvestingHandActionTypes = new HashSet<HandActionType>
