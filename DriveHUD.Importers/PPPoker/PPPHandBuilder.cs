@@ -400,7 +400,9 @@ namespace DriveHUD.Importers.PPPoker
             record.IsTournament = isTournament;
             if (isTournament)
             {
-                long startTimestamp = message.RoomType == RoomType.MttRoom ? message.MttRoomInfo.MttStartTime : DateTimeToTimestamp(DateTime.UtcNow);
+                var utcNow = DateTime.UtcNow;
+
+                long startTimestamp = message.RoomType == RoomType.MttRoom ? message.MttRoomInfo.MttStartTime : DateTimeToTimestamp(utcNow);
                 record.TournamentID = $"{record.RoomID}-{startTimestamp}";
                 record.TournamentName = $"{record.RoomName}";
                 record.TournamentBuyIn = message.SngRoomInfo.BuyIn;
@@ -408,7 +410,7 @@ namespace DriveHUD.Importers.PPPoker
                 record.TournamentAddOn = message.MttRoomInfo.AddOnBuyIn;
                 record.TournamentBounty = message.MttRoomInfo.HunterReward;
                 record.TournamentHasFixedRewards = message.SngRoomInfo.FixedReward;
-                record.TournamentStartDate = message.RoomType == RoomType.MttRoom ? TimestampToDateTime(message.MttRoomInfo.MttStartTime) : DateTime.UtcNow;
+                record.TournamentStartDate = message.RoomType == RoomType.MttRoom ? TimestampToDateTime(message.MttRoomInfo.MttStartTime) : utcNow;
             }
 
             foreach (var seat in message.TableStatus.Seat.Where(s => s.Player != null))
