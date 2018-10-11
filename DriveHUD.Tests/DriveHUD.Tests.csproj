@@ -108,6 +108,12 @@
     <Fakes Include="Fakes\System.fakes" />
     <Fakes Include="Fakes\mscorlib.fakes" />
     <None Include="packages.config" />
+    <Content Include="PPPTests\TestData\HandsRawData\multiple-accounts-raw-1\192.168.88.15.55900-209.200.155.113.4000.txt" />
+    <Content Include="PPPTests\TestData\HandsRawData\multiple-accounts-raw-1\192.168.88.15.56291-209.200.155.113.4000.txt" />
+    <Content Include="PPPTests\TestData\HandsRawData\multiple-accounts-raw-1\192.168.88.15.56296-209.200.155.113.4000.txt" />
+    <Content Include="PPPTests\TestData\HandsRawData\multiple-accounts-raw-1\209.200.155.113.4000-192.168.88.15.55900.txt" />
+    <Content Include="PPPTests\TestData\HandsRawData\multiple-accounts-raw-1\209.200.155.113.4000-192.168.88.15.56291.txt" />
+    <Content Include="PPPTests\TestData\HandsRawData\multiple-accounts-raw-1\209.200.155.113.4000-192.168.88.15.56296.txt" />
     <None Include="PPPTests\TestData\HandsRawData\nlhe-mtt-9max-no-hero\Source.json" />
     <None Include="PPPTests\TestData\HandsRawData\nlhe-sng-3max-hero-finish\Source.json" />
     <None Include="PPPTests\TestData\HandsRawData\plo-6max-hero\Source.json" />

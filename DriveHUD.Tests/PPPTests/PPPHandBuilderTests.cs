@@ -115,100 +115,74 @@ namespace DriveHUD.Tests.PPPTests
             AssertionUtils.AssertHandHistory(actual, expected);
         }
 
-        //[TestCase("multiple-accounts-raw-1")]
-        //[TestCase("multiple-accounts-raw-2")]
-        //[TestCase("multiple-accounts-raw-3")]
-        //public void MultipleTryBuildTest(string folder)
-        //{
-        //    var testFolder = Path.Combine(TestDataFolder, folder);
+        [TestCase("multiple-accounts-raw-1")]
+        public void MultipleTryBuildTest(string folder)
+        {
+            var testFolder = Path.Combine(TestDataFolder, folder);
 
-        //    DirectoryAssert.Exists(testFolder);
+            DirectoryAssert.Exists(testFolder);
 
-        //    var logFiles = Directory.GetFiles(testFolder, "*.txt.");
+            var logFiles = Directory.GetFiles(testFolder, "*.txt");
 
-        //    var capturedPackets = new List<CapturedPacket>();
+            var capturedPackets = new List<CapturedPacket>();
 
-        //    foreach (var logFile in logFiles)
-        //    {
-        //        capturedPackets.AddRange(TcpImporterTestUtils.ReadCapturedPackets(logFile, null));
-        //    }
+            foreach (var logFile in logFiles)
+            {
+                capturedPackets.AddRange(TcpImporterTestUtils.ReadCapturedPackets(logFile, null));
+            }
 
-        //    capturedPackets = capturedPackets.OrderBy(x => x.CreatedTimeStamp).ToList();
+            capturedPackets = capturedPackets.OrderBy(x => x.CreatedTimeStamp).ToList();
 
-        //    var handHistories = new List<HandHistory>();
+            var handHistories = new List<HandHistory>();
 
-        //    var packetManager = new PPPokerPacketManager();
-        //    var handBuilder = new PPPHandBuilder();
-        //    var debugPPPImporter = new DebugPPPImporter();
+            var packetManager = new PPPokerPacketManager();
+            var handBuilder = new PPPHandBuilder();
+            var debugPPPImporter = new DebugPPPImporter();
 
-        //    foreach (var capturedPacket in capturedPackets)
-        //    {
-        //        if (!packetManager.TryParse(capturedPacket, out IList<PPPokerPackage> packages))
-        //        {
-        //            continue;
-        //        }
+            foreach (var capturedPacket in capturedPackets)
+            {
+                if (!packetManager.TryParse(capturedPacket, out IList<PPPokerPackage> packages))
+                {
+                    continue;
+                }
 
-        //        foreach (var package in packages)
-        //        {                    
-        //            if (!PPPImporterStub.IsAllowedPackage(package))
-        //            {
-        //                continue;
-        //            }
+                foreach (var package in packages)
+                {
+                    if (!PPPImporterStub.IsAllowedPackage(package))
+                    {
+                        continue;
+                    }
 
-        //            package.Timestamp = capturedPacket.CreatedTimeStamp;
+                    package.Timestamp = capturedPacket.CreatedTimeStamp;
 
-        //            debugPPPImporter.LogPackage(capturedPacket, package);
+                    debugPPPImporter.LogPackage(capturedPacket, package);
 
-        //            if (package.PackageType == PackageType.RequestJoinRoom)
-        //            {
-        //                debugPPPImporter.ParsePackage<RequestJoinRoom>(package,
-        //                  body => LogProvider.Log.Info($"User {package.UserId} entered room {body.RoomId}."),
-        //                  () => LogProvider.Log.Info($"User {package.UserId} entered room."));
+                    if (handBuilder.TryBuild(package, out HandHistory handHistory))
+                    {
+                        handHistories.Add(handHistory);
+                        LogProvider.Log.Info($"Hand #{handHistory.HandId} has been sent. [{package.ClientPort}]");
+                    }
+                }
+            }
 
-        //                continue;
-        //            }
+            WriteHandHistoriesToFile(handHistories);
 
-        //            var port = capturedPacket.Destination.Port != destinationPort ? capturedPacket.Destination.Port : capturedPacket.Source.Port;
+            Assert.IsTrue(handHistories.Count > 0);
+        }
 
-        //            if (package.PackageType == PackageType.RequestLeaveRoom)
-        //            {
-        //                debugPPPImporter.ParsePackage<RequestLeaveRoom>(package,
-        //                    body =>
-        //                    {
-        //                        LogProvider.Log.Info($"User {package.UserId} left room {body.RoomId}.");
-        //                        handBuilder.CleanRoom(port, body.RoomId);
-        //                    },
-        //                    () => LogProvider.Log.Info($"User {package.UserId} left room {package.RoomId}."));
+        private void WriteHandHistoriesToFile(IEnumerable<HandHistory> handHistories)
+        {
+            var groupedHandHistories = handHistories.GroupBy(x => x.GameDescription.Identifier).ToDictionary(x => x.Key, x => x.ToArray());
 
-        //                continue;
-        //            }
+            foreach (var handHistoriesByIdentifier in groupedHandHistories)
+            {
+                var file = $"{handHistoriesByIdentifier.Key}.xml";
 
-        //            if (handBuilder.TryBuild(package, port, out HandHistory handHistory))
-        //            {
-        //                handHistories.Add(handHistory);
-        //                LogProvider.Log.Info($"Hand #{handHistory.HandId} has been sent. [{package.UserId}]");
-        //            }
-        //        }
-        //    }
+                var xml = SerializationHelper.SerializeObject(handHistoriesByIdentifier.Value);
 
-        //    WriteHandHistoriesToFile(handHistories);
-
-        //    Assert.IsTrue(handHistories.Count > 0);
-        //}
-
-        //private void WriteHandHistoriesToFile(IEnumerable<HandHistory> handHistories)
-        //{
-        //    var groupedHandHistories = handHistories.GroupBy(x => x.GameDescription.Identifier).ToDictionary(x => x.Key, x => x.ToArray());
-
-        //    foreach (var handHistoriesByIdentifier in groupedHandHistories)
-        //    {
-        //        var file = $"{handHistoriesByIdentifier.Key}.xml";
-
-        //        var xml = SerializationHelper.SerializeObject(handHistoriesByIdentifier.Value);
-
-        //        File.WriteAllText(file, xml);
-        //    }
-        //}
+                File.WriteAllText(file, xml);
+            }
+        }
 
         private HandHistory ReadExpectedHandHistory(string folder)
         {
@@ -347,12 +321,10 @@ namespace DriveHUD.Tests.PPPTests
 
             public void LogPackage(CapturedPacket capturedPacket, PPPokerPackage package)
             {
-                var port = capturedPacket.Destination.Port != destinationPort ? capturedPacket.Destination.Port : capturedPacket.Source.Port;
-
-                if (!loggers.TryGetValue(port, out DebugPPPLogger logger))
+                if (!loggers.TryGetValue(package.ClientPort, out DebugPPPLogger logger))
                 {
-                    logger = new DebugPPPLogger(port);
-                    loggers.Add(port, logger);
+                    logger = new DebugPPPLogger(package.ClientPort);
+                    loggers.Add(package.ClientPort, logger);
                 }
 
                 //protectedLogger = logger;
