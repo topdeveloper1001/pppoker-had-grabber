@@ -117,6 +117,12 @@
     <None Include="PPPTests\TestData\HandsRawData\nlhe-mtt-9max-no-hero\Source.json" />
     <None Include="PPPTests\TestData\HandsRawData\nlhe-sng-3max-hero-finish\Source.json" />
     <None Include="PPPTests\TestData\HandsRawData\plo-6max-hero\Source.json" />
+    <Content Include="PPPTests\TestData\HandsRawData\multiple-accounts-raw-2\192.168.88.15.57786-209.200.155.113.4000.txt" />
+    <Content Include="PPPTests\TestData\HandsRawData\multiple-accounts-raw-2\192.168.88.15.57928-209.200.155.113.4000.txt" />
+    <Content Include="PPPTests\TestData\HandsRawData\multiple-accounts-raw-2\192.168.88.15.57938-209.200.155.113.4000.txt" />
+    <Content Include="PPPTests\TestData\HandsRawData\multiple-accounts-raw-2\209.200.155.113.4000-192.168.88.15.57786.txt" />
+    <Content Include="PPPTests\TestData\HandsRawData\multiple-accounts-raw-2\209.200.155.113.4000-192.168.88.15.57928.txt" />
+    <Content Include="PPPTests\TestData\HandsRawData\multiple-accounts-raw-2\209.200.155.113.4000-192.168.88.15.57938.txt" />
     <Content Include="PPPTests\TestData\HandsRawData\nlhe-6max-hero\Result.xml" />
     <None Include="PPPTests\TestData\HandsRawData\nlhe-6max-hero\Source.json" />
     <Content Include="PPPTests\TestData\HandsRawData\nlhe-mtt-9max-no-hero\Result.xml" />
