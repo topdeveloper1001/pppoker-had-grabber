@@ -59,11 +59,17 @@
     <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="protobuf-net, Version=2.4.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.4.0\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.4.0.0.0.Fakes">
       <HintPath>FakesAssemblies\System.4.0.0.0.Fakes.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,24 +80,36 @@
   <ItemGroup>
     <Compile Include="PacketManagerTest.cs" />
     <Compile Include="PMTests\TestExtensions.cs" />
+    <Compile Include="PPPTests\PPPHandBuilderTests.cs" />
     <Compile Include="PPPTests\PPPokerPacketManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TcpImporterTestUtils.cs" />
+    <Compile Include="Utils\AssertionUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DriveHUD.Common\DriveHUD.Common.csproj">
       <Project>{dc4bc8a6-fa78-4a3e-90de-aa256a11d954}</Project>
       <Name>DriveHUD.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DriveHUD.Entities\DriveHUD.Entities.csproj">
+      <Project>{9b87446d-a73d-4036-aa7b-a74eb5c968dc}</Project>
+      <Name>DriveHUD.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DriveHUD.Importers\DriveHUD.Importers.csproj">
       <Project>{fdb0cafc-5795-417a-80f6-8c54e83fa641}</Project>
       <Name>DriveHUD.Importers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HandHistories.Objects\HandHistories.Objects.csproj">
+      <Project>{794dc88f-dc07-4cb6-8b7b-394b71bd6cd9}</Project>
+      <Name>HandHistories.Objects</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Fakes Include="Fakes\System.fakes" />
     <Fakes Include="Fakes\mscorlib.fakes" />
     <None Include="packages.config" />
+    <None Include="PPPTests\TestData\HandsRawData\plo-6max-hero\Source.json" />
+    <Content Include="PPPTests\TestData\HandsRawData\plo-6max-hero\Result.xml" />
     <Content Include="PPPTests\TestData\Packets\192.168.88.15.60473-209.200.155.113.4000-pkgt.txt" />
     <Content Include="PPPTests\TestData\Packets\192.168.88.15.60473-209.200.155.113.4000.txt" />
     <Content Include="PPPTests\TestData\Packets\192.168.88.15.63679-209.200.155.113.4000-pkgt.txt" />

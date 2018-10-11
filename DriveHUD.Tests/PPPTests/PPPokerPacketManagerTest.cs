@@ -203,6 +203,9 @@ namespace DriveHUD.Tests.PPPTests
                 case PackageType.TableGameOverRSP:
                     AssertPackage<TableGameOverRSP>(package, capturedPacket);
                     break;
+                case PackageType.LeaveRoomRSP:
+                    AssertPackage<LeaveRoomRSP>(package, capturedPacket);
+                    break;
             }
         }
 
