@@ -381,6 +381,11 @@ namespace DriveHUD.Importers.PPPoker
 
         private void ProcessEnterRoomRSP(EnterRoomRSP message, ClientRecord record)
         {
+            if (message.RoomType == RoomType.PineRoom)
+            {
+                return;
+            }
+
             bool isTournament = TournamentRoomTypes.Contains(message.RoomType);
             IRoomInfo roomInfo = isTournament ? (IRoomInfo)message.SngRoomInfo : (IRoomInfo)message.RoomInfo;
 
