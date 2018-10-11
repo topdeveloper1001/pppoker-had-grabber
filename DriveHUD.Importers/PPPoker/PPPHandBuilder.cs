@@ -68,6 +68,12 @@ namespace DriveHUD.Importers.PPPoker
             RoomType.MttRoom,
         };
 
+        private static readonly HashSet<PackageType> TerminatingPackageTypes = new HashSet<PackageType>
+        {
+            PackageType.TableGameOverRSP,
+            PackageType.LeaveRoomRSP,
+        };
+
         private readonly Dictionary<int, ClientRecord> clientRecords = new Dictionary<int, ClientRecord>();
 
         public bool TryBuild(PPPokerPackage package, out HandHistory handHistory)
@@ -122,7 +128,7 @@ namespace DriveHUD.Importers.PPPoker
                 record.DelayedActions.Add(() => ParsePackage<StandUpBRC>(package, m => ProcessStandUpBRC(m, record)));
             }
 
-            if (package.PackageType == PackageType.DealerInfoRSP || package.PackageType == PackageType.TableGameOverRSP)
+            if (package.PackageType == PackageType.DealerInfoRSP || record.IsHandStarted && TerminatingPackageTypes.Contains(package.PackageType))
             {
                 handHistory = BuildHand(record);
 
@@ -134,9 +140,16 @@ namespace DriveHUD.Importers.PPPoker
                     }
                     record.DelayedActions.Clear();
                 }
+
+                record.IsHandStarted = false;
             }
 
             record.Packages.Add(package);
+
+            if (package.PackageType == PackageType.DealerInfoRSP)
+            {
+                record.IsHandStarted = true;
+            }
 
             return handHistory != null;
         }

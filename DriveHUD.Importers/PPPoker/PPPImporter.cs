@@ -297,6 +297,7 @@ namespace DriveHUD.Importers.PPPoker
                 case PackageType.ShowMyCardBRC:
                 case PackageType.UserSngOverRSP:
                 case PackageType.TableGameOverRSP:
+                case PackageType.LeaveRoomRSP:
                     return true;
 
                 default:
