@@ -62,7 +62,7 @@ namespace DriveHUD.Tests.PPPTests
 
         [TestCase("plo-6max-hero")]
         [TestCase("nlhe-6max-hero")]
-        //[TestCase("8-max-regular-hero")]
+        [TestCase("nlhe-mtt-9max-no-hero")]
         //[TestCase("6-max-short-all-in")]
         public void TryBuildTest(string testFolder)
         {

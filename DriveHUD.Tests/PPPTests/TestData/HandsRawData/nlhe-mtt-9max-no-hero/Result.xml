@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HandHistory>
+  <DateOfHandUtc>2018-10-11T16:03:01.2500854Z</DateOfHandUtc>
+  <HandId>2442000131670882</HandId>
+  <DealerButtonPosition>5</DealerButtonPosition>
+  <TableName>mtt_20kPointsGtd-6</TableName>
+  <GameDescription>
+    <PokerFormat>CashGame</PokerFormat>
+    <Site>PPPoker</Site>
+    <GameType>NoLimitHoldem</GameType>
+    <Limit>
+      <Currency>All</Currency>
+      <SmallBlind>1000</SmallBlind>
+      <BigBlind>2000</BigBlind>
+      <IsAnteTable>true</IsAnteTable>
+      <Ante>500</Ante>
+    </Limit>
+    <SeatType MaxPlayers="9" />
+    <TableType>Ante</TableType>
+    <Tournament>
+      <TournamentId>412-1539271200</TournamentId>
+      <TournamentName>mtt_20kPointsGtd</TournamentName>
+      <BuyIn>
+        <Currency>All</Currency>
+        <PrizePoolValue>0</PrizePoolValue>
+        <Rake>0</Rake>
+        <IsKnockout>false</IsKnockout>
+        <KnockoutValue>0</KnockoutValue>
+      </BuyIn>
+      <Bounty>0</Bounty>
+      <Rebuy>300</Rebuy>
+      <Addon>600</Addon>
+      <Winning>0</Winning>
+      <TotalPrize>0</TotalPrize>
+      <FinishPosition>0</FinishPosition>
+      <TotalPlayers>0</TotalPlayers>
+      <StartDate>2018-10-11T15:20:00Z</StartDate>
+      <Speed>Regular</Speed>
+    </Tournament>
+    <Identifier>412</Identifier>
+  </GameDescription>
+  <Cancelled>false</Cancelled>
+  <NumPlayersSeated>0</NumPlayersSeated>
+  <TotalPot>102825</TotalPot>
+  <Rake p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance" />
+  <Actions>
+    <HandAction PlayerName="123227" HandActionType="ANTE" Amount="-500" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="1025803" HandActionType="ANTE" Amount="-500" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="982239" HandActionType="ANTE" Amount="-500" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="990551" HandActionType="ANTE" Amount="-500" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="1043509" HandActionType="ANTE" Amount="-500" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="436421" HandActionType="ANTE" Amount="-500" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="1066227" HandActionType="ANTE" Amount="-500" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="80513" HandActionType="ANTE" Amount="-500" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="123227" HandActionType="SMALL_BLIND" Amount="-2000" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="1025803" HandActionType="BIG_BLIND" Amount="-4000" Street="Preflop" IsAllIn="false" />
+    <HandAction p3:type="AllInAction" PlayerName="982239" HandActionType="ALL_IN" Amount="-9425" Street="Preflop" IsAllIn="true" IsRaiseAllIn="true" SourceActionType="RAISE" xmlns:p3="http://www.w3.org/2001/XMLSchema-instance" />
+    <HandAction PlayerName="990551" HandActionType="CALL" Amount="-9425" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="1043509" HandActionType="FOLD" Amount="0" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="436421" HandActionType="FOLD" Amount="0" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="1066227" HandActionType="FOLD" Amount="0" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="80513" HandActionType="FOLD" Amount="0" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="123227" HandActionType="FOLD" Amount="0" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="1025803" HandActionType="CALL" Amount="-5425" Street="Preflop" IsAllIn="false" />
+    <HandAction PlayerName="1025803" HandActionType="CHECK" Amount="0" Street="Flop" IsAllIn="false" />
+    <HandAction PlayerName="990551" HandActionType="CHECK" Amount="0" Street="Flop" IsAllIn="false" />
+    <HandAction PlayerName="1025803" HandActionType="BET" Amount="-34275" Street="Turn" IsAllIn="false" />
+    <HandAction PlayerName="990551" HandActionType="CALL" Amount="-34275" Street="Turn" IsAllIn="false" />
+    <HandAction p3:type="AllInAction" PlayerName="1025803" HandActionType="ALL_IN" Amount="-24500" Street="River" IsAllIn="true" IsRaiseAllIn="true" SourceActionType="BET" xmlns:p3="http://www.w3.org/2001/XMLSchema-instance" />
+    <HandAction PlayerName="990551" HandActionType="FOLD" Amount="0" Street="River" IsAllIn="false" />
+    <HandAction PlayerName="1025803" HandActionType="UNCALLED_BET" Amount="24500" Street="River" IsAllIn="false" />
+    <HandAction PlayerName="1025803" HandActionType="SHOW" Amount="0" Street="Showdown" IsAllIn="false" />
+    <HandAction PlayerName="982239" HandActionType="SHOW" Amount="0" Street="Showdown" IsAllIn="false" />
+    <HandAction p3:type="WinningsAction" PlayerName="1025803" HandActionType="WINS" Amount="34275" Street="Summary" IsAllIn="false" PotNumber="0" xmlns:p3="http://www.w3.org/2001/XMLSchema-instance" />
+    <HandAction p3:type="WinningsAction" PlayerName="1025803" HandActionType="WINS" Amount="68550" Street="Summary" IsAllIn="false" PotNumber="1" xmlns:p3="http://www.w3.org/2001/XMLSchema-instance" />
+  </Actions>
+  <CommunityCards>9s8s7c2cJd</CommunityCards>
+  <Players>
+    <Player PlayerName="1043509" PlayerNick="iamsang" StartingStack="6700" Bet="500" Win="0" SeatNumber="1" Cards="" IsSittingOut="false" />
+    <Player PlayerName="436421" PlayerNick="king of all in" StartingStack="48010" Bet="500" Win="0" SeatNumber="3" Cards="" IsSittingOut="false" />
+    <Player PlayerName="1066227" PlayerNick="pp1066227" StartingStack="72535" Bet="500" Win="0" SeatNumber="4" Cards="" IsSittingOut="false" />
+    <Player PlayerName="80513" PlayerNick="Urgyen Jd Sherpa" StartingStack="156770" Bet="500" Win="0" SeatNumber="5" Cards="" IsSittingOut="false" />
+    <Player PlayerName="123227" PlayerNick="Hizzypo" StartingStack="56880" Bet="2500" Win="0" SeatNumber="6" Cards="" IsSittingOut="false" />
+    <Player PlayerName="1025803" PlayerNick="hayashiyuuki2818" StartingStack="68700" Bet="68700" Win="102825" SeatNumber="7" Cards="7sTs" IsSittingOut="false" />
+    <Player PlayerName="982239" PlayerNick="gamb00L" StartingStack="9925" Bet="9925" Win="0" SeatNumber="8" Cards="KhAs" IsSittingOut="false" />
+    <Player PlayerName="990551" PlayerNick="Dininha" StartingStack="81676" Bet="44200" Win="0" SeatNumber="9" Cards="" IsSittingOut="false" />
+  </Players>
+</HandHistory>
