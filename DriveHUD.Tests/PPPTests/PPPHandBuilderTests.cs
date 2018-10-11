@@ -61,7 +61,7 @@ namespace DriveHUD.Tests.PPPTests
         protected override string TestDataFolder => "PPPTests\\TestData\\HandsRawData";
 
         [TestCase("plo-6max-hero")]
-        //[TestCase("6-max-short-dbl-ante-no-hero")]
+        [TestCase("nlhe-6max-hero")]
         //[TestCase("8-max-regular-hero")]
         //[TestCase("6-max-short-all-in")]
         public void TryBuildTest(string testFolder)
