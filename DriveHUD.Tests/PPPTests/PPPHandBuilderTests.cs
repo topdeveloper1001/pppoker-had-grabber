@@ -17,12 +17,14 @@ using DriveHUD.Importers.AndroidBase;
 using DriveHUD.Importers.PPPoker;
 using DriveHUD.Importers.PPPoker.Model;
 using HandHistories.Objects.Hand;
+using Microsoft.QualityTools.Testing.Fakes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NUnit.Framework;
 using ProtoBuf;
 using System;
 using System.Collections.Generic;
+using System.Fakes;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -60,10 +62,25 @@ namespace DriveHUD.Tests.PPPTests
 
         protected override string TestDataFolder => "PPPTests\\TestData\\HandsRawData";
 
+        private const string NlheSngTest = "nlhe-sng-3max-hero-finish";
+
+        private void Build(PPPHandBuilder builder, IEnumerable<PPPokerPackage> packages, out HandHistory history)
+        {
+            history = null;
+
+            foreach (var package in packages)
+            {
+                if (builder.TryBuild(package, out history))
+                {
+                    break;
+                }
+            }
+        }
+
         [TestCase("plo-6max-hero")]
         [TestCase("nlhe-6max-hero")]
         [TestCase("nlhe-mtt-9max-no-hero")]
-        //[TestCase("6-max-short-all-in")]
+        [TestCase(NlheSngTest)]
         public void TryBuildTest(string testFolder)
         {
             var packages = ReadPackages(testFolder);
@@ -74,13 +91,20 @@ namespace DriveHUD.Tests.PPPTests
 
             HandHistory actual = null;
 
-            foreach (var package in packages)
+            if (testFolder == NlheSngTest)
             {
-                if (handBuilder.TryBuild(package, out actual))
+                using (ShimsContext.Create())
                 {
-                    break;
+                    ShimDateTime.UtcNowGet = () => new DateTime(2018, 10, 11, 17, 07, 14);
+
+                    Build(handBuilder, packages, out actual);
                 }
             }
+            else
+            {
+                Build(handBuilder, packages, out actual);
+            }
+            
 
             Assert.IsNotNull(actual, $"Actual HandHistory must be not null for {testFolder}");
 

@@ -109,10 +109,12 @@
     <Fakes Include="Fakes\mscorlib.fakes" />
     <None Include="packages.config" />
     <None Include="PPPTests\TestData\HandsRawData\nlhe-mtt-9max-no-hero\Source.json" />
+    <None Include="PPPTests\TestData\HandsRawData\nlhe-sng-3max-hero-finish\Source.json" />
     <None Include="PPPTests\TestData\HandsRawData\plo-6max-hero\Source.json" />
     <Content Include="PPPTests\TestData\HandsRawData\nlhe-6max-hero\Result.xml" />
     <None Include="PPPTests\TestData\HandsRawData\nlhe-6max-hero\Source.json" />
     <Content Include="PPPTests\TestData\HandsRawData\nlhe-mtt-9max-no-hero\Result.xml" />
+    <Content Include="PPPTests\TestData\HandsRawData\nlhe-sng-3max-hero-finish\Result.xml" />
     <Content Include="PPPTests\TestData\HandsRawData\plo-6max-hero\Result.xml" />
     <Content Include="PPPTests\TestData\Packets\192.168.88.15.60473-209.200.155.113.4000-pkgt.txt" />
     <Content Include="PPPTests\TestData\Packets\192.168.88.15.60473-209.200.155.113.4000.txt" />
