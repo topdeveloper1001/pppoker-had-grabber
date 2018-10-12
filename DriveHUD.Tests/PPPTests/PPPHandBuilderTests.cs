@@ -117,6 +117,7 @@ namespace DriveHUD.Tests.PPPTests
 
         [TestCase("multiple-accounts-raw-1")]
         [TestCase("multiple-accounts-raw-2")]
+        [TestCase("multiple-accounts-raw-3")]
         public void MultipleTryBuildTest(string folder)
         {
             var testFolder = Path.Combine(TestDataFolder, folder);
