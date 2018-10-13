@@ -39,7 +39,7 @@ namespace PPPokerCardCatcher.Common.Wpf.Events
         {
             IsCompleted = true;
             OnCompleted();
-            OnPropertyChanged(() => IsCompleted);
+            RaisePropertyChanged(nameof(IsCompleted));            
         }
 
         protected virtual void OnCompleted()

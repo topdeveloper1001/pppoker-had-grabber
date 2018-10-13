@@ -341,7 +341,7 @@ namespace PPPokerCardCatcher.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PPPoker Hand Grabber Registration.
+        ///   Looks up a localized string similar to PPPoker Card Catcher Registration.
         /// </summary>
         internal static string Common_RegistrationView_Title {
             get {
@@ -449,7 +449,7 @@ namespace PPPokerCardCatcher.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to START GRABBER.
+        ///   Looks up a localized string similar to START CATCHER.
         /// </summary>
         internal static string Common_StartCatcher {
             get {
@@ -458,7 +458,7 @@ namespace PPPokerCardCatcher.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to STOP GRABBER.
+        ///   Looks up a localized string similar to STOP CATCHER.
         /// </summary>
         internal static string Common_StopCatcher {
             get {
@@ -467,7 +467,7 @@ namespace PPPokerCardCatcher.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PPPoker Hand Grabber.
+        ///   Looks up a localized string similar to PPPoker Card Catcher.
         /// </summary>
         internal static string Common_Title {
             get {

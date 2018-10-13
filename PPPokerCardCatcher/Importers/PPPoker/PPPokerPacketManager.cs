@@ -62,8 +62,8 @@ namespace PPPokerCardCatcher.Importers.PPPoker
             bool result = base.TryParse(capturedPacket, out packages);
 
             // Packages don't contain any client application ID, we're going to use client port for this
-            var direction = capturedPacket.Source.Address.Equals(PPPConstants.Address) && capturedPacket.Source.Port == PPPConstants.Port ? PackageDirection.Incoming : PackageDirection.Outgoing;
-            int clientPort = direction == PackageDirection.Incoming ? capturedPacket.Destination.Port : capturedPacket.Source.Port;
+            var direction = capturedPacket.Source.Port == PPPConstants.Port ? PackageDirection.Incoming : PackageDirection.Outgoing;
+            var clientPort = direction == PackageDirection.Incoming ? capturedPacket.Destination.Port : capturedPacket.Source.Port;
 
             foreach (var package in packages)
             {

@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="PPPConstants.cs" company="Ace Poker Solutions">
+// <copyright file="ITableWindowProvider.cs" company="Ace Poker Solutions">
 // Copyright © 2018 Ace Poker Solutions. All Rights Reserved.
 // Unless otherwise noted, all materials contained in this Site are copyrights, 
 // trademarks, trade dress and/or other intellectual properties, owned, 
@@ -10,10 +10,13 @@
 // </copyright>
 //----------------------------------------------------------------------
 
-namespace PPPokerCardCatcher.Importers.PPPoker
+using System;
+using System.Diagnostics;
+
+namespace PPPokerCardCatcher.Importers.AndroidBase
 {
-    internal static class PPPConstants
+    internal interface ITableWindowProvider
     {
-        public const int Port = 4000;
+        IntPtr GetTableWindowHandle(Process process);
     }
 }

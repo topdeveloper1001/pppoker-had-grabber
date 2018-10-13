@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Include>
   <?define ProductName="PPPoker Card Catcher" ?>
-  <?define ProductVersion="1.0.45" ?>
+  <?define ProductVersion="1.0.47" ?>
   <?define ProductCode="{54A82D94-1C2B-4C96-BBF4-0C92ADE9B768}"?>
   <?define UpgradeCode="94b5bb73-d25e-4be6-abbf-428264da92a8"?>
   <?define Manufacturer="Ace Poker Solutions"?>

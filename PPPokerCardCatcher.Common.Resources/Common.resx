@@ -212,7 +212,7 @@ The PPPoker Card Catcher is an add-on application that will allow you to capture
     <value>Thank you. PPPoker Card Catcher has been successfully registered!</value>
   </data>
   <data name="Common_RegistrationView_Title" xml:space="preserve">
-    <value>PPPoker Hand Grabber Registration</value>
+    <value>PPPoker Card Catcher Registration</value>
   </data>
   <data name="Common_RegistrationView_Trial" xml:space="preserve">
     <value>Trial</value>
@@ -248,13 +248,13 @@ The PPPoker Card Catcher is an add-on application that will allow you to capture
     <value>Stack trace:</value>
   </data>
   <data name="Common_StartCatcher" xml:space="preserve">
-    <value>START GRABBER</value>
+    <value>START CATCHER</value>
   </data>
   <data name="Common_StopCatcher" xml:space="preserve">
-    <value>STOP GRABBER</value>
+    <value>STOP CATCHER</value>
   </data>
   <data name="Common_Title" xml:space="preserve">
-    <value>PPPoker Hand Grabber</value>
+    <value>PPPoker Card Catcher</value>
   </data>
   <data name="Common_Troubleshoot" xml:space="preserve">
     <value>Troubleshoot</value>

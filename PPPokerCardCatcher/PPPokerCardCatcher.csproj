@@ -270,9 +270,12 @@
     <Compile Include="Importers\PPPoker\PPPokerPacketManager.cs" />
     <Compile Include="Importers\TcpBased\CaptureDevice.cs" />
     <Compile Include="Importers\TcpBased\CapturedPacket.cs" />
+    <Compile Include="Importers\TcpBased\EmulatorProviders\IEmulatorProvider.cs" />
+    <Compile Include="Importers\TcpBased\EmulatorProviders\PPPDesktopEmulatorProvider.cs" />
     <Compile Include="Importers\TcpBased\INetworkConnectionsService.cs" />
     <Compile Include="Importers\TcpBased\IPackageBuilder.cs" />
     <Compile Include="Importers\TcpBased\IPacketManager.cs" />
+    <Compile Include="Importers\TcpBased\ITableWindowProvider.cs" />
     <Compile Include="Importers\TcpBased\ITcpImporter.cs" />
     <Compile Include="Importers\TcpBased\ITcpPacketImporter.cs" />
     <Compile Include="Importers\TcpBased\NetworkConnectionsService.cs" />
@@ -280,6 +283,7 @@
     <Compile Include="Importers\TcpBased\PacketManager.cs" />
     <Compile Include="Importers\TcpBased\PacketsSet.cs" />
     <Compile Include="Importers\TcpBased\SubPacket.cs" />
+    <Compile Include="Importers\TcpBased\TableWindowProvider.cs" />
     <Compile Include="Importers\TcpBased\TcpImporter.cs" />
     <Compile Include="Importers\TcpBased\TcpPacketImporter.cs" />
     <Compile Include="Licensing\DeployLXLicensingServer.cs" />

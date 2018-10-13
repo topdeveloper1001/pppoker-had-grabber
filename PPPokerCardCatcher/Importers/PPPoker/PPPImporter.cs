@@ -18,6 +18,7 @@ using Newtonsoft.Json.Converters;
 using PacketDotNet;
 using PPPokerCardCatcher.Common.Extensions;
 using PPPokerCardCatcher.Common.Log;
+using PPPokerCardCatcher.Importers.AndroidBase;
 using PPPokerCardCatcher.Importers.PPPoker.Model;
 using PPPokerCardCatcher.Importers.TcpBased;
 using PPPokerCardCatcher.Settings;
@@ -64,8 +65,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
 
         public override bool Match(TcpPacket tcpPacket, IpPacket ipPacket)
         {
-            return ipPacket.SourceAddress.Equals(PPPConstants.Address) && tcpPacket.SourcePort == PPPConstants.Port ||
-                ipPacket.DestinationAddress.Equals(PPPConstants.Address) && tcpPacket.DestinationPort == PPPConstants.Port;
+            return tcpPacket.SourcePort == PPPConstants.Port || tcpPacket.DestinationPort == PPPConstants.Port;
         }
 
         public override void AddPacket(CapturedPacket capturedPacket)
@@ -93,7 +93,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
 
             packetBuffer.Clear();
 
-            //protectedLogger.StopLogging();
+            protectedLogger.StopLogging();
 
             RaiseProcessStopped();
         }
@@ -137,12 +137,11 @@ namespace PPPokerCardCatcher.Importers.PPPoker
         /// </summary>
         protected void ProcessBuffer()
         {
-            //var tableWindowProvider = ServiceLocator.Current.GetInstance<ITableWindowProvider>();
+            var tableWindowProvider = ServiceLocator.Current.GetInstance<ITableWindowProvider>();
             var packetManager = ServiceLocator.Current.GetInstance<IPacketManager<PPPokerPackage>>();
             var handBuilder = ServiceLocator.Current.GetInstance<IPPPHandBuilder>();
 
-            //var connectionsService = ServiceLocator.Current.GetInstance<INetworkConnectionsService>();
-            //connectionsService.SetLogger(Logger);
+            var connectionsService = ServiceLocator.Current.GetInstance<INetworkConnectionsService>();
 
             //var detectedTableWindows = new HashSet<IntPtr>();
 
@@ -154,11 +153,15 @@ namespace PPPokerCardCatcher.Importers.PPPoker
             {
                 try
                 {
+
+
                     if (!packetBuffer.TryTake(out CapturedPacket capturedPacket))
                     {
                         Task.Delay(NoDataDelay).Wait();
                         continue;
                     }
+
+                    LogPacket(capturedPacket, ".log");
 
                     if (IsAdvancedLogEnabled)
                     {
@@ -182,6 +185,9 @@ namespace PPPokerCardCatcher.Importers.PPPoker
                             continue;
                         }
 
+                        var process = connectionsService.GetProcess(capturedPacket);
+                        var windowHandle = tableWindowProvider.GetTableWindowHandle(process);
+
                         if (handBuilder.TryBuild(package, out HandHistory handHistory))
                         {
                             if (IsAdvancedLogEnabled)
@@ -191,22 +197,12 @@ namespace PPPokerCardCatcher.Importers.PPPoker
 
                             LogProvider.Log.Info(SerializationHelper.SerializeObject(handHistory));
 
-                            //var handHistoryData = new HandHistoryData
-                            //{
-                            //    Uuid = package.UserId,
-                            //    HandHistory = handHistory,
-                            //    WindowHandle = windowHandle
-                            //};
-
-                            //if (unexpectedRoomDetected)
-                            //{
-                            //    if (IsAdvancedLogEnabled)
-                            //    {
-                            //        LogProvider.Log.Info(Logger, $"Hand #{handHistory.HandId} user #{package.UserId} room #{package.RoomId}: unexpected room detected.");
-                            //    }
-
-                            //    handHistoryData.WindowHandle = IntPtr.Zero;
-                            //}
+                            var handHistoryData = new HandHistoryData
+                            {
+                                //Uuid = package.UserId,
+                                HandHistory = handHistory,
+                                WindowHandle = windowHandle
+                            };
 
                             //if (!pkCatcherService.CheckHand(handHistory))
                             //{

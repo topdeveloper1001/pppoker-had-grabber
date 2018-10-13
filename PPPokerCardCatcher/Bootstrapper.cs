@@ -16,6 +16,7 @@ using PPPokerCardCatcher.Common.Log;
 using PPPokerCardCatcher.Common.Wpf.Actions;
 using PPPokerCardCatcher.Common.Wpf.Interactivity;
 using PPPokerCardCatcher.Importers;
+using PPPokerCardCatcher.Importers.AndroidBase;
 using PPPokerCardCatcher.Importers.PPPoker;
 using PPPokerCardCatcher.Importers.PPPoker.Model;
 using PPPokerCardCatcher.Importers.TcpBased;
@@ -57,8 +58,10 @@ namespace PPPokerCardCatcher
 
             Container.RegisterType<IImporterService, ImporterService>(new ContainerControlledLifetimeManager());
 
+            Container.RegisterType<ITableWindowProvider, TableWindowProvider>();
             Container.RegisterType<ITcpImporter, TcpImporter>();
             Container.RegisterType<IPPPImporter, PPPImporter>();
+            Container.RegisterType<IPPPHandBuilder, PPPHandBuilder>();
             Container.RegisterType<IPackageBuilder<PPPokerPackage>, PPPokerPackageBuilder>();
             Container.RegisterType<IPacketManager<PPPokerPackage>, PPPokerPacketManager>();
             Container.RegisterType<INetworkConnectionsService, NetworkConnectionsService>();
@@ -136,6 +139,7 @@ namespace PPPokerCardCatcher
         {
             var importerService = ServiceLocator.Current.GetInstance<IImporterService>();
             importerService.Register<ITcpImporter>();
+            importerService.Register<IPPPImporter>();
 
             var tcpImporter = importerService.GetImporter<ITcpImporter>();
             tcpImporter.RegisterImporter<IPPPImporter>();
