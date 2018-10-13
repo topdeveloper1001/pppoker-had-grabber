@@ -11,7 +11,7 @@
 //----------------------------------------------------------------------
 
 using PPPokerHandGrabber.Common.Resources;
-using PMCatcher.Updater.Core;
+using PPPokerHandGrabber.Updater.Core;
 using Prism.Interactivity.InteractionRequest;
 
 namespace PPPokerHandGrabber.ViewModels

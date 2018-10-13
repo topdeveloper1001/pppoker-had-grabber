@@ -38,7 +38,7 @@ namespace PPPokerHandGrabber.Licensing
         /// <remarks/>
         public DeployLXLicensingServer()
         {
-            this.Url = "http://support.acepokersolutions.com/LicensingWS/LicenseServerPHG.asmx";
+            this.Url = "http://support.acepokersolutions.com/LicensingWS/LicenseServerPPP.asmx";
         }
 
         /// <remarks/>

@@ -90,7 +90,7 @@ namespace PPPokerHandGrabber
 
             if (IsCheckForUpdates())
             {
-                CheckUpdates();
+                // CheckUpdates();
             }
 
             LogCleaner.ClearLogsFolder();
@@ -101,9 +101,9 @@ namespace PPPokerHandGrabber
 
         private void ValidateLicenseAssemblies()
         {
-            var assemblies = new string[] { "DeployLX.Licensing.v5.dll", "PMTReg.dll", "PMCReg.dll", "PMHReg.dll", "PMOReg.dll" };
-            var assembliesHashes = new string[] { "c1d67b8e8d38540630872e9d4e44450ce2944700", "5cb016092ac8801635c8e512a0dd53a807cb1afd", "458f07ccf7263d3d2a7311c1181596ba7b200116", "e5fcdb720730f610d4e1210212bd51bd85bc6ed0", "1c04138ca4f51cf6ff62678b43b4d37d4284f4a8" };
-            var assemblySizes = new int[] { 1032192, 44032, 42496, 42496, 43008 };
+            var assemblies = new string[] { "DeployLX.Licensing.v5.dll", "PPTReg.dll", "PPSReg.dll" };
+            var assembliesHashes = new string[] { "c1d67b8e8d38540630872e9d4e44450ce2944700", "b2a101c62c886fe32dde4c21c5bd4bbe6067e4ce", "ccd2238adbbad9e1f32ffc3c04d30cae866031b0" };
+            var assemblySizes = new int[] { 1032192, 8192, 8704 };
 
             for (var i = 0; i < assemblies.Length; i++)
             {

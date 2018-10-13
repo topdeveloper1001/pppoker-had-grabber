@@ -65,7 +65,7 @@ namespace PPPokerHandGrabber.Importers.PPPoker
             }
             catch (Exception e)
             {
-                LogProvider.Log.Error(CustomModulesNames.PPPCatcher, $"Failed to parse package", e);
+                LogProvider.Log.Error(this, $"Failed to parse package", e);
             }
 
             package = null;

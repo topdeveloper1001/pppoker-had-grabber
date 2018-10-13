@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:phg="http://www.ppphandgrabber.com/winfx/2017/xaml/presentation"
-    xmlns:v="clr-namespace:PMCatcher.Views"
+    xmlns:v="clr-namespace:PPPokerHandGrabber.Views"
     xmlns:prism="http://www.codeplex.com/prism">
     <Grid>
         <Grid.RowDefinitions>

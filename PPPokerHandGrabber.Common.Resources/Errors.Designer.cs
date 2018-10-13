@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PPPHandGrabber.Common.Resources {
+namespace PPPokerHandGrabber.Common.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace PPPHandGrabber.Common.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PPPHandGrabber.Common.Resources.Errors", typeof(Errors).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PPPokerHandGrabber.Common.Resources.Errors", typeof(Errors).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

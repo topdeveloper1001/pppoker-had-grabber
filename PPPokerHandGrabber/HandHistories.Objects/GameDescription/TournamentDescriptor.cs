@@ -10,7 +10,7 @@
 // </copyright>
 //----------------------------------------------------------------------
 
-using DriveHUD.Entities;
+using PPPokerHandGrabber.Entities;
 using System;
 using System.Xml.Serialization;
 

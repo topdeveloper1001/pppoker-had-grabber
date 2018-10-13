@@ -59,14 +59,14 @@
                 Style="{StaticResource NormalButtonStyle}"
                 Width="70"
                 Content="{ResX Key=Common_NotificationView_Yes}"
-                Visibility="{Binding YesButtonVisible, Converter={pm:BoolToVisibilityConverter}}"
+                Visibility="{Binding YesButtonVisible, Converter={phg:BoolToVisibilityConverter}}"
                 Command="{Binding YesCommand}" />
 
             <Button
                 Style="{StaticResource NormalButtonStyle}"
                 Width="70"
                 Content="{ResX Key=Common_NotificationView_OK}"
-                Visibility="{Binding OKButtonVisible, Converter={pm:BoolToVisibilityConverter}}"
+                Visibility="{Binding OKButtonVisible, Converter={phg:BoolToVisibilityConverter}}"
                 Command="{Binding OKCommand}" />
 
             <Button
@@ -74,7 +74,7 @@
                 Margin="5,0,0,0"
                 Width="70"
                 Content="{ResX Key=Common_NotificationView_No}"
-                Visibility="{Binding NoButtonVisible, Converter={pm:BoolToVisibilityConverter}}"
+                Visibility="{Binding NoButtonVisible, Converter={phg:BoolToVisibilityConverter}}"
                 Command="{Binding NoCommand}" />
 
             <Button
@@ -82,7 +82,7 @@
                 Margin="5,0,0,0"
                 Width="70"
                 Content="{ResX Key=Common_NotificationView_Cancel}"
-                Visibility="{Binding CancelButtonVisible, Converter={pm:BoolToVisibilityConverter}}"
+                Visibility="{Binding CancelButtonVisible, Converter={phg:BoolToVisibilityConverter}}"
                 Command="{Binding CancelCommand}" />
 
         </StackPanel>

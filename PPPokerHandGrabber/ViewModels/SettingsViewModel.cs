@@ -12,8 +12,8 @@
 
 using Microsoft.Practices.ServiceLocation;
 using PPPokerHandGrabber.Common.Wpf.Mvvm;
-using PMCatcher.Importers;
-using PMCatcher.Settings;
+using PPPokerHandGrabber.Importers;
+using PPPokerHandGrabber.Settings;
 using Prism.Interactivity.InteractionRequest;
 using ReactiveUI;
 using System.Reactive.Linq;

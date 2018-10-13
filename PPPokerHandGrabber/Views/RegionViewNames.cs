@@ -10,7 +10,7 @@
 // </copyright>
 //----------------------------------------------------------------------
 
-namespace PMCatcher.Views
+namespace PPPokerHandGrabber.Views
 {
     internal static class RegionViewNames
     {

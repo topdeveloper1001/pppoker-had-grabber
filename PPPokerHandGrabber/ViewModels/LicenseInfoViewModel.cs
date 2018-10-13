@@ -10,9 +10,9 @@
 // </copyright>
 //----------------------------------------------------------------------
 
-using PPPokerHandGrabber.Licensing;
-using PPPokerHandGrabber.Common;
 using PPPokerHandGrabber.Common.Wpf.Mvvm;
+using PPPokerHandGrabber.Licensing;
+using System;
 
 namespace PPPokerHandGrabber.ViewModels
 {
@@ -22,9 +22,7 @@ namespace PPPokerHandGrabber.ViewModels
 
         internal LicenseInfoViewModel(IBaseLicenseInfo licenseInfo)
         {
-            Check.ArgumentNotNull(() => licenseInfo);
-
-            this.licenseInfo = licenseInfo;
+            this.licenseInfo = licenseInfo ?? throw new ArgumentNullException(nameof(licenseInfo));
         }
 
         public string Serial

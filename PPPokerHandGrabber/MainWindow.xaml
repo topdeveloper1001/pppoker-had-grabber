@@ -30,14 +30,14 @@
                     Margin="5,0,0,0"
                     Foreground="#17171a"
                     VerticalAlignment="Center"
-                    Text="{Binding DataContext.LicenseText, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type pm:PMWindow}}}" />
+                    Text="{Binding DataContext.LicenseText, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type phg:PHGWindow}}}" />
                 <Button
                     Margin="5,0,0,0"
                     VerticalAlignment="Center"
                     Content="{ResX Key=Common_Upgrade}"
-                    Command="{Binding DataContext.UpgradeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type pm:PMWindow}}}"
+                    Command="{Binding DataContext.UpgradeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type phg:PHGWindow}}}"
                     Style="{StaticResource UpgradeButtonStyle}"
-                    Visibility="{Binding DataContext.IsUpgradable, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type pm:PMWindow}}, Converter={pm:BoolToVisibilityConverter}}" />
+                    Visibility="{Binding DataContext.IsUpgradable, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type phg:PHGWindow}}, Converter={phg:BoolToVisibilityConverter}}" />
             </StackPanel>
         </DataTemplate>
     </phg:PHGWindow.StatusBarTemplate>
@@ -87,14 +87,14 @@
     <i:Interaction.Triggers>
         <prism:InteractionRequestTrigger
             SourceObject="{Binding SettingsNotificationRequest}">
-            <pm:ShowWindowViewAction
+            <phg:ShowWindowViewAction
                 StartupLocation="CenterAssosiated"
                 SingleOnly="True"
                 ViewName="{x:Static v:RegionViewNames.SettingsPopupView}"
                 IsModal="True">
-                <pm:ShowWindowViewAction.WindowStyle>
+                <phg:ShowWindowViewAction.WindowStyle>
                     <Style
-                        TargetType="{x:Type pm:PMWindow}"
+                        TargetType="{x:Type phg:PHGWindow}"
                         BasedOn="{StaticResource WindowBaseStyle}">
                         <Setter
                             Property="Width"
@@ -109,19 +109,19 @@
                             Property="CanMaximize"
                             Value="False" />
                     </Style>
-                </pm:ShowWindowViewAction.WindowStyle>
-            </pm:ShowWindowViewAction>
+                </phg:ShowWindowViewAction.WindowStyle>
+            </phg:ShowWindowViewAction>
         </prism:InteractionRequestTrigger>
         <prism:InteractionRequestTrigger
             SourceObject="{Binding RegistrationNotificationRequest}">
-            <pm:ShowWindowViewAction
+            <phg:ShowWindowViewAction
                 StartupLocation="CenterAssosiated"
                 SingleOnly="True"
                 ViewName="{x:Static v:RegionViewNames.RegistrationPopupView}"
                 IsModal="True">
-                <pm:ShowWindowViewAction.WindowStyle>
+                <phg:ShowWindowViewAction.WindowStyle>
                     <Style
-                        TargetType="{x:Type pm:PMWindow}"
+                        TargetType="{x:Type phg:PHGWindow}"
                         BasedOn="{StaticResource WindowBaseStyle}">
                         <Setter
                             Property="Width"
@@ -145,19 +145,19 @@
                             Property="ShowInTaskbar"
                             Value="False" />
                     </Style>
-                </pm:ShowWindowViewAction.WindowStyle>
-            </pm:ShowWindowViewAction>
+                </phg:ShowWindowViewAction.WindowStyle>
+            </phg:ShowWindowViewAction>
         </prism:InteractionRequestTrigger>
         <prism:InteractionRequestTrigger
             SourceObject="{Binding UpdateNotificationRequest}">
-            <pm:ShowWindowViewAction
+            <phg:ShowWindowViewAction
                 StartupLocation="CenterAssosiated"
                 SingleOnly="True"
                 ViewName="{x:Static v:RegionViewNames.UpdatePopupView}"
                 IsModal="True">
-                <pm:ShowWindowViewAction.WindowStyle>
+                <phg:ShowWindowViewAction.WindowStyle>
                     <Style
-                        TargetType="{x:Type pm:PMWindow}"
+                        TargetType="{x:Type phg:PHGWindow}"
                         BasedOn="{StaticResource WindowBaseStyle}">
                         <Setter
                             Property="Width"
@@ -184,8 +184,8 @@
                             Property="ShowInTaskbar"
                             Value="False" />
                     </Style>
-                </pm:ShowWindowViewAction.WindowStyle>
-            </pm:ShowWindowViewAction>
+                </phg:ShowWindowViewAction.WindowStyle>
+            </phg:ShowWindowViewAction>
         </prism:InteractionRequestTrigger>
     </i:Interaction.Triggers>
 </phg:PHGWindow>

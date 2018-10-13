@@ -21,28 +21,6 @@ namespace PPPokerHandGrabber.Licensing
     internal enum LicenseType : short
     {
         Trial = 1,
-        Holdem = 2,
-        Omaha = 3,
-        Combo = 4
-    }
-
-    internal static class LicenseTypeExtension
-    {
-        internal static string ToService(this LicenseType licenseType)
-        {
-            switch (licenseType)
-            {
-                case LicenseType.Combo:
-                    return "Combo";
-                case LicenseType.Holdem:
-                    return "Holdem";
-                case LicenseType.Omaha:
-                    return "Omaha";
-                case LicenseType.Trial:
-                    return "Trial";
-            }
-
-            return null;
-        }
+        Normal = 2
     }
 }

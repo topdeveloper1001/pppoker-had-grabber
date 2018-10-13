@@ -13,7 +13,7 @@
 using PPPokerHandGrabber.Common.Log;
 using PPPokerHandGrabber.Common.Resources;
 using PPPokerHandGrabber.Common.Wpf.Mvvm;
-using PMCatcher.Updater.Core;
+using PPPokerHandGrabber.Updater.Core;
 using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;

@@ -23,10 +23,10 @@ namespace PPPokerHandGrabber.Common.Resources
         }
 
         static int resourcesRegistered;
-        static readonly FileResourceManager commonResourceManager = new FileResourceManager("Common_", "PMCatcher.Common.Resources.Common", Assembly.GetExecutingAssembly());
-        static readonly FileResourceManager errorsResourceManager = new FileResourceManager("Error_", "PMCatcher.Common.Resources.Errors", Assembly.GetExecutingAssembly());
-        static readonly FileResourceManager enumsResourceManager = new FileResourceManager("Enum_", "PMCatcher.Common.Resources.Enums", Assembly.GetExecutingAssembly());        
-        static readonly FileResourceManager systemSettingsResourceManager = new FileResourceManager("SystemSettings_", "PMCatcher.Common.Resources.SystemSettings", Assembly.GetExecutingAssembly());
+        static readonly FileResourceManager commonResourceManager = new FileResourceManager("Common_", "PPPokerHandGrabber.Common.Resources.Common", Assembly.GetExecutingAssembly());
+        static readonly FileResourceManager errorsResourceManager = new FileResourceManager("Error_", "PPPokerHandGrabber.Common.Resources.Errors", Assembly.GetExecutingAssembly());
+        static readonly FileResourceManager enumsResourceManager = new FileResourceManager("Enum_", "PPPokerHandGrabber.Common.Resources.Enums", Assembly.GetExecutingAssembly());        
+        static readonly FileResourceManager systemSettingsResourceManager = new FileResourceManager("SystemSettings_", "PPPokerHandGrabber.Common.Resources.SystemSettings", Assembly.GetExecutingAssembly());
 
         public static void RegisterResources(CommonResourceManager resourceManager)
         {

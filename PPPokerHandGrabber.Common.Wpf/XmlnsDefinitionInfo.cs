@@ -18,6 +18,6 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2007/xaml/presentation", "PPPokerHandGrabber.Common.Wpf.ResX")]
 [assembly: XmlnsDefinition("http://schemas.microsoft.com/winfx/2008/xaml/presentation", "PPPokerHandGrabber.Common.Wpf.ResX")]
 
-[assembly: XmlnsDefinition("http://www.pmcatcher.com/winfx/2017/xaml/presentation", "PPPokerHandGrabber.Common.Wpf.Converters")]
-[assembly: XmlnsDefinition("http://www.pmcatcher.com/winfx/2017/xaml/presentation", "PPPokerHandGrabber.Common.Wpf.Controls")]
-[assembly: XmlnsDefinition("http://www.pmcatcher.com/winfx/2017/xaml/presentation", "PPPokerHandGrabber.Common.Wpf.Actions")]
+[assembly: XmlnsDefinition("http://www.ppphandgrabber.com/winfx/2017/xaml/presentation", "PPPokerHandGrabber.Common.Wpf.Converters")]
+[assembly: XmlnsDefinition("http://www.ppphandgrabber.com/winfx/2017/xaml/presentation", "PPPokerHandGrabber.Common.Wpf.Controls")]
+[assembly: XmlnsDefinition("http://www.ppphandgrabber.com/winfx/2017/xaml/presentation", "PPPokerHandGrabber.Common.Wpf.Actions")]

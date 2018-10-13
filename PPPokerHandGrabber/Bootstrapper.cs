@@ -12,7 +12,6 @@
 
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
-using PMCatcher.Views;
 using PPPokerHandGrabber.Common.Log;
 using PPPokerHandGrabber.Common.Wpf.Actions;
 using PPPokerHandGrabber.Common.Wpf.Interactivity;
@@ -21,6 +20,7 @@ using PPPokerHandGrabber.Importers.PPPoker;
 using PPPokerHandGrabber.Importers.PPPoker.Model;
 using PPPokerHandGrabber.Importers.TcpBased;
 using PPPokerHandGrabber.Licensing;
+using PPPokerHandGrabber.Security;
 using PPPokerHandGrabber.Settings;
 using PPPokerHandGrabber.ViewModels;
 using PPPokerHandGrabber.Views;
@@ -57,16 +57,15 @@ namespace PPPokerHandGrabber
 
             Container.RegisterType<IImporterService, ImporterService>(new ContainerControlledLifetimeManager());
 
+            Container.RegisterType<ITcpImporter, TcpImporter>();
             Container.RegisterType<IPPPImporter, PPPImporter>();
             Container.RegisterType<IPackageBuilder<PPPokerPackage>, PPPokerPackageBuilder>();
-            Container.RegisterType<IPacketManager<PPPokerPackage>, PPPokerPacketManager>();        
+            Container.RegisterType<IPacketManager<PPPokerPackage>, PPPokerPacketManager>();
             Container.RegisterType<INetworkConnectionsService, NetworkConnectionsService>();
-                       
+
             // licenses
-            //Container.RegisterType<ILicenseManager, PMTReg>(LicenseType.Trial.ToService());
-            //Container.RegisterType<ILicenseManager, PMHReg>(LicenseType.Holdem.ToService());
-            //Container.RegisterType<ILicenseManager, PMOReg>(LicenseType.Omaha.ToService());
-            //Container.RegisterType<ILicenseManager, PMCReg>(LicenseType.Combo.ToService());
+            Container.RegisterType<ILicenseManager, PPTReg>(LicenseType.Trial.ToString());
+            Container.RegisterType<ILicenseManager, PPSReg>(LicenseType.Normal.ToString());
 
             // views
             Container.RegisterType<IViewModelContainer, SettingsView>(RegionViewNames.SettingsPopupView);

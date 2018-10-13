@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="GGNLicenseService.cs" company="Ace Poker Solutions">
+// <copyright file="LicenseService.cs" company="Ace Poker Solutions">
 // Copyright © 2015 Ace Poker Solutions. All Rights Reserved.
 // Unless otherwise noted, all materials contained in this Site are copyrights, 
 // trademarks, trade dress and/or other intellectual properties, owned, 
@@ -11,17 +11,16 @@
 //----------------------------------------------------------------------
 
 using DeployLX.Licensing.v5;
+using HandHistories.Objects.GameDescription;
+using HandHistories.Objects.Hand;
+using Microsoft.Practices.ServiceLocation;
+using Newtonsoft.Json;
 using PPPokerHandGrabber.Common.Exceptions;
 using PPPokerHandGrabber.Common.Log;
 using PPPokerHandGrabber.Common.Resources;
 using PPPokerHandGrabber.Common.Security;
 using PPPokerHandGrabber.Common.Utils;
-using PPPokerHandGrabber.Entities;
 using PPPokerHandGrabber.Security;
-using HandHistories.Objects.GameDescription;
-using HandHistories.Objects.Hand;
-using Microsoft.Practices.ServiceLocation;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,9 +54,7 @@ namespace PPPokerHandGrabber.Licensing
             var licenseTypes = new LicenseType[]
             {
                 LicenseType.Trial,
-                LicenseType.Holdem,
-                LicenseType.Omaha,
-                LicenseType.Combo
+                LicenseType.Normal
             };
 
             // validate each possible type 
@@ -70,7 +67,7 @@ namespace PPPokerHandGrabber.Licensing
                 var isExpired = false;
                 var serial = string.Empty;
 
-                var licenseManager = ServiceLocator.Current.GetInstance<ILicenseManager>(licenseType.ToService());
+                var licenseManager = ServiceLocator.Current.GetInstance<ILicenseManager>(licenseType.ToString());
 
                 try
                 {
@@ -170,7 +167,7 @@ namespace PPPokerHandGrabber.Licensing
                 throw new PHGInternalException(new NonLocalizableString("Serial is not defined."));
             }
 
-            var licenseManager = ServiceLocator.Current.GetInstance<ILicenseManager>(licenseType.Value.ToService());
+            var licenseManager = ServiceLocator.Current.GetInstance<ILicenseManager>(licenseType.Value.ToString());
 
             var licenseInfo = licenseInfos.FirstOrDefault(x => x.LicenseType == licenseType);
 
@@ -453,7 +450,7 @@ namespace PPPokerHandGrabber.Licensing
         {
             get
             {
-                return !licenseInfos.Any(x => x.IsRegistered && !x.IsExpired && x.Serial.StartsWith("PMC"));
+                return !licenseInfos.Any(x => x.IsRegistered && !x.IsExpired && x.Serial.StartsWith("PPS"));
             }
         }
 
@@ -464,24 +461,15 @@ namespace PPPokerHandGrabber.Licensing
         /// <returns>Type of license</returns>
         public LicenseType? GetTypeFromSerial(string serial)
         {
-            if (serial.StartsWith("PMH", StringComparison.Ordinal))
+            if (serial.StartsWith("PPS", StringComparison.Ordinal)
+               || serial.StartsWith("PPP", StringComparison.Ordinal))
             {
-                return LicenseType.Holdem;
+                return LicenseType.Normal;
             }
 
-            if (serial.StartsWith("PMO", StringComparison.Ordinal))
-            {
-                return LicenseType.Omaha;
-            }
-
-            if (serial.StartsWith("PMT", StringComparison.Ordinal))
+            if (serial.StartsWith("PPT", StringComparison.Ordinal))
             {
                 return LicenseType.Trial;
-            }
-
-            if (serial.StartsWith("PMC", StringComparison.Ordinal))
-            {
-                return LicenseType.Combo;
             }
 
             return null;
@@ -518,26 +506,7 @@ namespace PPPokerHandGrabber.Licensing
 
             switch (licenseType)
             {
-                case LicenseType.Holdem:
-                    gameTypes.Add(GameType.CapNoLimitHoldem);
-                    gameTypes.Add(GameType.FixedLimitHoldem);
-                    gameTypes.Add(GameType.NoLimitHoldem);
-                    gameTypes.Add(GameType.PotLimitHoldem);
-                    gameTypes.Add(GameType.SpreadLimitHoldem);
-                    break;
-                case LicenseType.Omaha:
-                    gameTypes.Add(GameType.CapPotLimitOmaha);
-                    gameTypes.Add(GameType.FiveCardPotLimitOmaha);
-                    gameTypes.Add(GameType.FiveCardPotLimitOmahaHiLo);
-                    gameTypes.Add(GameType.FiveCardPotLimitOmaha);
-                    gameTypes.Add(GameType.FixedLimitOmaha);
-                    gameTypes.Add(GameType.FixedLimitOmahaHiLo);
-                    gameTypes.Add(GameType.NoLimitOmaha);
-                    gameTypes.Add(GameType.NoLimitOmahaHiLo);
-                    gameTypes.Add(GameType.PotLimitOmaha);
-                    gameTypes.Add(GameType.PotLimitOmahaHiLo);
-                    break;
-                case LicenseType.Combo:
+                case LicenseType.Normal:
                 case LicenseType.Trial:
                     foreach (GameType gameType in Enum.GetValues(typeof(GameType)))
                     {
