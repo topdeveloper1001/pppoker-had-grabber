@@ -21,6 +21,7 @@ using PPPokerCardCatcher.Common.Log;
 using PPPokerCardCatcher.Importers.PPPoker.Model;
 using PPPokerCardCatcher.Importers.TcpBased;
 using PPPokerCardCatcher.Settings;
+using ProtoBuf;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

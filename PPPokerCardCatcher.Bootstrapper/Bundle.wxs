@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
+
+  <?ifndef ProductVersion?>
+  <?define ProductVersion = "1.0.0.45" ?>
+  <?endif ?>
+
+  <?ifndef ProductName?>
+  <?define ProductName = "PPPoker Card Catcher" ?>
+  <?endif ?>
+
+  <?ifndef Manufacturer?>
+  <?define Manufacturer = "Ace Poker Solutions" ?>
+  <?endif ?>
+
+  <Bundle Name="$(var.ProductName)"
+          Version="$(var.ProductVersion)"
+          Manufacturer="$(var.Manufacturer)"
+          Copyright="(c) All rights reserved."
+          DisableModify="yes"
+          IconSourceFile="..\PPPokerCardCatcher\Images\pm-icon.ico"
+          UpgradeCode="7ec8f70c-f5da-42c9-a02c-a87dbdc5a49d">
+
+    <bal:Condition  Message="This software can only be installed on Windows Vista and higher.">
+      <![CDATA[VersionNT >= v6.0]]>
+    </bal:Condition>
+
+    <BootstrapperApplicationRef Id="ManagedBootstrapperApplicationHost">
+      <Payload SourceFile='$(var.PPPokerCardCatcher.Bootstrapper.App.ProjectDir)BootstrapperCore.config' />
+      <Payload SourceFile='$(var.PPPokerCardCatcher.Bootstrapper.App.TargetPath)' />
+      <Payload SourceFile='$(var.PPPokerCardCatcher.Bootstrapper.App.TargetDir)GalaSoft.MvvmLight.dll' />
+    </BootstrapperApplicationRef>
+
+    <Variable Name="LAUNCHPROGRAM" bal:Overridable='yes' Value='"PPPokerCardCatcher.exe"'/>
+
+    <Chain DisableSystemRestore='yes'>
+      <PackageGroupRef Id="NetFx461Web" />
+      <RollbackBoundary/>
+      <ExePackage
+          Id="VCRedistX86"
+          Cache="no"
+          Compressed="yes"
+          PerMachine="yes"
+          Permanent="yes"
+          Vital="yes"
+          SourceFile="..\Dependencies\vc_redist.x86.exe"
+          InstallCommand="/install /quiet /norestart">
+        <ExitCode Value="3010" Behavior="forceReboot"/>
+        <ExitCode Value="1638" Behavior="success"/>
+      </ExePackage>
+      <RollbackBoundary/>
+      <ExePackage
+          Id="WinPcap"
+          Compressed="yes"
+          SourceFile="..\Dependencies\WinPcap.exe"
+          PerMachine="yes"
+          Permanent="yes"
+          Vital="yes"           
+          InstallCommand="/S" />
+      <RollbackBoundary/>
+      <MsiPackage Id="PPPokerCardCatcher" Compressed="yes" SourceFile="..\PPPokerCardCatcher.Setup\bin\Release\PPPoker-Card-Catcher-Install.msi" ForcePerMachine="yes" Vital="yes">        
+        <MsiProperty Name="INSTALLFOLDER" Value="[INSTALLFOLDER]"/>
+        <MsiProperty Name="INSTALLDESKTOPSHORTCUT" Value="[INSTALLDESKTOPSHORTCUT]"/>
+        <MsiProperty Name="INSTALLPROGRAMMENUSHORTCUT" Value="[INSTALLPROGRAMMENUSHORTCUT]"/>
+      </MsiPackage>
+    </Chain>
+  </Bundle>
+</Wix>

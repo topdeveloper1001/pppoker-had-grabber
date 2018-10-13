@@ -1,0 +1,61 @@
+﻿<pcc:PCCWindow
+    x:Class="PPPokerCardCatcher.Bootstrapper.App.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pcc="clr-namespace:PPPokerCardCatcher.Bootstrapper.App.Controls"
+    xmlns:vm="clr-namespace:PPPokerCardCatcher.Bootstrapper.App.ViewModels"
+    xmlns:v="clr-namespace:PPPokerCardCatcher.Bootstrapper.App.Views"
+    Style="{DynamicResource WindowBaseStyle}"
+    VersionTitle="{Binding Version}"
+    Title="{Binding Title}"
+    CanMaximize="False"
+    CanResize="False"
+    FontFamily="./Fonts/#Open Sans"
+    WindowStartupLocation="CenterScreen"
+    Closing="PCCWindow_Closing"
+    Height="450"
+    Width="550">
+    <pcc:PCCWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="Styles/PCCWindowStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate
+                DataType="{x:Type vm:InstallViewModel}">
+                <v:InstallView />
+            </DataTemplate>
+
+            <DataTemplate
+                DataType="{x:Type vm:PlanViewModel}">
+                <v:PlanView />
+            </DataTemplate>
+
+            <DataTemplate
+                DataType="{x:Type vm:ProgressViewModel}">
+                <v:ProgressView />
+            </DataTemplate>
+
+            <DataTemplate
+                DataType="{x:Type vm:FinishViewModel}">
+                <v:FinishView />
+            </DataTemplate>
+
+            <DataTemplate
+                DataType="{x:Type vm:FinishErrorViewModel}">
+                <v:FinishErrorView />
+            </DataTemplate>
+
+            <DataTemplate
+                DataType="{x:Type vm:MaintenanceViewModel}">
+                <v:MaintenanceView />
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </pcc:PCCWindow.Resources>
+
+    <ContentControl
+        Content="{Binding PageViewModel}" />
+
+</pcc:PCCWindow>

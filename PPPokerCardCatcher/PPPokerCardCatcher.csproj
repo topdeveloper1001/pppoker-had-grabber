@@ -46,6 +46,9 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\pm-icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DeployLX.Licensing.v5, Version=5.0.2000.0, Culture=neutral, PublicKeyToken=798276055709c98a, processorArchitecture=MSIL">
       <HintPath>..\Dependencies\DeployLX.Licensing.v5.dll</HintPath>
@@ -396,7 +399,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\PHGWindowStyle.xaml">
+    <Page Include="Styles\PCCWindowStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

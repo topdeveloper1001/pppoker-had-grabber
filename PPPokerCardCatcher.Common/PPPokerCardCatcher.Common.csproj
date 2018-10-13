@@ -63,7 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\PHGInternalException.cs" />
+    <Compile Include="Exceptions\PCCInternalException.cs" />
     <Compile Include="Exceptions\LocalizableException.cs" />
     <Compile Include="Extensions\ConcurrentCollectionExtensions.cs" />
     <Compile Include="Extensions\ProcessExtensions.cs" />
@@ -74,8 +74,8 @@
     <Compile Include="Linq\IEnumerableExtensions.cs" />
     <Compile Include="Linq\LambdaComparer.cs" />
     <Compile Include="Linq\ObjectReferenceEqualityComparerer.cs" />
-    <Compile Include="Log\PHGLogExtensions.cs" />
-    <Compile Include="Log\IPHGLog.cs" />
+    <Compile Include="Log\PCCLogExtensions.cs" />
+    <Compile Include="Log\IPCCLog.cs" />
     <Compile Include="Log\LogMessageType.cs" />
     <Compile Include="Log\LogProvider.cs" />
     <Compile Include="Log\PerformanceMonitor.cs" />
