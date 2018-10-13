@@ -17,9 +17,9 @@ namespace PPPokerCardCatcher.Common.Log
     /// <summary>
     /// Extensions for DHLog
     /// </summary>
-    public static class PHGLogExtensions
+    public static class PCCLogExtensions
     {
-        public static void Log(this IPHGLog log, object sender, object message, LogMessageType logMessageType)
+        public static void Log(this IPCCLog log, object sender, object message, LogMessageType logMessageType)
         {
             Type logType = null;
 
@@ -37,7 +37,7 @@ namespace PPPokerCardCatcher.Common.Log
             log.Log(logType, message, logMessageType);
         }
 
-        public static void Log(this IPHGLog log, object sender, object message, Exception exception, LogMessageType logMessageType)
+        public static void Log(this IPCCLog log, object sender, object message, Exception exception, LogMessageType logMessageType)
         {
             Type logType = null;
 
@@ -55,63 +55,63 @@ namespace PPPokerCardCatcher.Common.Log
             log.Log(logType, message, exception, logMessageType);
         }
 
-        public static void Log(this IPHGLog log, object message, LogMessageType logMessageType)
+        public static void Log(this IPCCLog log, object message, LogMessageType logMessageType)
         {
             log.Log(string.Empty, message, logMessageType);
         }
 
-        public static void Error(this IPHGLog log, object sender, Exception exception)
+        public static void Error(this IPCCLog log, object sender, Exception exception)
         {
             log.Log(sender, exception, LogMessageType.Error);
         }
 
-        public static void Error(this IPHGLog log, Exception exception)
+        public static void Error(this IPCCLog log, Exception exception)
         {
             log.Log(string.Empty, exception, LogMessageType.Error);
         }
 
-        public static void Error(this IPHGLog log, object sender, object message)
+        public static void Error(this IPCCLog log, object sender, object message)
         {
             Exception exception = message as Exception;
             log.Log(sender, message, LogMessageType.Error);
         }
 
-        public static void Error(this IPHGLog log, object sender, object message, Exception exception)
+        public static void Error(this IPCCLog log, object sender, object message, Exception exception)
         {
             log.Log(sender, message, exception, LogMessageType.Error);
         }
 
-        public static void Error(this IPHGLog log, object message)
+        public static void Error(this IPCCLog log, object message)
         {
             log.Error(string.Empty, message);
         }
 
-        public static void Debug(this IPHGLog log, object sender, object message)
+        public static void Debug(this IPCCLog log, object sender, object message)
         {
             log.Log(sender, message, LogMessageType.Debug);
         }
 
-        public static void Debug(this IPHGLog log, object message)
+        public static void Debug(this IPCCLog log, object message)
         {
             log.Debug(string.Empty, message);
         }
 
-        public static void Info(this IPHGLog log, object sender, object message)
+        public static void Info(this IPCCLog log, object sender, object message)
         {
             log.Log(sender, message, LogMessageType.Info);
         }
 
-        public static void Info(this IPHGLog log, object message)
+        public static void Info(this IPCCLog log, object message)
         {
             log.Info(string.Empty, message);
         }
 
-        public static void Warn(this IPHGLog log, object sender, object message)
+        public static void Warn(this IPCCLog log, object sender, object message)
         {
             log.Log(sender, message, LogMessageType.Warning);
         }
 
-        public static void Warn(this IPHGLog log, object message)
+        public static void Warn(this IPCCLog log, object message)
         {
             log.Warn(string.Empty, message);
         }

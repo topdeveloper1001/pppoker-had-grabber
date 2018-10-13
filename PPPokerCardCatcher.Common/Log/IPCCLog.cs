@@ -17,7 +17,7 @@ namespace PPPokerCardCatcher.Common.Log
     /// <summary>
     /// Interface generalize log definition and writing in one method    
     /// </summary>
-    public interface IPHGLog
+    public interface IPCCLog
     {
         /// <summary>
         /// Write message to log 

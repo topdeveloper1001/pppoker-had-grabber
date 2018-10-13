@@ -25,7 +25,7 @@ namespace PPPokerCardCatcher.Common.Log
     {
         private static ILog mainLog;
 
-        private static IPHGLog internalLog = new InternalLog();
+        private static IPCCLog internalLog = new InternalLog();
 
         static LogProvider()
         {
@@ -49,7 +49,7 @@ namespace PPPokerCardCatcher.Common.Log
         /// <summary>
         /// Log class
         /// </summary>
-        public static IPHGLog Log
+        public static IPCCLog Log
         {
             get
             {
@@ -79,7 +79,7 @@ namespace PPPokerCardCatcher.Common.Log
         /// Set custom logger
         /// </summary>
         /// <param name="customLog">Custom logger</param>
-        public static void SetCustomLogger(IPHGLog customLog)
+        public static void SetCustomLogger(IPCCLog customLog)
         {
             internalLog = customLog;
         }
@@ -87,7 +87,7 @@ namespace PPPokerCardCatcher.Common.Log
         /// <summary>
         /// IDHLog implementation via log4net methods
         /// </summary>
-        private class InternalLog : IPHGLog
+        private class InternalLog : IPCCLog
         {
             public void Log(Type senderType, object message, LogMessageType logMessageType)
             {

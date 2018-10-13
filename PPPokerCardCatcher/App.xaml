@@ -13,7 +13,7 @@
                 <ResourceDictionary
                     Source="Styles/Colors.xaml" />
                 <ResourceDictionary
-                    Source="Styles/PHGWindowStyle.xaml" />
+                    Source="Styles/PCCWindowStyle.xaml" />
                 <ResourceDictionary
                     Source="Styles/ControlStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>

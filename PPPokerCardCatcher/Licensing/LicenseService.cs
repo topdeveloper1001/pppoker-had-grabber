@@ -157,14 +157,14 @@ namespace PPPokerCardCatcher.Licensing
         {
             if (string.IsNullOrWhiteSpace(serial))
             {
-                throw new PHGInternalException(new NonLocalizableString("Serial is not defined."));
+                throw new PCCInternalException(new NonLocalizableString("Serial is not defined."));
             }
 
             var licenseType = GetTypeFromSerial(serial);
 
             if (!licenseType.HasValue)
             {
-                throw new PHGInternalException(new NonLocalizableString("Serial is not defined."));
+                throw new PCCInternalException(new NonLocalizableString("Serial is not defined."));
             }
 
             var licenseManager = ServiceLocator.Current.GetInstance<ILicenseManager>(licenseType.Value.ToString());
@@ -380,7 +380,7 @@ namespace PPPokerCardCatcher.Licensing
             {
                 if (!isInitialized)
                 {
-                    throw new PHGInternalException(new NonLocalizableString("License has not been initialized"));
+                    throw new PCCInternalException(new NonLocalizableString("License has not been initialized"));
                 }
 
                 return licenseInfos;
@@ -514,7 +514,7 @@ namespace PPPokerCardCatcher.Licensing
                     }
                     break;
                 default:
-                    throw new PHGInternalException(new NonLocalizableString("Not supported license type"));
+                    throw new PCCInternalException(new NonLocalizableString("Not supported license type"));
             }
 
             return gameTypes;

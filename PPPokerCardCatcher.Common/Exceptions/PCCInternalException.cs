@@ -18,14 +18,14 @@ namespace PPPokerCardCatcher.Common.Exceptions
     /// <summary>
     /// Class for internal PHG exceptions
     /// </summary>
-    public class PHGInternalException : LocalizableException
+    public class PCCInternalException : LocalizableException
     {
-        public PHGInternalException(ILocalizableString message)
+        public PCCInternalException(ILocalizableString message)
             : base(message, null)
         {
         }
 
-        public PHGInternalException(ILocalizableString message, Exception innerException)
+        public PCCInternalException(ILocalizableString message, Exception innerException)
             : base(message, innerException)
         {
         }
