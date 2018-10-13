@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6A1DBD79-9F14-47E0-9BA1-8631D4A4F022}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PPPokerCardCatcher.Common</RootNamespace>
+    <AssemblyName>PPPokerCardCatcher.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\Certificates\lic-assemb-sign.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DeployLX.Licensing.v5, Version=5.0.2000.0, Culture=neutral, PublicKeyToken=798276055709c98a, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\DeployLX.Licensing.v5.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.4.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.4.0\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Exceptions\PHGInternalException.cs" />
+    <Compile Include="Exceptions\LocalizableException.cs" />
+    <Compile Include="Extensions\ConcurrentCollectionExtensions.cs" />
+    <Compile Include="Extensions\ProcessExtensions.cs" />
+    <Compile Include="Extensions\ReaderWriterLockSlimExtensions.cs" />
+    <Compile Include="Extensions\SerializationHelper.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\XmlExtensions.cs" />
+    <Compile Include="Linq\IEnumerableExtensions.cs" />
+    <Compile Include="Linq\LambdaComparer.cs" />
+    <Compile Include="Linq\ObjectReferenceEqualityComparerer.cs" />
+    <Compile Include="Log\PHGLogExtensions.cs" />
+    <Compile Include="Log\IPHGLog.cs" />
+    <Compile Include="Log\LogMessageType.cs" />
+    <Compile Include="Log\LogProvider.cs" />
+    <Compile Include="Log\PerformanceMonitor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\PropertyData.cs" />
+    <Compile Include="Reflection\PropertyFormatter.cs" />
+    <Compile Include="Reflection\ReflectionHelper.cs" />
+    <Compile Include="Reflection\TypeExtension.cs" />
+    <Compile Include="Resources\CommonResourceManager.cs" />
+    <Compile Include="Resources\CompositeKeyProvider.cs" />
+    <Compile Include="Resources\CultureManager.cs" />
+    <Compile Include="Resources\FileResourceManager.cs" />
+    <Compile Include="Resources\ILocalizableString.cs" />
+    <Compile Include="Resources\IResourceManager.cs" />
+    <Compile Include="Resources\IResXKeyProvider.cs" />
+    <Compile Include="Resources\LocalizableString.cs" />
+    <Compile Include="Resources\NonLocalizableString.cs" />
+    <Compile Include="Security\SecurityUtils.cs" />
+    <Compile Include="Utils\BrowserHelper.cs" />
+    <Compile Include="Utils\Network\LocalConnection.cs" />
+    <Compile Include="Utils\Network\MibTcpExtenstions.cs" />
+    <Compile Include="Utils\Network\NetworkUtils.cs" />
+    <Compile Include="Utils\Utils.cs" />
+    <Compile Include="WinApi\AllocationType.cs" />
+    <Compile Include="WinApi\GetWindowType.cs" />
+    <Compile Include="WinApi\Hwnd.cs" />
+    <Compile Include="WinApi\MemoryProtection.cs" />
+    <Compile Include="WinApi\Network\TCP\MibTcp6RowOwnerPid.cs" />
+    <Compile Include="WinApi\Network\TCP\MibTcp6TableOwnerPid.cs" />
+    <Compile Include="WinApi\Network\TCP\MibTcpRowOwnerPid.cs" />
+    <Compile Include="WinApi\Network\TCP\MibTcpState.cs" />
+    <Compile Include="WinApi\Network\TCP\MibTcpTableOwnerPid.cs" />
+    <Compile Include="WinApi\Network\TCP\TcpTableClass.cs" />
+    <Compile Include="WinApi\Network\UDP\MibUdp6RowOwnerPid.cs" />
+    <Compile Include="WinApi\Network\UDP\MibUdp6TableOwnerPid.cs" />
+    <Compile Include="WinApi\Network\UDP\MibUdpRowOwnerPid.cs" />
+    <Compile Include="WinApi\Network\UDP\MibUdpTableOwnerPid.cs" />
+    <Compile Include="WinApi\Network\UDP\UdpTableClass.cs" />
+    <Compile Include="WinApi\PipeMode.cs" />
+    <Compile Include="WinApi\PipeNative.cs" />
+    <Compile Include="WinApi\PipeOpenMode.cs" />
+    <Compile Include="WinApi\ProcessAccesFlags.cs" />
+    <Compile Include="WinApi\ProcessBasicInformation.cs" />
+    <Compile Include="WinApi\ProcessCreationFlags.cs" />
+    <Compile Include="WinApi\ProcessInformation.cs" />
+    <Compile Include="WinApi\RectType.cs" />
+    <Compile Include="WinApi\SecurityAttributes.cs" />
+    <Compile Include="WinApi\SecurityDescriptor.cs" />
+    <Compile Include="WinApi\ShowWindowCommands.cs" />
+    <Compile Include="WinApi\StartupInfo.cs" />
+    <Compile Include="WinApi\Swp.cs" />
+    <Compile Include="WinApi\ThreadWaitValue.cs" />
+    <Compile Include="WinApi\WinApi.cs" />
+    <Compile Include="WinApi\WinTrust.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
