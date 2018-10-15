@@ -19,6 +19,12 @@ namespace PPPokerCardCatcher.Importers
     public interface IDHImporterService
     {
         [OperationContract]
+        void CloseHUD(int windowHandle);
+
+        [OperationContract]
         void ImportHandHistory(HandHistoryDto handHistory);
+
+        [OperationContract]
+        void ShowHUD(EnumPokerSites site, int windowHandle, string text);
     }
 }

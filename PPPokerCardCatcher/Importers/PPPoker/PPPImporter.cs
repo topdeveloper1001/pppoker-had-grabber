@@ -18,6 +18,8 @@ using Newtonsoft.Json.Converters;
 using PacketDotNet;
 using PPPokerCardCatcher.Common.Extensions;
 using PPPokerCardCatcher.Common.Log;
+using PPPokerCardCatcher.Common.Resources;
+using PPPokerCardCatcher.Entities;
 using PPPokerCardCatcher.Importers.AndroidBase;
 using PPPokerCardCatcher.Importers.PPPoker.Model;
 using PPPokerCardCatcher.Importers.TcpBased;
@@ -30,6 +32,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -146,7 +149,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
             var handBuilder = ServiceLocator.Current.GetInstance<IPPPHandBuilder>();
 
             var connectionsService = ServiceLocator.Current.GetInstance<INetworkConnectionsService>();
-
+            var detectedTables = new HashSet<IntPtr>();
             var handHistoriesToProcess = new ConcurrentDictionary<long, List<HandHistoryData>>();
 
             while (!cancellationTokenSource.IsCancellationRequested)
@@ -186,11 +189,23 @@ namespace PPPokerCardCatcher.Importers.PPPoker
                         var process = connectionsService.GetProcess(capturedPacket);
                         var windowHandle = tableWindowProvider.GetTableWindowHandle(process);
 
+                        if (package.PackageType == PackageType.EnterRoomRSP)
+                        {
+                            LogProvider.Log.Info(this, $"User entered room. [{package.ClientPort}]");
+
+                            if (!detectedTables.Contains(windowHandle))
+                            {
+                                detectedTables.Add(windowHandle);
+                            }
+
+                            SendShowHUDRequest("Notifications_HudLayout_PreLoadingText_Init", windowHandle);
+                        }
+
                         if (handBuilder.TryBuild(package, out HandHistory handHistory))
                         {
                             if (IsAdvancedLogEnabled)
                             {
-                                LogProvider.Log.Info(this, $"Hand #{handHistory.HandId}, ClientPort={package.ClientPort}.");
+                                LogProvider.Log.Info(this, $"Hand #{handHistory.HandId} [{package.ClientPort}]");
                             }
 
                             var handHistoryData = new HandHistoryData
@@ -203,10 +218,17 @@ namespace PPPokerCardCatcher.Importers.PPPoker
                             if (!licenseService.IsMatch(handHistory))
                             {
                                 LogProvider.Log.Info(this, $"License doesn't support cash hand {handHistory.HandId}. [BB={handHistory.GameDescription.Limit.BigBlind}]");
+                                SendShowHUDRequest("Notifications_HudLayout_PreLoadingText_NoLicense", windowHandle);
                                 continue;
                             }
 
                             ExportHandHistory(handHistoryData, handHistoriesToProcess);
+                        }
+
+                        if (package.PackageType == PackageType.LeaveRoomRSP || package.PackageType == PackageType.TableGameOverRSP)
+                        {
+                            SendCloseHUDRequest(windowHandle);
+                            detectedTables.Remove(windowHandle);
                         }
                     }
                 }
@@ -215,6 +237,8 @@ namespace PPPokerCardCatcher.Importers.PPPoker
                     LogProvider.Log.Error(this, $"Could not process captured packet.", e);
                 }
             }
+
+            SendCloseHUDRequest(detectedTables.ToArray());
         }
 
         /// <summary>
@@ -381,7 +405,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
             { 9, 1 }
         };
 
-        protected PlayerList GetPlayerList(HandHistory handHistory)
+        protected override PlayerList GetPlayerList(HandHistory handHistory)
         {
             var playerList = handHistory.Players;
 
@@ -404,9 +428,73 @@ namespace PPPokerCardCatcher.Importers.PPPoker
             return playerList;
         }
 
+        protected virtual void SendShowHUDRequest(string loadingTextKey, IntPtr windowHandle)
+        {
+            if (windowHandle == IntPtr.Zero)
+            {
+                return;
+            }
+
+            var loadingText = CommonResourceManager.Instance.GetResourceString(loadingTextKey);
+
+            InitializeDHImporterService();
+
+            if (dhImporterService == null)
+            {
+                return;
+            }
+
+            try
+            {
+                dhImporterService.ShowHUD(EnumPokerSites.PPPoker, windowHandle.ToInt32(), loadingText);
+            }
+            catch (EndpointNotFoundException)
+            {
+                LogProvider.Log.Error(this, $"DriveHUD isn't running. Request to show HUD hasn't been sent [{windowHandle.ToInt32()}].");
+                dhImporterService = null;
+            }
+            catch (Exception e)
+            {
+                if (IsAdvancedLogEnabled)
+                {
+                    LogProvider.Log.Error(this, $"Failed to send request to show HUD [{windowHandle.ToInt32()}].", e);
+                }
+            }
+        }
+
+        protected virtual void SendCloseHUDRequest(IntPtr windowHandle)
+        {
+            SendCloseHUDRequest(new[] { windowHandle });
+        }
+
+        protected virtual void SendCloseHUDRequest(IntPtr[] windowHandles)
+        {
+            InitializeDHImporterService();
+
+            foreach (var windowHandle in windowHandles)
+            {
+                try
+                {
+                    dhImporterService.CloseHUD(windowHandle.ToInt32());
+                }
+                catch (EndpointNotFoundException)
+                {
+                    LogProvider.Log.Error(this, $"DriveHUD isn't running. Request to close HUD hasn't been sent [{windowHandle.ToInt32()}].");
+                    dhImporterService = null;
+                }
+                catch (Exception e)
+                {
+                    if (IsAdvancedLogEnabled)
+                    {
+                        LogProvider.Log.Error(this, $"Failed to send request to close HUD [{windowHandle.ToInt32()}].", e);
+                    }
+                }
+            }
+        }
+
         private static int ShiftPlayerSeat(int seat, int shift, int tableType)
         {
             return (seat + shift + tableType - 1) % tableType + 1;
-        }      
+        }
     }
 }

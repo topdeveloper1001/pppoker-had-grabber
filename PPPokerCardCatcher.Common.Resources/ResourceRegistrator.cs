@@ -25,7 +25,8 @@ namespace PPPokerCardCatcher.Common.Resources
         static int resourcesRegistered;
         static readonly FileResourceManager commonResourceManager = new FileResourceManager("Common_", "PPPokerCardCatcher.Common.Resources.Common", Assembly.GetExecutingAssembly());
         static readonly FileResourceManager errorsResourceManager = new FileResourceManager("Error_", "PPPokerCardCatcher.Common.Resources.Errors", Assembly.GetExecutingAssembly());
-        static readonly FileResourceManager enumsResourceManager = new FileResourceManager("Enum_", "PPPokerCardCatcher.Common.Resources.Enums", Assembly.GetExecutingAssembly());        
+        static readonly FileResourceManager enumsResourceManager = new FileResourceManager("Enum_", "PPPokerCardCatcher.Common.Resources.Enums", Assembly.GetExecutingAssembly());
+        static readonly FileResourceManager notificationsResourceManager = new FileResourceManager("Notifications_", "PPPokerCardCatcher.Common.Resources.Notifications", Assembly.GetExecutingAssembly());
         static readonly FileResourceManager systemSettingsResourceManager = new FileResourceManager("SystemSettings_", "PPPokerCardCatcher.Common.Resources.SystemSettings", Assembly.GetExecutingAssembly());
 
         public static void RegisterResources(CommonResourceManager resourceManager)
@@ -37,7 +38,8 @@ namespace PPPokerCardCatcher.Common.Resources
 
             resourceManager.RegisterResourceManager(commonResourceManager);
             resourceManager.RegisterResourceManager(errorsResourceManager);
-            resourceManager.RegisterResourceManager(enumsResourceManager);            
+            resourceManager.RegisterResourceManager(enumsResourceManager);
+            resourceManager.RegisterResourceManager(notificationsResourceManager);
             resourceManager.RegisterResourceManager(systemSettingsResourceManager);
         }
     }

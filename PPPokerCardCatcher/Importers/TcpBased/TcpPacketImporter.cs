@@ -11,6 +11,7 @@
 //----------------------------------------------------------------------
 
 using HandHistories.Objects.Hand;
+using HandHistories.Objects.Players;
 using PacketDotNet;
 using PPPokerCardCatcher.Common.Extensions;
 using PPPokerCardCatcher.Common.Linq;
@@ -41,7 +42,7 @@ namespace PPPokerCardCatcher.Importers.TcpBased
         protected const int NoDataDelay = 100;
         protected const int DelayToProcessHands = 2000;
 
-        private IDHImporterService dhImporterService;
+        protected IDHImporterService dhImporterService;
 
         protected bool IsAdvancedLogEnabled { get; set; }
 
@@ -56,7 +57,7 @@ namespace PPPokerCardCatcher.Importers.TcpBased
         /// Exports captured hand history to the supported DB
         /// </summary>
         protected virtual void ExportHandHistory(HandHistoryData handHistoryData, ConcurrentDictionary<long, List<HandHistoryData>> handHistoriesToProcess)
-        {            
+        {
             LogProvider.Log.Info(this, $"Hand #{handHistoryData.HandHistory.HandId} is being prepared [{handHistoryData.Uuid}].");
 
             var handId = handHistoryData.HandHistory.HandId;
@@ -92,12 +93,7 @@ namespace PPPokerCardCatcher.Importers.TcpBased
         /// </summary>
         protected virtual void ExportHandHistory(List<HandHistoryData> handHistories)
         {
-            if (dhImporterService == null)
-            {
-                var endpointAddress = CommonResourceManager.Instance.GetResourceString("SystemSettings_ImporterPipeAddress");
-                var pipeFactory = new ChannelFactory<IDHImporterService>(new NetNamedPipeBinding(), new EndpointAddress(endpointAddress));
-                dhImporterService = pipeFactory.CreateChannel();
-            }
+            InitializeDHImporterService();
 
             // merge hands
             var playerWithHoleCards = handHistories
@@ -105,7 +101,7 @@ namespace PPPokerCardCatcher.Importers.TcpBased
                 .Where(x => x.hasHoleCards)
                 .DistinctBy(x => x.SeatNumber)
                 .ToDictionary(x => x.SeatNumber, x => x.HoleCards);
-            
+
             foreach (var handHistoryData in handHistories)
             {
                 handHistoryData.HandHistory.Players.ForEach(player =>
@@ -115,6 +111,8 @@ namespace PPPokerCardCatcher.Importers.TcpBased
                         player.HoleCards = playerWithHoleCards[player.SeatNumber];
                     }
                 });
+
+                handHistoryData.HandHistory.Players = GetPlayerList(handHistoryData.HandHistory);
 
                 var handHistoryText = SerializationHelper.SerializeObject(handHistoryData.HandHistory);
 
@@ -131,7 +129,7 @@ namespace PPPokerCardCatcher.Importers.TcpBased
                 {
                     var handHistoryDto = new HandHistoryDto
                     {
-                        PokerSite = EnumPokerSites.PokerKing,
+                        PokerSite = EnumPokerSites.PPPoker,
                         WindowHandle = handHistoryData.WindowHandle.ToInt32(),
                         HandText = handHistoryText
                     };
@@ -159,6 +157,20 @@ namespace PPPokerCardCatcher.Importers.TcpBased
                 }
             }
         }
+
+        protected virtual void InitializeDHImporterService()
+        {
+            if (dhImporterService != null)
+            {
+                return;
+            }
+
+            var endpointAddress = CommonResourceManager.Instance.GetResourceString("SystemSettings_ImporterPipeAddress");
+            var pipeFactory = new ChannelFactory<IDHImporterService>(new NetNamedPipeBinding(), new EndpointAddress(endpointAddress));
+            dhImporterService = pipeFactory.CreateChannel();
+        }
+
+        protected abstract PlayerList GetPlayerList(HandHistory handHistory);
 
         protected class HandHistoryData
         {
