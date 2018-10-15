@@ -445,9 +445,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.manifest" />
-    <None Include="Updater\UpdaterDataScheme.xsd">
+    <EmbeddedResource Include="Updater\UpdaterDataScheme.xsd">
       <SubType>Designer</SubType>
-    </None>
+    </EmbeddedResource>
     <Resource Include="Fonts\OpenSans-Regular.ttf" />
     <Resource Include="Fonts\OpenSans-Semibold.ttf" />
     <None Include="packages.config" />

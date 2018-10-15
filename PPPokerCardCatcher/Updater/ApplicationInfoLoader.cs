@@ -78,7 +78,7 @@ namespace PPPokerCardCatcher.Updater.Core
             {
                 var assembly = Assembly.GetExecutingAssembly();
 
-                XmlSchema xs = null;
+                XmlSchema xs = null;                
 
                 using (Stream stream = assembly.GetManifestResourceStream(xsdResource))
                 {

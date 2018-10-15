@@ -19,8 +19,8 @@ namespace PPPokerCardCatcher.Updater.Core
     internal static class UpdaterPaths
     {
         private const string updaterBasePath = "http://pokerleakbuster.com/Updates/";
-        private const string updaterDataPath = "pppoker-hand-grabber-updates.xml";
-        private const string appDataFolder = "PPPoker-Hand-Grabber";
+        private const string updaterDataPath = "pppoker-card-catcher-updates.xml";
+        private const string appDataFolder = "PPPoker-Card-Catcher";
         private const string tempUpdatesFolder = "_updates";
         private const string tempUnpackedFolder = "_unpacked";
 

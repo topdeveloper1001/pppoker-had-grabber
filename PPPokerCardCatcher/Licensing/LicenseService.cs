@@ -450,7 +450,7 @@ namespace PPPokerCardCatcher.Licensing
         {
             get
             {
-                return !licenseInfos.Any(x => x.IsRegistered && !x.IsExpired && x.Serial.StartsWith("PPS"));
+                return !licenseInfos.Any(x => x.IsRegistered && !x.IsExpired && x.Serial.StartsWith("PPP"));
             }
         }
 
