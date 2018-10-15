@@ -1,5 +1,4 @@
-﻿using DriveHUD.Tests.TcpImportersTests;
-using DriveHUD.Common.Extensions;
+﻿using DriveHUD.Common.Extensions;
 using DriveHUD.Importers.AndroidBase;
 using DriveHUD.Importers.PPPoker;
 using DriveHUD.Importers.PPPoker.Model;
@@ -12,6 +11,8 @@ using System.Collections.Generic;
 //using System.Fakes;
 using System.IO;
 using System.Net;
+using Microsoft.QualityTools.Testing.Fakes;
+using System.Fakes;
 
 namespace DriveHUD.Tests.PPPTests
 {
@@ -103,6 +104,117 @@ namespace DriveHUD.Tests.PPPTests
 
                 Assert.That(jsonActual, Is.EqualTo(jsonExpected));
             }
+        }
+
+        [TestCase(@"Packets\192.168.88.15.60473-209.200.155.113.4000.txt", @"Packets\192.168.88.15.60473-209.200.155.113.4000-pkgt.txt")]
+        [TestCase(@"Packets\209.200.155.113.4000-192.168.88.15.60473.txt", @"Packets\209.200.155.113.4000-192.168.88.15.60473-pkgt.txt")]
+        [TestCase(@"Packets\192.168.88.15.63679-209.200.155.113.4000.txt", @"Packets\192.168.88.15.63679-209.200.155.113.4000-pkgt.txt")]
+        [TestCase(@"Packets\209.200.155.113.4000-192.168.88.15.63679.txt", @"Packets\209.200.155.113.4000-192.168.88.15.63679-pkgt.txt")]
+        [TestCase(@"Packets\192.168.88.15.64256-209.200.155.113.4000.txt", @"Packets\192.168.88.15.64256-209.200.155.113.4000-pkgt.txt")]
+        [TestCase(@"Packets\209.200.155.113.4000-192.168.88.15.64256.txt", @"Packets\209.200.155.113.4000-192.168.88.15.64256-pkgt.txt")]
+        public void TryParseTest(string file, string expectedPackageTypesFile)
+        {
+            var packets = ReadCapturedPackets(file, null);
+
+            var expectedPackageTypes = !string.IsNullOrEmpty(expectedPackageTypesFile) ?
+                    GetPackageTypeList<PackageType>(expectedPackageTypesFile) :
+                    new List<PackageType>();
+
+            var packetManager = new PPPokerPacketManager();
+
+            var expectedCommandsIndex = 0;
+
+            using (ShimsContext.Create())
+            {
+                foreach (var packet in packets)
+                {
+                    ShimDateTime.NowGet = () => packet.CreatedTimeStamp;
+
+                    if (packetManager.TryParse(packet, out IList<PPPokerPackage> packages))
+                    {
+                        foreach (var package in packages)
+                        {
+                            if (expectedPackageTypes.Count > 0)
+                            {
+                                Assert.That(package.PackageType, Is.EqualTo(expectedPackageTypes[expectedCommandsIndex++]));
+                                AssertPackage(package, packet);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void AssertPackage(PPPokerPackage package, CapturedPacket capturedPacket)
+        {
+            switch (package.PackageType)
+            {
+                case PackageType.GetUserMarksREQ:
+                    AssertPackage<GetUserMarksREQ>(package, capturedPacket);
+                    break;
+                case PackageType.GetUserMarksRSP:
+                    AssertPackage<GetUserMarksRSP>(package, capturedPacket);
+                    break;
+                case PackageType.SelUserInfoRSP:
+                    AssertPackage<SelUserInfoRSP>(package, capturedPacket);
+                    break;
+                case PackageType.EnterRoomRSP:
+                    AssertPackage<EnterRoomRSP>(package, capturedPacket);
+                    break;
+                case PackageType.SitDownRSP:
+                    AssertPackage<SitDownRSP>(package, capturedPacket);
+                    break;
+                case PackageType.SitDownBRC:
+                    AssertPackage<SitDownBRC>(package, capturedPacket);
+                    break;
+                case PackageType.StandUpBRC:
+                    AssertPackage<StandUpBRC>(package, capturedPacket);
+                    break;
+                case PackageType.BlindStatusBRC:
+                    AssertPackage<BlindStatusBRC>(package, capturedPacket);
+                    break;
+                case PackageType.DealerInfoRSP:
+                    AssertPackage<DealerInfoRSP>(package, capturedPacket);
+                    break;
+                case PackageType.RoundStartBRC:
+                    AssertPackage<RoundStartBRC>(package, capturedPacket);
+                    break;
+                case PackageType.RoundOverBRC:
+                    AssertPackage<RoundOverBRC>(package, capturedPacket);
+                    break;
+                case PackageType.ActionBRC:
+                    AssertPackage<ActionBRC>(package, capturedPacket);
+                    break;
+                case PackageType.HandCardRSP:
+                    AssertPackage<HandCardRSP>(package, capturedPacket);
+                    break;
+                case PackageType.ShowHandRSP:
+                    AssertPackage<ShowHandRSP>(package, capturedPacket);
+                    break;
+                case PackageType.WinnerRSP:
+                    AssertPackage<WinnerRSP>(package, capturedPacket);
+                    break;
+                case PackageType.ShowMyCardBRC:
+                    AssertPackage<ShowMyCardBRC>(package, capturedPacket);
+                    break;
+                case PackageType.UserSngOverRSP:
+                    AssertPackage<UserSngOverRSP>(package, capturedPacket);
+                    break;
+                case PackageType.TableGameOverRSP:
+                    AssertPackage<TableGameOverRSP>(package, capturedPacket);
+                    break;
+                case PackageType.LeaveRoomRSP:
+                    AssertPackage<LeaveRoomRSP>(package, capturedPacket);
+                    break;
+            }
+        }
+
+        private void AssertPackage<T>(PPPokerPackage package, CapturedPacket capturedPacket)
+        {
+            Assert.IsTrue(
+                SerializationHelper.TryDeserialize(package.Body, out T packageContent),
+                $"Failed to deserialize {typeof(T)} package [ticks={capturedPacket.CreatedTimeStamp.Ticks}, userid={package.ClientPort}]"
+            );
         }
     }
 }

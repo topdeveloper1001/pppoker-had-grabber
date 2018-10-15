@@ -1,0 +1,1327 @@
+﻿{
+  "Packets": [
+    {
+      "PackageType": "EnterRoomREQ",
+      "Direction": "Outgoing",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:10.2464408+03:00",
+      "Content": {
+        "RoomID": 38773,
+        "Tid": -1,
+        "Uid": 0,
+        "ClubID": 0,
+        "LeagueID": 0,
+        "IP": null
+      }
+    },
+    {
+      "PackageType": "EnterRoomRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:10.4750031+03:00",
+      "Content": {
+        "Code": 0,
+        "Reason": null,
+        "TableStatus": {
+          "IsPlaying": true,
+          "ActionIndex": 2,
+          "DealerIndex": 1,
+          "SmallBlindIndex": 2,
+          "BigBlindIndex": 3,
+          "Seat": [
+            {
+              "SeatID": 0,
+              "ActionType": "Raise",
+              "Player": {
+                "Uid": 603285,
+                "Name": "goldennuggie",
+                "IconUrl": "http://www.pppoker.club/poker/headicon/head/7223c6570c11bb7.jpg"
+              },
+              "RemainingChips": 46500,
+              "InvestedChips": 3000,
+              "HasCard": true,
+              "SeatReserve": false,
+              "Country": "HK",
+              "VipLevel": 3,
+              "WaitBlind": false,
+              "RebuyLeftTime": 0,
+              "RebuyWaitAuth": false,
+              "ClubID": 0,
+              "Longitude": -360,
+              "Latitude": -360,
+              "ClubName": ""
+            },
+            {
+              "SeatID": 1,
+              "ActionType": "Fold",
+              "Player": {
+                "Uid": 536623,
+                "Name": "ronnesp.com",
+                "IconUrl": "http://www.pppoker.club/poker/headicon/head/7e4e9158fb5ea7f.jpg"
+              },
+              "RemainingChips": 38900,
+              "InvestedChips": 0,
+              "HasCard": false,
+              "SeatReserve": false,
+              "Country": "BR",
+              "VipLevel": 0,
+              "WaitBlind": false,
+              "RebuyLeftTime": 0,
+              "RebuyWaitAuth": false,
+              "ClubID": 0,
+              "Longitude": -360,
+              "Latitude": -360,
+              "ClubName": ""
+            },
+            {
+              "SeatID": 2,
+              "ActionType": "Wait",
+              "Player": {
+                "Uid": 505777,
+                "Name": "pp505777",
+                "IconUrl": "http://www.pppoker.club/poker/resource/k.png"
+              },
+              "RemainingChips": 44800,
+              "InvestedChips": 500,
+              "HasCard": true,
+              "SeatReserve": false,
+              "Country": "UZ",
+              "VipLevel": 0,
+              "WaitBlind": false,
+              "RebuyLeftTime": 0,
+              "RebuyWaitAuth": false,
+              "ClubID": 0,
+              "Longitude": -360,
+              "Latitude": -360,
+              "ClubName": ""
+            },
+            {
+              "SeatID": 3,
+              "ActionType": "Sit",
+              "Player": null,
+              "RemainingChips": 0,
+              "InvestedChips": 1000,
+              "HasCard": false,
+              "SeatReserve": false,
+              "Country": null,
+              "VipLevel": 0,
+              "WaitBlind": false,
+              "RebuyLeftTime": 0,
+              "RebuyWaitAuth": false,
+              "ClubID": 0,
+              "Longitude": 0,
+              "Latitude": 0,
+              "ClubName": null
+            },
+            {
+              "SeatID": 4,
+              "ActionType": "Sit",
+              "Player": null,
+              "RemainingChips": 0,
+              "InvestedChips": 0,
+              "HasCard": false,
+              "SeatReserve": false,
+              "Country": null,
+              "VipLevel": 0,
+              "WaitBlind": false,
+              "RebuyLeftTime": 0,
+              "RebuyWaitAuth": false,
+              "ClubID": 0,
+              "Longitude": 0,
+              "Latitude": 0,
+              "ClubName": null
+            },
+            {
+              "SeatID": 5,
+              "ActionType": "Sit",
+              "Player": null,
+              "RemainingChips": 0,
+              "InvestedChips": 0,
+              "HasCard": false,
+              "SeatReserve": false,
+              "Country": null,
+              "VipLevel": 0,
+              "WaitBlind": false,
+              "RebuyLeftTime": 0,
+              "RebuyWaitAuth": false,
+              "ClubID": 0,
+              "Longitude": 0,
+              "Latitude": 0,
+              "ClubName": null
+            }
+          ],
+          "Pool": [
+            2000
+          ],
+          "Stage": "PreFlop",
+          "Board": null,
+          "Tid": 1,
+          "IsFinalTable": false,
+          "MultiBoards": null,
+          "InsurancePools": null,
+          "IsWaitSync": false
+        },
+        "RoomStatus": {
+          "TimeLeft": 180,
+          "Profit": [
+            {
+              "UserName": "Karlos",
+              "BuyIn": 51700,
+              "Profit": 189400,
+              "Uid": 466854,
+              "IconUrl": "http://www.pppoker.club/poker/headicon/head/adc46c51739d512.jpg",
+              "HandsNum": 13,
+              "Fee": 8200,
+              "Cost": 0,
+              "Reward": 0,
+              "Rank": 0,
+              "InsuranceChips": 0,
+              "HunterReward": 0,
+              "AgentUid": 0,
+              "RewardInfo": {
+                "Chips": 0,
+                "ItemName": null,
+                "Score": 0
+              },
+              "RebuyNum": 0,
+              "AddonNum": 0,
+              "MttScore": 0,
+              "Tickets": null,
+              "ClubID": 0,
+              "JackpotFee": 0,
+              "JackpotReward": 0
+            },
+            {
+              "UserName": "pp505777",
+              "BuyIn": 200000,
+              "Profit": -154200,
+              "Uid": 505777,
+              "IconUrl": "http://www.pppoker.club/poker/resource/k.png",
+              "HandsNum": 17,
+              "Fee": 7900,
+              "Cost": 0,
+              "Reward": 0,
+              "Rank": 0,
+              "InsuranceChips": 0,
+              "HunterReward": 0,
+              "AgentUid": 0,
+              "RewardInfo": {
+                "Chips": 0,
+                "ItemName": null,
+                "Score": 0
+              },
+              "RebuyNum": 0,
+              "AddonNum": 0,
+              "MttScore": 0,
+              "Tickets": null,
+              "ClubID": 0,
+              "JackpotFee": 0,
+              "JackpotReward": 0
+            },
+            {
+              "UserName": "ronnesp.com",
+              "BuyIn": 50000,
+              "Profit": -10600,
+              "Uid": 536623,
+              "IconUrl": "http://www.pppoker.club/poker/headicon/head/7e4e9158fb5ea7f.jpg",
+              "HandsNum": 9,
+              "Fee": 600,
+              "Cost": 0,
+              "Reward": 0,
+              "Rank": 0,
+              "InsuranceChips": 0,
+              "HunterReward": 0,
+              "AgentUid": 0,
+              "RewardInfo": {
+                "Chips": 0,
+                "ItemName": null,
+                "Score": 0
+              },
+              "RebuyNum": 0,
+              "AddonNum": 0,
+              "MttScore": 0,
+              "Tickets": null,
+              "ClubID": 0,
+              "JackpotFee": 0,
+              "JackpotReward": 0
+            },
+            {
+              "UserName": "goldennuggie",
+              "BuyIn": 50000,
+              "Profit": 0,
+              "Uid": 603285,
+              "IconUrl": "http://www.pppoker.club/poker/headicon/head/7223c6570c11bb7.jpg",
+              "HandsNum": 1,
+              "Fee": 0,
+              "Cost": 0,
+              "Reward": 0,
+              "Rank": 0,
+              "InsuranceChips": 0,
+              "HunterReward": 0,
+              "AgentUid": 0,
+              "RewardInfo": {
+                "Chips": 0,
+                "ItemName": null,
+                "Score": 0
+              },
+              "RebuyNum": 0,
+              "AddonNum": 0,
+              "MttScore": 0,
+              "Tickets": null,
+              "ClubID": 0,
+              "JackpotFee": 0,
+              "JackpotReward": 0
+            }
+          ],
+          "Observer": [
+            {
+              "Uid": 466854,
+              "Name": "Karlos",
+              "IconUrl": "http://www.pppoker.club/poker/headicon/head/adc46c51739d512.jpg"
+            },
+            {
+              "Uid": 1006471,
+              "Name": "el_inteligente",
+              "IconUrl": "http://www.pppoker.club/poker/headicon/guest/21.png"
+            }
+          ],
+          "AuthLimit": false,
+          "IsStarted": true,
+          "IsBlindRunning": false,
+          "IsJackpotOpen": false,
+          "AddRoomtimeQuota": 0
+        },
+        "PlayingStatus": {
+          "Card1": 0,
+          "Card2": 0,
+          "ActionSeatID": 2,
+          "CallNeedChips": 2500,
+          "MinChipIn": 4500,
+          "MaxChipIn": 49000,
+          "ActionTime": 1,
+          "AddActionTimeCost": 0,
+          "Card3": 0,
+          "Card4": 0,
+          "ShowStraddle": false,
+          "Role": 0,
+          "RoomAuthority": false,
+          "PreActionType": 0,
+          "PreActionChips": 0,
+          "BannedTalk": false
+        },
+        "RoomInfo": {
+          "RoomID": 38773,
+          "RoomName": "300001",
+          "OwnerName": null,
+          "Blind": 500,
+          "Ante": 500,
+          "MinBuyIn": 50000,
+          "ActionTime": 13,
+          "GameTime": 3,
+          "SeatNum": 6,
+          "OwnerID": 0,
+          "RoomType": "LobbyRoom",
+          "FeeType": 2,
+          "FeePoint": 5,
+          "AuthLimit": false,
+          "Region": 0,
+          "OwnerIcon": null,
+          "ClubID": 0,
+          "Platform": null,
+          "DefaultBuyIn": 50000,
+          "Cap": 0,
+          "PoolLimit": false,
+          "MaxBuyIn": 500000,
+          "IsRunMultiTimes": false,
+          "IsInsurance": false,
+          "LeagueID": 0,
+          "ClubName": "",
+          "ClubOwnerID": 0,
+          "ClubIcon": null,
+          "TempID": "300001",
+          "Official": false,
+          "GpsLimit": false,
+          "IPLimit": false,
+          "GpsDistanceLimit": 200,
+          "CityID": 0,
+          "RoomMode": "Lobby",
+          "OwnerVipLevel": 0,
+          "AutoStart": -1
+        },
+        "RoomType": "LobbyRoom",
+        "SngRoomInfo": null,
+        "MttRoomInfo": null,
+        "RoomID": 0,
+        "RoomMode": "Lobby",
+        "PineRoomInfo": null,
+        "PineRoomStatus": null
+      }
+    },
+    {
+      "PackageType": "GetUserMarksREQ",
+      "Direction": "Outgoing",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:10.6099165+03:00",
+      "Content": {
+        "Uid": 1006471,
+        "MarkUid": [
+          603285,
+          536623,
+          505777
+        ]
+      }
+    },
+    {
+      "PackageType": "MoneyRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:10.6188415+03:00",
+      "Content": {
+        "Money": 504800
+      }
+    },
+    {
+      "PackageType": "SitDownBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:10.6188415+03:00",
+      "Content": {
+        "SeatID": 3,
+        "Chips": 50000,
+        "Brief": {
+          "Uid": 1006471,
+          "Name": "el_inteligente",
+          "IconUrl": "http://www.pppoker.club/poker/headicon/guest/21.png"
+        },
+        "Status": {
+          "SeatID": 3,
+          "ActionType": "Sit",
+          "Player": {
+            "Uid": 1006471,
+            "Name": "el_inteligente",
+            "IconUrl": "http://www.pppoker.club/poker/headicon/guest/21.png"
+          },
+          "RemainingChips": 50000,
+          "InvestedChips": 1000,
+          "HasCard": false,
+          "SeatReserve": false,
+          "Country": "RU",
+          "VipLevel": 0,
+          "WaitBlind": false,
+          "RebuyLeftTime": 0,
+          "RebuyWaitAuth": false,
+          "ClubID": 0,
+          "Longitude": -360,
+          "Latitude": -360,
+          "ClubName": ""
+        }
+      }
+    },
+    {
+      "PackageType": "SitDownRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:10.6188415+03:00",
+      "Content": {
+        "Code": "OK",
+        "Reason": null,
+        "SeatID": 3,
+        "Chips": 50000,
+        "AddActionTimeCost": 10
+      }
+    },
+    {
+      "PackageType": "CroupierActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:10.6188415+03:00",
+      "Content": {
+        "Scene": 3,
+        "Text": "A3",
+        "Time": 1539272769,
+        "To": 3,
+        "Cost": 0
+      }
+    },
+    {
+      "PackageType": "GetUserMarksREQ",
+      "Direction": "Outgoing",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:10.6406675+03:00",
+      "Content": {
+        "Uid": 1006471,
+        "MarkUid": [
+          603285,
+          536623,
+          505777
+        ]
+      }
+    },
+    {
+      "PackageType": "GetUserMarksRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:11.6323293+03:00",
+      "Content": {
+        "Uid": 1006471,
+        "Mark": [
+          {
+            "Uid": 603285,
+            "Content": null,
+            "MarkColor": "NoColor"
+          },
+          {
+            "Uid": 536623,
+            "Content": null,
+            "MarkColor": "NoColor"
+          },
+          {
+            "Uid": 505777,
+            "Content": null,
+            "MarkColor": "NoColor"
+          }
+        ]
+      }
+    },
+    {
+      "PackageType": "GetUserMarksRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:11.6576233+03:00",
+      "Content": {
+        "Uid": 1006471,
+        "Mark": [
+          {
+            "Uid": 603285,
+            "Content": null,
+            "MarkColor": "NoColor"
+          },
+          {
+            "Uid": 536623,
+            "Content": null,
+            "MarkColor": "NoColor"
+          },
+          {
+            "Uid": 505777,
+            "Content": null,
+            "MarkColor": "NoColor"
+          }
+        ]
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:12.6716351+03:00",
+      "Content": {
+        "SeatID": 2,
+        "ActionType": "Fold",
+        "Chips": 0,
+        "HandChips": 44800
+      }
+    },
+    {
+      "PackageType": "ChipsBackBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:12.6716351+03:00",
+      "Content": {
+        "SeatID": 0,
+        "Chips": 2000
+      }
+    },
+    {
+      "PackageType": "RoundOverBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:12.6716351+03:00",
+      "Content": {
+        "Pool": [
+          4500
+        ]
+      }
+    },
+    {
+      "PackageType": "WinnerRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:12.6716351+03:00",
+      "Content": {
+        "Winner": [
+          {
+            "SeatID": 0,
+            "PoolID": 0,
+            "Chips": 4300,
+            "Type": "HighCard",
+            "InsuranceChips": 0,
+            "Uid": 603285,
+            "JackpotFee": 0
+          }
+        ],
+        "Profit": [
+          {
+            "SeatID": 2,
+            "Chips": -1000,
+            "InsuranceChips": 0
+          },
+          {
+            "SeatID": 1,
+            "Chips": -500,
+            "InsuranceChips": 0
+          },
+          {
+            "SeatID": 0,
+            "Chips": 2800,
+            "InsuranceChips": 0
+          },
+          {
+            "SeatID": 3,
+            "Chips": -1500,
+            "InsuranceChips": 0
+          }
+        ],
+        "Rabbit": {
+          "RabbitCards": [
+            525,
+            514,
+            266,
+            777,
+            770
+          ],
+          "FinishStage": "PreFlop"
+        }
+      }
+    },
+    {
+      "PackageType": "ShowMyCardBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:16.6587436+03:00",
+      "Content": {
+        "SeatID": 0,
+        "Card1": 0,
+        "Card2": 782,
+        "Card3": 0,
+        "Card4": 0
+      }
+    },
+    {
+      "PackageType": "DealerInfoRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:18.2122962+03:00",
+      "Content": {
+        "Dealer": 2,
+        "SmallBlind": 3,
+        "BigBlind": 0,
+        "Stacks": [
+          {
+            "SeatID": 3,
+            "Chips": 50000
+          },
+          {
+            "SeatID": 0,
+            "Chips": 502800
+          },
+          {
+            "SeatID": 1,
+            "Chips": 38900
+          },
+          {
+            "SeatID": 2,
+            "Chips": 44800
+          }
+        ],
+        "GameID": "181011233422-38773-00018-1"
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:18.2122962+03:00",
+      "Content": {
+        "SeatID": 3,
+        "ActionType": "Ante",
+        "Chips": 500,
+        "HandChips": 49500
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:18.2122962+03:00",
+      "Content": {
+        "SeatID": 0,
+        "ActionType": "Ante",
+        "Chips": 500,
+        "HandChips": 502300
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:18.2122962+03:00",
+      "Content": {
+        "SeatID": 1,
+        "ActionType": "Ante",
+        "Chips": 500,
+        "HandChips": 38400
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:18.2122962+03:00",
+      "Content": {
+        "SeatID": 2,
+        "ActionType": "Ante",
+        "Chips": 500,
+        "HandChips": 44300
+      }
+    },
+    {
+      "PackageType": "AnteBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:18.2122962+03:00",
+      "Content": {
+        "Info": [
+          {
+            "SeatID": 3,
+            "Ante": 500
+          },
+          {
+            "SeatID": 0,
+            "Ante": 500
+          },
+          {
+            "SeatID": 1,
+            "Ante": 500
+          },
+          {
+            "SeatID": 2,
+            "Ante": 500
+          }
+        ]
+      }
+    },
+    {
+      "PackageType": "RoundOverBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:18.2122962+03:00",
+      "Content": {
+        "Pool": [
+          2000
+        ]
+      }
+    },
+    {
+      "PackageType": "RoundStartBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:18.2122962+03:00",
+      "Content": {
+        "Street": "PreFlop",
+        "Board": null
+      }
+    },
+    {
+      "PackageType": "HandCardRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:18.2122962+03:00",
+      "Content": {
+        "Card1": 1027,
+        "Card2": 1028,
+        "Card3": 0,
+        "Card4": 0
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:18.2122962+03:00",
+      "Content": {
+        "SeatID": 3,
+        "ActionType": "SmallBlind",
+        "Chips": 500,
+        "HandChips": 49000
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:18.2122962+03:00",
+      "Content": {
+        "SeatID": 0,
+        "ActionType": "BigBlind",
+        "Chips": 1000,
+        "HandChips": 501300
+      }
+    },
+    {
+      "PackageType": "ActionNotifyBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:18.2122962+03:00",
+      "Content": {
+        "SeatID": 1,
+        "CallNeedChips": 1000,
+        "MinChipIn": 2000,
+        "MaxChipIn": 502300
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:21.2183779+03:00",
+      "Content": {
+        "SeatID": 1,
+        "ActionType": "Fold",
+        "Chips": 0,
+        "HandChips": 38400
+      }
+    },
+    {
+      "PackageType": "ActionNotifyBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:21.2248234+03:00",
+      "Content": {
+        "SeatID": 2,
+        "CallNeedChips": 1000,
+        "MinChipIn": 2000,
+        "MaxChipIn": 502300
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:34.3182674+03:00",
+      "Content": {
+        "SeatID": 2,
+        "ActionType": "Fold",
+        "Chips": 0,
+        "HandChips": 44300
+      }
+    },
+    {
+      "PackageType": "ActionNotifyBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:34.3301703+03:00",
+      "Content": {
+        "SeatID": 3,
+        "CallNeedChips": 500,
+        "MinChipIn": 1500,
+        "MaxChipIn": 501800
+      }
+    },
+    {
+      "PackageType": "StandUpBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:34.3301703+03:00",
+      "Content": {
+        "SeatID": 2
+      }
+    },
+    {
+      "PackageType": "ActionREQ",
+      "Direction": "Outgoing",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:35.3223051+03:00",
+      "Content": {
+        "ActionType": "Call",
+        "Chips": 0
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:36.3070858+03:00",
+      "Content": {
+        "SeatID": 3,
+        "ActionType": "Call",
+        "Chips": 500,
+        "HandChips": 48500
+      }
+    },
+    {
+      "PackageType": "ActionNotifyBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:36.3160487+03:00",
+      "Content": {
+        "SeatID": 0,
+        "CallNeedChips": 0,
+        "MinChipIn": 1000,
+        "MaxChipIn": 48500
+      }
+    },
+    {
+      "PackageType": "CroupierActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:38.4058226+03:00",
+      "Content": {
+        "Scene": 7,
+        "Text": "B1",
+        "Time": 1539272797,
+        "To": 0,
+        "Cost": 0
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:39.3931262+03:00",
+      "Content": {
+        "SeatID": 0,
+        "ActionType": "Check",
+        "Chips": 0,
+        "HandChips": 501300
+      }
+    },
+    {
+      "PackageType": "RoundOverBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:39.4139563+03:00",
+      "Content": {
+        "Pool": [
+          4000
+        ]
+      }
+    },
+    {
+      "PackageType": "RoundStartBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:39.4139563+03:00",
+      "Content": {
+        "Street": "Flop",
+        "Board": [
+          267,
+          263,
+          1026
+        ]
+      }
+    },
+    {
+      "PackageType": "ActionNotifyBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:39.4139563+03:00",
+      "Content": {
+        "SeatID": 3,
+        "CallNeedChips": 0,
+        "MinChipIn": 1000,
+        "MaxChipIn": 501300
+      }
+    },
+    {
+      "PackageType": "ActionREQ",
+      "Direction": "Outgoing",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:44.2634433+03:00",
+      "Content": {
+        "ActionType": "Raise",
+        "Chips": 2500
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:45.2496325+03:00",
+      "Content": {
+        "SeatID": 3,
+        "ActionType": "Bet",
+        "Chips": 2500,
+        "HandChips": 46000
+      }
+    },
+    {
+      "PackageType": "ActionNotifyBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:45.2550887+03:00",
+      "Content": {
+        "SeatID": 0,
+        "CallNeedChips": 2500,
+        "MinChipIn": 5000,
+        "MaxChipIn": 48500
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:48.214943+03:00",
+      "Content": {
+        "SeatID": 0,
+        "ActionType": "Call",
+        "Chips": 2500,
+        "HandChips": 498800
+      }
+    },
+    {
+      "PackageType": "RoundOverBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:48.2204372+03:00",
+      "Content": {
+        "Pool": [
+          9000
+        ]
+      }
+    },
+    {
+      "PackageType": "RoundStartBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:48.2204372+03:00",
+      "Content": {
+        "Street": "Turn",
+        "Board": [
+          776
+        ]
+      }
+    },
+    {
+      "PackageType": "ActionNotifyBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:48.2204372+03:00",
+      "Content": {
+        "SeatID": 3,
+        "CallNeedChips": 0,
+        "MinChipIn": 1000,
+        "MaxChipIn": 498800
+      }
+    },
+    {
+      "PackageType": "OtherEnterRoomBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:48.2313471+03:00",
+      "Content": {
+        "User": {
+          "Uid": 1075975,
+          "Name": "Fezildooow",
+          "IconUrl": "http://www.pppoker.club/poker/resource/j.png"
+        }
+      }
+    },
+    {
+      "PackageType": "SitDownBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:48.2318106+03:00",
+      "Content": {
+        "SeatID": 2,
+        "Chips": 50000,
+        "Brief": {
+          "Uid": 1075975,
+          "Name": "Fezildooow",
+          "IconUrl": "http://www.pppoker.club/poker/resource/j.png"
+        },
+        "Status": {
+          "SeatID": 2,
+          "ActionType": "Sit",
+          "Player": {
+            "Uid": 1075975,
+            "Name": "Fezildooow",
+            "IconUrl": "http://www.pppoker.club/poker/resource/j.png"
+          },
+          "RemainingChips": 50000,
+          "InvestedChips": 0,
+          "HasCard": false,
+          "SeatReserve": false,
+          "Country": "BR",
+          "VipLevel": 0,
+          "WaitBlind": false,
+          "RebuyLeftTime": 0,
+          "RebuyWaitAuth": false,
+          "ClubID": 0,
+          "Longitude": -360,
+          "Latitude": -360,
+          "ClubName": ""
+        }
+      }
+    },
+    {
+      "PackageType": "CroupierActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:48.2318106+03:00",
+      "Content": {
+        "Scene": 3,
+        "Text": "A3",
+        "Time": 1539272806,
+        "To": 2,
+        "Cost": 0
+      }
+    },
+    {
+      "PackageType": "GetUserMarksREQ",
+      "Direction": "Outgoing",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:48.2384501+03:00",
+      "Content": {
+        "Uid": 1006471,
+        "MarkUid": [
+          603285,
+          536623,
+          1075975
+        ]
+      }
+    },
+    {
+      "PackageType": "GetUserMarksRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:49.2317176+03:00",
+      "Content": {
+        "Uid": 1006471,
+        "Mark": [
+          {
+            "Uid": 603285,
+            "Content": null,
+            "MarkColor": "NoColor"
+          },
+          {
+            "Uid": 536623,
+            "Content": null,
+            "MarkColor": "NoColor"
+          },
+          {
+            "Uid": 1075975,
+            "Content": null,
+            "MarkColor": "NoColor"
+          }
+        ]
+      }
+    },
+    {
+      "PackageType": "ActionREQ",
+      "Direction": "Outgoing",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:53.2730254+03:00",
+      "Content": {
+        "ActionType": "Check",
+        "Chips": 0
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:53.2770434+03:00",
+      "Content": {
+        "SeatID": 3,
+        "ActionType": "Check",
+        "Chips": 0,
+        "HandChips": 46000
+      }
+    },
+    {
+      "PackageType": "ActionNotifyBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:54.2647025+03:00",
+      "Content": {
+        "SeatID": 0,
+        "CallNeedChips": 0,
+        "MinChipIn": 1000,
+        "MaxChipIn": 46000
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:59.1834463+03:00",
+      "Content": {
+        "SeatID": 0,
+        "ActionType": "Bet",
+        "Chips": 7000,
+        "HandChips": 491800
+      }
+    },
+    {
+      "PackageType": "ActionNotifyBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:46:59.1874143+03:00",
+      "Content": {
+        "SeatID": 3,
+        "CallNeedChips": 7000,
+        "MinChipIn": 14000,
+        "MaxChipIn": 498800
+      }
+    },
+    {
+      "PackageType": "ActionREQ",
+      "Direction": "Outgoing",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:47:01.2622136+03:00",
+      "Content": {
+        "ActionType": "Fold",
+        "Chips": 0
+      }
+    },
+    {
+      "PackageType": "ActionBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:47:01.2661776+03:00",
+      "Content": {
+        "SeatID": 3,
+        "ActionType": "Fold",
+        "Chips": 0,
+        "HandChips": 46000
+      }
+    },
+    {
+      "PackageType": "ChipsBackBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:47:01.2706044+03:00",
+      "Content": {
+        "SeatID": 0,
+        "Chips": 7000
+      }
+    },
+    {
+      "PackageType": "RoundOverBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:47:01.2706044+03:00",
+      "Content": {
+        "Pool": [
+          9000
+        ]
+      }
+    },
+    {
+      "PackageType": "WinnerRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:47:01.2706044+03:00",
+      "Content": {
+        "Winner": [
+          {
+            "SeatID": 0,
+            "PoolID": 0,
+            "Chips": 8600,
+            "Type": "HighCard",
+            "InsuranceChips": 0,
+            "Uid": 603285,
+            "JackpotFee": 0
+          }
+        ],
+        "Profit": [
+          {
+            "SeatID": 2,
+            "Chips": -500,
+            "InsuranceChips": 0
+          },
+          {
+            "SeatID": 1,
+            "Chips": -500,
+            "InsuranceChips": 0
+          },
+          {
+            "SeatID": 0,
+            "Chips": 4600,
+            "InsuranceChips": 0
+          },
+          {
+            "SeatID": 3,
+            "Chips": -4000,
+            "InsuranceChips": 0
+          }
+        ],
+        "Rabbit": {
+          "RabbitCards": [
+            524
+          ],
+          "FinishStage": "Turn"
+        }
+      }
+    },
+    {
+      "PackageType": "StandUpRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:47:04.2456936+03:00",
+      "Content": {
+        "Code": "Normal",
+        "Reason": null
+      }
+    },
+    {
+      "PackageType": "StandUpBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:47:04.2531614+03:00",
+      "Content": {
+        "SeatID": 3
+      }
+    },
+    {
+      "PackageType": "LeaveRoomRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:47:04.2536285+03:00",
+      "Content": {
+        "Code": 0,
+        "Reason": null,
+        "Flag": 0,
+        "ClubID": 0,
+        "LeagueID": 0
+      }
+    },
+    {
+      "PackageType": "MoneyRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:47:04.2536285+03:00",
+      "Content": {
+        "Money": 550800
+      }
+    },
+    {
+      "PackageType": "OtherLeaveRoomBRC",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:47:04.2536285+03:00",
+      "Content": {
+        "Uid": 1006471
+      }
+    },
+    {
+      "PackageType": "MoneyRSP",
+      "Direction": "Incoming",
+      "ClientPort": 52579,
+      "Time": "2018-10-11T18:47:07.2140087+03:00",
+      "Content": {
+        "Money": 550800
+      }
+    }
+  ]
+}

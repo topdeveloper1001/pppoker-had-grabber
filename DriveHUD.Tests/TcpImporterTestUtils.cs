@@ -20,7 +20,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 
-namespace DriveHUD.Tests.TcpImportersTests
+namespace DriveHUD.Tests
 {
     internal class TcpImporterTestUtils
     {

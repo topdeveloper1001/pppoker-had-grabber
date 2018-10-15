@@ -52,6 +52,7 @@ namespace DriveHUD.Importers.PPPoker
             { ActionType.Call, HandActionType.CALL },
             { ActionType.Bet, HandActionType.BET },
             { ActionType.Raise, HandActionType.RAISE },
+            { ActionType.Pot, HandActionType.RAISE },
         };
 
         private static readonly HashSet<HandActionType> InvestingHandActionTypes = new HashSet<HandActionType>
@@ -65,6 +66,12 @@ namespace DriveHUD.Importers.PPPoker
         {
             RoomType.SngRoom,
             RoomType.MttRoom,
+        };
+
+        private static readonly HashSet<PackageType> TerminatingPackageTypes = new HashSet<PackageType>
+        {
+            PackageType.TableGameOverRSP,
+            PackageType.LeaveRoomRSP,
         };
 
         private readonly Dictionary<int, ClientRecord> clientRecords = new Dictionary<int, ClientRecord>();
@@ -121,7 +128,7 @@ namespace DriveHUD.Importers.PPPoker
                 record.DelayedActions.Add(() => ParsePackage<StandUpBRC>(package, m => ProcessStandUpBRC(m, record)));
             }
 
-            if (package.PackageType == PackageType.DealerInfoRSP || package.PackageType == PackageType.TableGameOverRSP)
+            if (package.PackageType == PackageType.DealerInfoRSP || record.IsHandStarted && TerminatingPackageTypes.Contains(package.PackageType))
             {
                 handHistory = BuildHand(record);
 
@@ -133,9 +140,16 @@ namespace DriveHUD.Importers.PPPoker
                     }
                     record.DelayedActions.Clear();
                 }
+
+                record.IsHandStarted = false;
             }
 
             record.Packages.Add(package);
+
+            if (package.PackageType == PackageType.DealerInfoRSP)
+            {
+                record.IsHandStarted = true;
+            }
 
             return handHistory != null;
         }
@@ -367,11 +381,17 @@ namespace DriveHUD.Importers.PPPoker
 
         private void ProcessEnterRoomRSP(EnterRoomRSP message, ClientRecord record)
         {
+            if (message.RoomType == RoomType.PineRoom)
+            {
+                return;
+            }
+
             bool isTournament = TournamentRoomTypes.Contains(message.RoomType);
             IRoomInfo roomInfo = isTournament ? (IRoomInfo)message.SngRoomInfo : (IRoomInfo)message.RoomInfo;
 
             record.RoomID = roomInfo.RoomID;
             record.TableID = message.TableStatus.Tid;
+            record.IsOmaha = message.RoomType == RoomType.OmahaRoom;
             record.RoomName = roomInfo.RoomName.Length > 0 ? roomInfo.RoomName : roomInfo.TempID;
             record.Ante = roomInfo.Ante;
             record.BigBlind = roomInfo.Blind;
@@ -380,7 +400,9 @@ namespace DriveHUD.Importers.PPPoker
             record.IsTournament = isTournament;
             if (isTournament)
             {
-                long startTimestamp = message.RoomType == RoomType.MttRoom ? message.MttRoomInfo.MttStartTime : DateTimeToTimestamp(DateTime.UtcNow);
+                var utcNow = DateTime.UtcNow;
+
+                long startTimestamp = message.RoomType == RoomType.MttRoom ? message.MttRoomInfo.MttStartTime : DateTimeToTimestamp(utcNow);
                 record.TournamentID = $"{record.RoomID}-{startTimestamp}";
                 record.TournamentName = $"{record.RoomName}";
                 record.TournamentBuyIn = message.SngRoomInfo.BuyIn;
@@ -388,7 +410,7 @@ namespace DriveHUD.Importers.PPPoker
                 record.TournamentAddOn = message.MttRoomInfo.AddOnBuyIn;
                 record.TournamentBounty = message.MttRoomInfo.HunterReward;
                 record.TournamentHasFixedRewards = message.SngRoomInfo.FixedReward;
-                record.TournamentStartDate = message.RoomType == RoomType.MttRoom ? TimestampToDateTime(message.MttRoomInfo.MttStartTime) : DateTime.UtcNow;
+                record.TournamentStartDate = message.RoomType == RoomType.MttRoom ? TimestampToDateTime(message.MttRoomInfo.MttStartTime) : utcNow;
             }
 
             foreach (var seat in message.TableStatus.Seat.Where(s => s.Player != null))
@@ -456,7 +478,7 @@ namespace DriveHUD.Importers.PPPoker
 
             history.GameDescription = new GameDescriptor(
                 EnumPokerSites.PPPoker,
-                GameType.NoLimitHoldem,
+                record.IsOmaha ? GameType.PotLimitOmaha : GameType.NoLimitHoldem,
                 Limit.FromSmallBlindBigBlind(record.SmallBlind, record.BigBlind, Currency.All, record.Ante > 0, record.Ante),
                 TableType.FromTableTypeDescriptions(record.Ante > 0 ? TableTypeDescription.Ante : TableTypeDescription.Regular),
                 SeatType.FromMaxPlayers(record.MaxPlayers),

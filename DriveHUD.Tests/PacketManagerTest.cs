@@ -29,7 +29,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace DriveHUD.Tests.TcpImportersTests
+namespace DriveHUD.Tests
 {
     abstract class PacketManagerTest
     {
