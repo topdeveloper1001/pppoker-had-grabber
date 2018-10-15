@@ -495,29 +495,27 @@ namespace PPPokerCardCatcher.Licensing
                 registeredLicenses = registeredLicenses.Where(x => !x.IsTrial).ToArray();
             }
 
-            var gameTypes = registeredLicenses.SelectMany(x => ConvertLicenseType(x.LicenseType)).Distinct().ToArray();
-
-            return gameTypes.Contains(handHistory.GameDescription.GameType);
-        }
-
-        private static IEnumerable<GameType> ConvertLicenseType(LicenseType licenseType)
-        {
-            var gameTypes = new List<GameType>();
-
-            switch (licenseType)
+            if (registeredLicenses.Length == 0)
             {
-                case LicenseType.Normal:
-                case LicenseType.Trial:
-                    foreach (GameType gameType in Enum.GetValues(typeof(GameType)))
-                    {
-                        gameTypes.Add(gameType);
-                    }
-                    break;
-                default:
-                    throw new PCCInternalException(new NonLocalizableString("Not supported license type"));
+                return false;
             }
 
-            return gameTypes;
+            var tournamentLimit = registeredLicenses.Max(x => x.TournamentLimit);
+            var cashLimit = registeredLicenses.Max(x => x.CashLimit);
+
+            var tournamentBuyIn = handHistory.GameDescription.IsTournament ? handHistory.GameDescription.Tournament.BuyIn.PrizePoolValue : 0;
+            var cashBuyin = handHistory.GameDescription.Limit.BigBlind;
+
+            var match = cashBuyin <= cashLimit &&
+                               tournamentBuyIn <= tournamentLimit;
+
+            if (!match)
+            {
+                LogProvider.Log.Info($"GameType: {handHistory.GameDescription.GameType}, GameCashBuyIn: {cashBuyin}, GameTournamentBuyIn: {tournamentBuyIn}");
+                LogProvider.Log.Info($"LicenseCashBuyInLimit: {cashLimit}, LicenseTournamentBuyInLimit: {tournamentLimit}");
+            }
+
+            return match;
         }
     }
 }

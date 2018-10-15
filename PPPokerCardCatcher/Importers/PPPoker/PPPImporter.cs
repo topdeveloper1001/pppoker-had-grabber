@@ -200,7 +200,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
                                 WindowHandle = windowHandle
                             };
 
-                            if (!CheckHand(handHistory))
+                            if (!licenseService.IsMatch(handHistory))
                             {
                                 LogProvider.Log.Info(this, $"License doesn't support cash hand {handHistory.HandId}. [BB={handHistory.GameDescription.Limit.BigBlind}]");
                                 continue;
@@ -265,6 +265,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
                 case PackageType.ShowMyCardBRC:
                 case PackageType.UserSngOverRSP:
                 case PackageType.TableGameOverRSP:
+                case PackageType.LeaveRoomRSP:
                     return true;
 
                 default:
@@ -406,39 +407,6 @@ namespace PPPokerCardCatcher.Importers.PPPoker
         private static int ShiftPlayerSeat(int seat, int shift, int tableType)
         {
             return (seat + shift + tableType - 1) % tableType + 1;
-        }
-
-        private bool CheckHand(HandHistory handHistory)
-        {
-            var registeredLicenses = licenseService.LicenseInfos.Where(x => x.IsRegistered).ToArray();
-
-            // if any license is not trial
-            if (registeredLicenses.Any(x => !x.IsTrial))
-            {
-                registeredLicenses = registeredLicenses.Where(x => !x.IsTrial).ToArray();
-            }
-
-            if (registeredLicenses.Length == 0)
-            {
-                return false;
-            }
-
-            var tournamentLimit = registeredLicenses.Max(x => x.TournamentLimit);
-            var cashLimit = registeredLicenses.Max(x => x.CashLimit);
-
-            var tournamentBuyIn = handHistory.GameDescription.IsTournament ? handHistory.GameDescription.Tournament.BuyIn.PrizePoolValue : 0;
-            var cashBuyin = handHistory.GameDescription.Limit.BigBlind;
-
-            var match = cashBuyin <= cashLimit &&
-                               tournamentBuyIn <= tournamentLimit;
-
-            if (!match)
-            {
-                LogProvider.Log.Info($"GameType: {handHistory.GameDescription.GameType}, GameCashBuyIn: {cashBuyin}, GameTournamentBuyIn: {tournamentBuyIn}");
-                LogProvider.Log.Info($"LicenseCashBuyInLimit: {cashLimit}, LicenseTournamentBuyInLimit: {tournamentLimit}");
-            }
-
-            return match;
-        }
+        }      
     }
 }

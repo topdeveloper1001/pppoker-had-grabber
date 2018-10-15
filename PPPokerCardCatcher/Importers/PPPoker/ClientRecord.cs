@@ -1,10 +1,6 @@
 ﻿using PPPokerCardCatcher.Importers.PPPoker.Model;
-using HandHistories.Objects.Cards;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PPPokerCardCatcher.Importers.PPPoker
 {
@@ -12,9 +8,13 @@ namespace PPPokerCardCatcher.Importers.PPPoker
     {
         public int RoomID { get; set; }
 
+        public string RoomName { get; set; }
+
         public int TableID { get; set; }
 
-        public string RoomName { get; set; }
+        public bool IsOmaha { get; set; }
+
+        public bool IsHandStarted { get; set; }
 
         public int Port { get; set; }
 
@@ -28,7 +28,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
 
         public int MaxPlayers { get; set; }
 
-        public Dictionary<int, RoomPlayer> Players { get; set; } = new Dictionary<int, RoomPlayer>(); // SeatID => RoomPlayer
+        public Dictionary<int, RoomPlayer> Players { get; set; } = new Dictionary<int, RoomPlayer>(); 
 
         public long HeroUid { get; set; }
 

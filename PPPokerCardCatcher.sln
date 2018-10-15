@@ -17,6 +17,8 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "PPPokerCardCatcher.Bootstra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPPokerCardCatcher.Bootstrapper.App", "PPPokerCardCatcher.Bootstrapper.App\PPPokerCardCatcher.Bootstrapper.App.csproj", "{C5478F7D-9237-44E2-A482-492278662ACE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPPokerCardCatcher.Tests", "PPPokerCardCatcher.Tests\PPPokerCardCatcher.Tests.csproj", "{88CBB078-6F4A-4D67-A5DA-12D4D1E80757}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,14 @@ Global
 		{C5478F7D-9237-44E2-A482-492278662ACE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5478F7D-9237-44E2-A482-492278662ACE}.Release|x86.ActiveCfg = Release|Any CPU
 		{C5478F7D-9237-44E2-A482-492278662ACE}.Release|x86.Build.0 = Release|Any CPU
+		{88CBB078-6F4A-4D67-A5DA-12D4D1E80757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88CBB078-6F4A-4D67-A5DA-12D4D1E80757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88CBB078-6F4A-4D67-A5DA-12D4D1E80757}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{88CBB078-6F4A-4D67-A5DA-12D4D1E80757}.Debug|x86.Build.0 = Debug|Any CPU
+		{88CBB078-6F4A-4D67-A5DA-12D4D1E80757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88CBB078-6F4A-4D67-A5DA-12D4D1E80757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88CBB078-6F4A-4D67-A5DA-12D4D1E80757}.Release|x86.ActiveCfg = Release|Any CPU
+		{88CBB078-6F4A-4D67-A5DA-12D4D1E80757}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

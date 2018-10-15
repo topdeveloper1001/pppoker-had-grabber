@@ -150,6 +150,7 @@
     <Compile Include="Importers\BaseImporter.cs" />
     <Compile Include="Importers\IBackgroundProcess.cs" />
     <Compile Include="Importers\IBaseImporter.cs" />
+    <Compile Include="Importers\IDHImporterService.cs" />
     <Compile Include="Importers\IImporterService.cs" />
     <Compile Include="Importers\ImporterService.cs" />
     <Compile Include="Importers\INetworkBaseImporter.cs" />
@@ -262,7 +263,7 @@
     <Compile Include="Importers\PPPoker\Model\WinningInfo.cs" />
     <Compile Include="Importers\PPPoker\Model\WinningProfit.cs" />
     <Compile Include="Importers\PPPoker\PackageDirection.cs" />
-    <Compile Include="Importers\PPPoker\Player.cs" />
+    <Compile Include="Importers\PPPoker\RoomPlayer.cs" />
     <Compile Include="Importers\PPPoker\PPPConstants.cs" />
     <Compile Include="Importers\PPPoker\PPPHandBuilder.cs" />
     <Compile Include="Importers\PPPoker\PPPImporter.cs" />
@@ -297,6 +298,7 @@
     <Compile Include="Licensing\LicenseInvalidSerialException.cs" />
     <Compile Include="Licensing\LicenseNoConnectionException.cs" />
     <Compile Include="Licensing\LicenseService.cs" />
+    <Compile Include="Licensing\LicenseSubType.cs" />
     <Compile Include="Licensing\LicenseType.cs" />
     <Compile Include="Security\ILicenseManager.cs" />
     <Compile Include="Security\PPSReg.cs" />

@@ -55,3 +55,9 @@ using System.Windows;
 [assembly: AssemblyFileVersion("1.0.0.47")]
 [assembly: Guid("fd116687-20bc-4577-82fc-6ec703f3e625")]
 
+#if DEBUG
+
+[assembly: InternalsVisibleTo("PPPokerCardCatcher.Tests")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
+
+#endif

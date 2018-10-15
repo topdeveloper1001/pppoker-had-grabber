@@ -1,0 +1,1704 @@
+-----------begin----------------
+Date: 09.10.2018 17:50:47
+Date Now: 09.10.2018 20:50:47
+Date Now (ticks): 636747150478848729
+SequenceNumber: 3869128264
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:50:50
+Date Now: 09.10.2018 20:50:50
+Date Now (ticks): 636747150509742293
+SequenceNumber: 3869128285
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:50:52
+Date Now: 09.10.2018 20:50:52
+Date Now (ticks): 636747150529439787
+SequenceNumber: 3869128306
+Packet Full Length: 23
+Packet Current Length: 23
+Body:
+---------body begin-------------
+00 00 00 13 00 0F 70 62 2E 4C 6F 62 62 79 4C 69 73 74 52 45 51 08 07
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:50:53
+Date Now: 09.10.2018 20:50:53
+Date Now (ticks): 636747150539269952
+SequenceNumber: 3869128329
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:50:54
+Date Now: 09.10.2018 20:50:54
+Date Now (ticks): 636747150549109853
+SequenceNumber: 3869128350
+Packet Full Length: 33
+Packet Current Length: 33
+Body:
+---------body begin-------------
+00 00 00 1D 00 13 70 62 2E 4A 6F 69 6E 4C 6F 62 62 79 43 61 73 68 52 45 51 0A 06 33 30 30 30 30 31
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:50:54
+Date Now: 09.10.2018 20:50:55
+Date Now (ticks): 636747150555674100
+SequenceNumber: 3869128383
+Packet Full Length: 42
+Packet Current Length: 42
+Body:
+---------body begin-------------
+00 00 00 26 00 0F 70 62 2E 45 6E 74 65 72 52 6F 6F 6D 52 45 51 28 00 08 D6 D2 02 10 FF FF FF FF FF FF FF FF FF 01 18 00 20 00
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:50:55
+Date Now: 09.10.2018 20:50:55
+Date Now (ticks): 636747150559623658
+SequenceNumber: 3869128425
+Packet Full Length: 44
+Packet Current Length: 44
+Body:
+---------body begin-------------
+00 00 00 28 00 12 70 62 2E 47 65 74 55 73 65 72 4D 61 72 6B 73 52 45 51 10 F0 E7 3A 10 F1 90 36 10 85 C4 0F 10 A2 86 2E 08 87 B7 3D
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:50:55
+Date Now: 09.10.2018 20:50:55
+Date Now (ticks): 636747150559886167
+SequenceNumber: 3869128469
+Packet Full Length: 31
+Packet Current Length: 57
+Body:
+---------body begin-------------
+00 00 00 1B 00 19 70 62 2E 55 73 65 72 43 72 6F 75 70 69 65 72 49 6E 55 73 69 6E 67 52 45 51 00 00 00 16 00 14 70 62 2E 52 6F 6F 6D 52 65 62 61 74 65 49 6E 66 6F 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:50:55
+Date Now: 09.10.2018 20:50:55
+Date Now (ticks): 636747150559926281
+SequenceNumber: 3869128526
+Packet Full Length: 44
+Packet Current Length: 44
+Body:
+---------body begin-------------
+00 00 00 28 00 12 70 62 2E 47 65 74 55 73 65 72 4D 61 72 6B 73 52 45 51 10 F0 E7 3A 10 F1 90 36 10 85 C4 0F 10 A2 86 2E 08 87 B7 3D
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:50:56
+Date Now: 09.10.2018 20:50:56
+Date Now (ticks): 636747150567730225
+SequenceNumber: 3869128570
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:50:59
+Date Now: 09.10.2018 20:50:59
+Date Now (ticks): 636747150597254678
+SequenceNumber: 3869128591
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:02
+Date Now: 09.10.2018 20:51:03
+Date Now (ticks): 636747150630531393
+SequenceNumber: 3869128612
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:05
+Date Now: 09.10.2018 20:51:05
+Date Now (ticks): 636747150658244318
+SequenceNumber: 3869128633
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:05
+Date Now: 09.10.2018 20:51:05
+Date Now (ticks): 636747150659420711
+SequenceNumber: 3869128654
+Packet Full Length: 48
+Packet Current Length: 48
+Body:
+---------body begin-------------
+00 00 00 2C 00 12 70 62 2E 47 65 74 55 73 65 72 4D 61 72 6B 73 52 45 51 10 F0 E7 3A 10 F1 90 36 10 85 C4 0F 10 A2 86 2E 10 A4 87 20 08 87 B7 3D
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:07
+Date Now: 09.10.2018 20:51:08
+Date Now (ticks): 636747150682281353
+SequenceNumber: 3869128702
+Packet Full Length: 22
+Packet Current Length: 22
+Body:
+---------body begin-------------
+00 00 00 12 00 0C 70 62 2E 41 63 74 69 6F 6E 52 45 51 08 01 10 00
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:08
+Date Now: 09.10.2018 20:51:09
+Date Now (ticks): 636747150692373692
+SequenceNumber: 3869128724
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:11
+Date Now: 09.10.2018 20:51:12
+Date Now (ticks): 636747150723182677
+SequenceNumber: 3869128745
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:14
+Date Now: 09.10.2018 20:51:15
+Date Now (ticks): 636747150753206312
+SequenceNumber: 3869128766
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:17
+Date Now: 09.10.2018 20:51:18
+Date Now (ticks): 636747150782694888
+SequenceNumber: 3869128787
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:20
+Date Now: 09.10.2018 20:51:21
+Date Now (ticks): 636747150813533379
+SequenceNumber: 3869128808
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:23
+Date Now: 09.10.2018 20:51:23
+Date Now (ticks): 636747150837753480
+SequenceNumber: 3869128829
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:26
+Date Now: 09.10.2018 20:51:26
+Date Now (ticks): 636747150869435629
+SequenceNumber: 3869128850
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:29
+Date Now: 09.10.2018 20:51:29
+Date Now (ticks): 636747150899181559
+SequenceNumber: 3869128871
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:32
+Date Now: 09.10.2018 20:51:32
+Date Now (ticks): 636747150929782232
+SequenceNumber: 3869128892
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:35
+Date Now: 09.10.2018 20:51:35
+Date Now (ticks): 636747150959475849
+SequenceNumber: 3869128913
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:38
+Date Now: 09.10.2018 20:51:39
+Date Now (ticks): 636747150991232931
+SequenceNumber: 3869128934
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:41
+Date Now: 09.10.2018 20:51:42
+Date Now (ticks): 636747151021068668
+SequenceNumber: 3869128955
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:44
+Date Now: 09.10.2018 20:51:45
+Date Now (ticks): 636747151051805456
+SequenceNumber: 3869128976
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:47
+Date Now: 09.10.2018 20:51:48
+Date Now (ticks): 636747151081864486
+SequenceNumber: 3869128997
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:50
+Date Now: 09.10.2018 20:51:51
+Date Now (ticks): 636747151112605204
+SequenceNumber: 3869129018
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:50
+Date Now: 09.10.2018 20:51:51
+Date Now (ticks): 636747151112695617
+SequenceNumber: 3869129039
+Packet Full Length: 22
+Packet Current Length: 22
+Body:
+---------body begin-------------
+00 00 00 12 00 0C 70 62 2E 41 63 74 69 6F 6E 52 45 51 08 01 10 00
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:53
+Date Now: 09.10.2018 20:51:54
+Date Now (ticks): 636747151147866904
+SequenceNumber: 3869129061
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:56
+Date Now: 09.10.2018 20:51:57
+Date Now (ticks): 636747151178693153
+SequenceNumber: 3869129082
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:51:59
+Date Now: 09.10.2018 20:52:00
+Date Now (ticks): 636747151208526363
+SequenceNumber: 3869129103
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:02
+Date Now: 09.10.2018 20:52:03
+Date Now (ticks): 636747151238172321
+SequenceNumber: 3869129124
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:05
+Date Now: 09.10.2018 20:52:06
+Date Now (ticks): 636747151268016999
+SequenceNumber: 3869129145
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:08
+Date Now: 09.10.2018 20:52:09
+Date Now (ticks): 636747151297782030
+SequenceNumber: 3869129166
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:11
+Date Now: 09.10.2018 20:52:12
+Date Now (ticks): 636747151327606874
+SequenceNumber: 3869129187
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:14
+Date Now: 09.10.2018 20:52:15
+Date Now (ticks): 636747151357418849
+SequenceNumber: 3869129208
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:17
+Date Now: 09.10.2018 20:52:18
+Date Now (ticks): 636747151388187797
+SequenceNumber: 3869129229
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:20
+Date Now: 09.10.2018 20:52:21
+Date Now (ticks): 636747151410229408
+SequenceNumber: 3869129250
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:23
+Date Now: 09.10.2018 20:52:24
+Date Now (ticks): 636747151448404449
+SequenceNumber: 3869129271
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:26
+Date Now: 09.10.2018 20:52:27
+Date Now (ticks): 636747151478074512
+SequenceNumber: 3869129292
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:29
+Date Now: 09.10.2018 20:52:30
+Date Now (ticks): 636747151508829369
+SequenceNumber: 3869129313
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:32
+Date Now: 09.10.2018 20:52:33
+Date Now (ticks): 636747151538232101
+SequenceNumber: 3869129334
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:35
+Date Now: 09.10.2018 20:52:36
+Date Now (ticks): 636747151568989581
+SequenceNumber: 3869129355
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:38
+Date Now: 09.10.2018 20:52:39
+Date Now (ticks): 636747151599783764
+SequenceNumber: 3869129376
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:41
+Date Now: 09.10.2018 20:52:42
+Date Now (ticks): 636747151629444954
+SequenceNumber: 3869129397
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:44
+Date Now: 09.10.2018 20:52:46
+Date Now (ticks): 636747151660045143
+SequenceNumber: 3869129418
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:47
+Date Now: 09.10.2018 20:52:48
+Date Now (ticks): 636747151689622003
+SequenceNumber: 3869129439
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:50
+Date Now: 09.10.2018 20:52:51
+Date Now (ticks): 636747151711667136
+SequenceNumber: 3869129460
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:53
+Date Now: 09.10.2018 20:52:54
+Date Now (ticks): 636747151747893047
+SequenceNumber: 3869129481
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:52:57
+Date Now: 09.10.2018 20:52:57
+Date Now (ticks): 636747151778671933
+SequenceNumber: 3869129502
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:00
+Date Now: 09.10.2018 20:53:00
+Date Now (ticks): 636747151800796087
+SequenceNumber: 3869129523
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:03
+Date Now: 09.10.2018 20:53:03
+Date Now (ticks): 636747151831475577
+SequenceNumber: 3869129544
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:06
+Date Now: 09.10.2018 20:53:06
+Date Now (ticks): 636747151861008490
+SequenceNumber: 3869129565
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:08
+Date Now: 09.10.2018 20:53:09
+Date Now (ticks): 636747151891621198
+SequenceNumber: 3869129586
+Packet Full Length: 22
+Packet Current Length: 22
+Body:
+---------body begin-------------
+00 00 00 12 00 0C 70 62 2E 41 63 74 69 6F 6E 52 45 51 08 02 10 00
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:09
+Date Now: 09.10.2018 20:53:09
+Date Now (ticks): 636747151891720936
+SequenceNumber: 3869129608
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:12
+Date Now: 09.10.2018 20:53:12
+Date Now (ticks): 636747151921457522
+SequenceNumber: 3869129629
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:14
+Date Now: 09.10.2018 20:53:15
+Date Now (ticks): 636747151951159621
+SequenceNumber: 3869129650
+Packet Full Length: 22
+Packet Current Length: 22
+Body:
+---------body begin-------------
+00 00 00 12 00 0C 70 62 2E 41 63 74 69 6F 6E 52 45 51 08 02 10 00
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:15
+Date Now: 09.10.2018 20:53:16
+Date Now (ticks): 636747151961148079
+SequenceNumber: 3869129672
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:18
+Date Now: 09.10.2018 20:53:18
+Date Now (ticks): 636747151981789957
+SequenceNumber: 3869129693
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:21
+Date Now: 09.10.2018 20:53:21
+Date Now (ticks): 636747152018213933
+SequenceNumber: 3869129714
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:24
+Date Now: 09.10.2018 20:53:24
+Date Now (ticks): 636747152047706113
+SequenceNumber: 3869129735
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:25
+Date Now: 09.10.2018 20:53:25
+Date Now (ticks): 636747152058655803
+SequenceNumber: 3869129756
+Packet Full Length: 22
+Packet Current Length: 22
+Body:
+---------body begin-------------
+00 00 00 12 00 0C 70 62 2E 41 63 74 69 6F 6E 52 45 51 08 01 10 00
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:27
+Date Now: 09.10.2018 20:53:27
+Date Now (ticks): 636747152078577231
+SequenceNumber: 3869129778
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:30
+Date Now: 09.10.2018 20:53:30
+Date Now (ticks): 636747152108355776
+SequenceNumber: 3869129799
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:33
+Date Now: 09.10.2018 20:53:33
+Date Now (ticks): 636747152139012712
+SequenceNumber: 3869129820
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:36
+Date Now: 09.10.2018 20:53:36
+Date Now (ticks): 636747152168638784
+SequenceNumber: 3869129841
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:39
+Date Now: 09.10.2018 20:53:39
+Date Now (ticks): 636747152198349661
+SequenceNumber: 3869129862
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:42
+Date Now: 09.10.2018 20:53:42
+Date Now (ticks): 636747152229003340
+SequenceNumber: 3869129883
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:45
+Date Now: 09.10.2018 20:53:45
+Date Now (ticks): 636747152258858878
+SequenceNumber: 3869129904
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:48
+Date Now: 09.10.2018 20:53:48
+Date Now (ticks): 636747152288540381
+SequenceNumber: 3869129925
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:51
+Date Now: 09.10.2018 20:53:51
+Date Now (ticks): 636747152318217365
+SequenceNumber: 3869129946
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:54
+Date Now: 09.10.2018 20:53:54
+Date Now (ticks): 636747152347891312
+SequenceNumber: 3869129967
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:57
+Date Now: 09.10.2018 20:53:57
+Date Now (ticks): 636747152378644210
+SequenceNumber: 3869129988
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:53:58
+Date Now: 09.10.2018 20:53:58
+Date Now (ticks): 636747152388612440
+SequenceNumber: 3869130009
+Packet Full Length: 48
+Packet Current Length: 48
+Body:
+---------body begin-------------
+00 00 00 2C 00 12 70 62 2E 47 65 74 55 73 65 72 4D 61 72 6B 73 52 45 51 10 F0 E7 3A 10 F1 90 36 10 85 C4 0F 10 A2 86 2E 10 A4 87 20 08 87 B7 3D
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:00
+Date Now: 09.10.2018 20:54:00
+Date Now (ticks): 636747152408189004
+SequenceNumber: 3869130057
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:03
+Date Now: 09.10.2018 20:54:03
+Date Now (ticks): 636747152438790659
+SequenceNumber: 3869130078
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:06
+Date Now: 09.10.2018 20:54:06
+Date Now (ticks): 636747152468229651
+SequenceNumber: 3869130099
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:06
+Date Now: 09.10.2018 20:54:06
+Date Now (ticks): 636747152468287834
+SequenceNumber: 3869130120
+Packet Full Length: 24
+Packet Current Length: 24
+Body:
+---------body begin-------------
+00 00 00 14 00 0C 70 62 2E 41 63 74 69 6F 6E 52 45 51 08 04 10 A4 EB 02
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:09
+Date Now: 09.10.2018 20:54:09
+Date Now (ticks): 636747152499131989
+SequenceNumber: 3869130144
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:12
+Date Now: 09.10.2018 20:54:12
+Date Now (ticks): 636747152528954645
+SequenceNumber: 3869130165
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:15
+Date Now: 09.10.2018 20:54:15
+Date Now (ticks): 636747152554127423
+SequenceNumber: 3869130186
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:18
+Date Now: 09.10.2018 20:54:18
+Date Now (ticks): 636747152588034744
+SequenceNumber: 3869130207
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:21
+Date Now: 09.10.2018 20:54:21
+Date Now (ticks): 636747152618683011
+SequenceNumber: 3869130228
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:24
+Date Now: 09.10.2018 20:54:24
+Date Now (ticks): 636747152648233217
+SequenceNumber: 3869130249
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:27
+Date Now: 09.10.2018 20:54:27
+Date Now (ticks): 636747152678874738
+SequenceNumber: 3869130270
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:30
+Date Now: 09.10.2018 20:54:30
+Date Now (ticks): 636747152708757408
+SequenceNumber: 3869130291
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:33
+Date Now: 09.10.2018 20:54:33
+Date Now (ticks): 636747152738394826
+SequenceNumber: 3869130312
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:36
+Date Now: 09.10.2018 20:54:36
+Date Now (ticks): 636747152768009039
+SequenceNumber: 3869130333
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:39
+Date Now: 09.10.2018 20:54:39
+Date Now (ticks): 636747152799730813
+SequenceNumber: 3869130354
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:40
+Date Now: 09.10.2018 20:54:41
+Date Now (ticks): 636747152819433255
+SequenceNumber: 3869130375
+Packet Full Length: 23
+Packet Current Length: 23
+Body:
+---------body begin-------------
+00 00 00 13 00 0C 70 62 2E 41 63 74 69 6F 6E 52 45 51 08 04 10 F0 2E
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:42
+Date Now: 09.10.2018 20:54:42
+Date Now (ticks): 636747152829579974
+SequenceNumber: 3869130398
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:45
+Date Now: 09.10.2018 20:54:46
+Date Now (ticks): 636747152860194855
+SequenceNumber: 3869130419
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:48
+Date Now: 09.10.2018 20:54:48
+Date Now (ticks): 636747152889930045
+SequenceNumber: 3869130440
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:51
+Date Now: 09.10.2018 20:54:51
+Date Now (ticks): 636747152918561535
+SequenceNumber: 3869130461
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:54
+Date Now: 09.10.2018 20:54:54
+Date Now (ticks): 636747152948165990
+SequenceNumber: 3869130482
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:54:57
+Date Now: 09.10.2018 20:54:57
+Date Now (ticks): 636747152978797570
+SequenceNumber: 3869130503
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:00
+Date Now: 09.10.2018 20:55:00
+Date Now (ticks): 636747153008334870
+SequenceNumber: 3869130524
+Packet Full Length: 22
+Packet Current Length: 22
+Body:
+---------body begin-------------
+00 00 00 12 00 0C 70 62 2E 41 63 74 69 6F 6E 52 45 51 08 02 10 00
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:00
+Date Now: 09.10.2018 20:55:00
+Date Now (ticks): 636747153008381274
+SequenceNumber: 3869130546
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:03
+Date Now: 09.10.2018 20:55:03
+Date Now (ticks): 636747153038675835
+SequenceNumber: 3869130567
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:06
+Date Now: 09.10.2018 20:55:07
+Date Now (ticks): 636747153070307583
+SequenceNumber: 3869130588
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:09
+Date Now: 09.10.2018 20:55:09
+Date Now (ticks): 636747153099921344
+SequenceNumber: 3869130609
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:12
+Date Now: 09.10.2018 20:55:12
+Date Now (ticks): 636747153129482154
+SequenceNumber: 3869130630
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:15
+Date Now: 09.10.2018 20:55:16
+Date Now (ticks): 636747153160258706
+SequenceNumber: 3869130651
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:17
+Date Now: 09.10.2018 20:55:18
+Date Now (ticks): 636747153181156153
+SequenceNumber: 3869130672
+Packet Full Length: 22
+Packet Current Length: 22
+Body:
+---------body begin-------------
+00 00 00 12 00 0C 70 62 2E 41 63 74 69 6F 6E 52 45 51 08 02 10 00
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:18
+Date Now: 09.10.2018 20:55:19
+Date Now (ticks): 636747153191052178
+SequenceNumber: 3869130694
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:21
+Date Now: 09.10.2018 20:55:21
+Date Now (ticks): 636747153218478394
+SequenceNumber: 3869130715
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:24
+Date Now: 09.10.2018 20:55:24
+Date Now (ticks): 636747153248126095
+SequenceNumber: 3869130736
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:27
+Date Now: 09.10.2018 20:55:27
+Date Now (ticks): 636747153278808127
+SequenceNumber: 3869130757
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:30
+Date Now: 09.10.2018 20:55:31
+Date Now (ticks): 636747153310407828
+SequenceNumber: 3869130778
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:33
+Date Now: 09.10.2018 20:55:34
+Date Now (ticks): 636747153341222560
+SequenceNumber: 3869130799
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:36
+Date Now: 09.10.2018 20:55:37
+Date Now (ticks): 636747153372915405
+SequenceNumber: 3869130820
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:39
+Date Now: 09.10.2018 20:55:40
+Date Now (ticks): 636747153402593823
+SequenceNumber: 3869130841
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:42
+Date Now: 09.10.2018 20:55:43
+Date Now (ticks): 636747153433339311
+SequenceNumber: 3869130862
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:44
+Date Now: 09.10.2018 20:55:44
+Date Now (ticks): 636747153443272562
+SequenceNumber: 3869130883
+Packet Full Length: 48
+Packet Current Length: 48
+Body:
+---------body begin-------------
+00 00 00 2C 00 12 70 62 2E 47 65 74 55 73 65 72 4D 61 72 6B 73 52 45 51 10 F0 E7 3A 10 F1 90 36 10 85 C4 0F 10 A2 86 2E 10 83 BE 41 08 87 B7 3D
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:45
+Date Now: 09.10.2018 20:55:46
+Date Now (ticks): 636747153462891716
+SequenceNumber: 3869130931
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:45
+Date Now: 09.10.2018 20:55:46
+Date Now (ticks): 636747153462988759
+SequenceNumber: 3869130952
+Packet Full Length: 24
+Packet Current Length: 24
+Body:
+---------body begin-------------
+00 00 00 14 00 0C 70 62 2E 41 63 74 69 6F 6E 52 45 51 08 04 10 F0 AB 01
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:48
+Date Now: 09.10.2018 20:55:49
+Date Now (ticks): 636747153492547914
+SequenceNumber: 3869130976
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:51
+Date Now: 09.10.2018 20:55:51
+Date Now (ticks): 636747153518978560
+SequenceNumber: 3869130997
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:54
+Date Now: 09.10.2018 20:55:54
+Date Now (ticks): 636747153548724894
+SequenceNumber: 3869131018
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:55:57
+Date Now: 09.10.2018 20:55:57
+Date Now (ticks): 636747153578359715
+SequenceNumber: 3869131039
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:00
+Date Now: 09.10.2018 20:56:00
+Date Now (ticks): 636747153607877604
+SequenceNumber: 3869131060
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:03
+Date Now: 09.10.2018 20:56:03
+Date Now (ticks): 636747153637543305
+SequenceNumber: 3869131081
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:06
+Date Now: 09.10.2018 20:56:06
+Date Now (ticks): 636747153668014764
+SequenceNumber: 3869131102
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:09
+Date Now: 09.10.2018 20:56:09
+Date Now (ticks): 636747153697588714
+SequenceNumber: 3869131123
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:12
+Date Now: 09.10.2018 20:56:12
+Date Now (ticks): 636747153729160769
+SequenceNumber: 3869131144
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:15
+Date Now: 09.10.2018 20:56:15
+Date Now (ticks): 636747153758702988
+SequenceNumber: 3869131165
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:18
+Date Now: 09.10.2018 20:56:18
+Date Now (ticks): 636747153789275305
+SequenceNumber: 3869131186
+Packet Full Length: 22
+Packet Current Length: 22
+Body:
+---------body begin-------------
+00 00 00 12 00 0C 70 62 2E 41 63 74 69 6F 6E 52 45 51 08 01 10 00
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:18
+Date Now: 09.10.2018 20:56:19
+Date Now (ticks): 636747153799101714
+SequenceNumber: 3869131208
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:21
+Date Now: 09.10.2018 20:56:21
+Date Now (ticks): 636747153817964056
+SequenceNumber: 3869131229
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:24
+Date Now: 09.10.2018 20:56:24
+Date Now (ticks): 636747153848749710
+SequenceNumber: 3869131250
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:27
+Date Now: 09.10.2018 20:56:27
+Date Now (ticks): 636747153878396707
+SequenceNumber: 3869131271
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:28
+Date Now: 09.10.2018 20:56:28
+Date Now (ticks): 636747153888260283
+SequenceNumber: 3869131271
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:30
+Date Now: 09.10.2018 20:56:30
+Date Now (ticks): 636747153909139191
+SequenceNumber: 3869131292
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:31
+Date Now: 09.10.2018 20:56:31
+Date Now (ticks): 636747153919181781
+SequenceNumber: 3869131313
+Packet Full Length: 25
+Packet Current Length: 25
+Body:
+---------body begin-------------
+00 00 00 15 00 0F 70 62 2E 4C 65 61 76 65 52 6F 6F 6D 52 45 51 10 00 08 00
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:32
+Date Now: 09.10.2018 20:56:33
+Date Now (ticks): 636747153930119237
+SequenceNumber: 3869131338
+Packet Full Length: 23
+Packet Current Length: 23
+Body:
+---------body begin-------------
+00 00 00 13 00 0F 70 62 2E 4C 6F 62 62 79 4C 69 73 74 52 45 51 08 07
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:33
+Date Now: 09.10.2018 20:56:33
+Date Now (ticks): 636747153938965282
+SequenceNumber: 3869131361
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:33
+Date Now: 09.10.2018 20:56:34
+Date Now (ticks): 636747153949924152
+SequenceNumber: 3869131382
+Packet Full Length: 17
+Packet Current Length: 84
+Body:
+---------body begin-------------
+00 00 00 0D 00 0B 70 62 2E 4D 6F 6E 65 79 52 45 51 00 00 00 0F 00 0D 70 62 2E 44 69 61 6D 6F 6E 64 52 45 51 00 00 00 0E 00 0C 70 62 2E 52 65 62 61 74 65 52 45 51 00 00 00 1A 00 14 70 62 2E 53 65 6C 55 73 65 72 56 69 70 49 6E 66 6F 52 45 51 08 87 B7 3D
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:34
+Date Now: 09.10.2018 20:56:35
+Date Now (ticks): 636747153950013916
+SequenceNumber: 3869131466
+Packet Full Length: 20
+Packet Current Length: 68
+Body:
+---------body begin-------------
+00 00 00 10 00 0E 70 62 2E 43 6C 75 62 4C 69 73 74 52 45 51 00 00 00 12 00 10 70 62 2E 4E 65 77 4D 61 69 6C 4E 75 6D 52 45 51 00 00 00 16 00 10 70 62 2E 44 61 69 6C 79 54 61 73 6B 73 52 45 51 08 87 B7 3D
+----------body end--------------
+------------end-----------------
+-----------begin----------------
+Date: 09.10.2018 17:56:36
+Date Now: 09.10.2018 20:56:36
+Date Now (ticks): 636747153969727046
+SequenceNumber: 3869131534
+Packet Full Length: 21
+Packet Current Length: 21
+Body:
+---------body begin-------------
+00 00 00 11 00 0F 70 62 2E 48 65 61 72 74 42 65 61 74 52 45 51
+----------body end--------------
+------------end-----------------
