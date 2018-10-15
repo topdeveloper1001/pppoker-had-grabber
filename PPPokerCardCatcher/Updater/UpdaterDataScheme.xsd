@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="applications">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="application" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="version" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="notes" minOccurs="0" maxOccurs="1" />
+                  </xs:sequence>
+                  <xs:attribute name="version" type="xs:string" use="required" />
+                  <xs:attribute name="path" type="xs:string" use="required"/>
+                  <xs:attribute name="md5hash" type="xs:string" use="required" />
+                  <xs:attribute name="isCritical" type="xs:boolean" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required" />
+            <xs:attribute name="guid" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

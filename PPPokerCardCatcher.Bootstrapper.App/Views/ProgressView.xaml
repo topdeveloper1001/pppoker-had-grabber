@@ -1,0 +1,68 @@
+﻿<UserControl
+    x:Class="PPPokerCardCatcher.Bootstrapper.App.Views.ProgressView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pcc="clr-namespace:PPPokerCardCatcher.Bootstrapper.App.Controls">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/PPPokerCardCatcher.Bootstrapper.App;component/Styles/PCCWindowStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="25" />
+            <RowDefinition
+                Height="25" />
+            <RowDefinition
+                Height="25" />
+            <RowDefinition
+                Height="25" />
+            <RowDefinition
+                Height="*" />
+            <RowDefinition
+                Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextWrapping="Wrap"
+            FontWeight="Bold"
+            Text="{Binding ActionText}" />
+
+        <TextBlock
+            Grid.Row="1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextWrapping="Wrap"
+            Text="{Binding ActionDescription}" />
+
+        <TextBlock
+            Grid.Row="2"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextWrapping="Wrap"
+            Text="{Binding CurrentPackage}" />
+
+        <pcc:ProgressBarEx
+            Grid.Row="3"
+            Height="25"
+            Value="{Binding Progress}"
+            Maximum="100"
+            BorderThickness="1" />
+
+        <Button
+            Grid.Row="5"
+            Style="{StaticResource NormalButtonStyle}"
+            HorizontalAlignment="Right"
+            Width="80"
+            Content="Cancel"
+            Command="{Binding CancelCommand}" />
+    </Grid>
+</UserControl>

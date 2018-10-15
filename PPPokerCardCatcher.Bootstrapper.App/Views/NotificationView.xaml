@@ -1,0 +1,81 @@
+﻿<pcc:PCCWindow
+    x:Class="PPPokerCardCatcher.Bootstrapper.App.Views.NotificationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pcc="clr-namespace:PPPokerCardCatcher.Bootstrapper.App.Controls"
+    xmlns:cnv="clr-namespace:PPPokerCardCatcher.Bootstrapper.App.Converters"
+    xmlns:res="clr-namespace:PPPokerCardCatcher.Bootstrapper.App.Properties"
+    WindowStartupLocation="CenterScreen"
+    SizeToContent="WidthAndHeight"
+    CanResize="False"
+    CanMaximize="False"
+    CanMinimize="False"
+    CanClose="False"
+    MaxWidth="550"
+    MinWidth="300"
+    ShowInTaskbar="False"
+    Style="{DynamicResource WindowBaseStyle}"
+    TextOptions.TextFormattingMode="Display"
+    Title="{Binding Title}">
+    <pcc:PCCWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/PPPokerCardCatcher.Bootstrapper.App;component/Styles/PCCWindowStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </pcc:PCCWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="10" />
+            <RowDefinition
+                Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Text="{Binding Notification}"
+            TextWrapping="Wrap" />
+
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+
+            <Button
+                Style="{StaticResource NormalButtonStyle}"
+                Width="70"
+                Content="{x:Static res:Resources.Common_NotificationView_Yes}"
+                Visibility="{Binding YesButtonVisible, Converter={cnv:BoolToVisibilityConverter}}"
+                Command="{Binding YesCommand}" />
+
+            <Button
+                Style="{StaticResource NormalButtonStyle}"
+                Width="70"
+                Content="{x:Static res:Resources.Common_NotificationView_OK}"
+                Visibility="{Binding OKButtonVisible, Converter={cnv:BoolToVisibilityConverter}}"
+                Command="{Binding OKCommand}" />
+
+            <Button
+                Style="{StaticResource NormalButtonStyle}"
+                Margin="5,0,0,0"
+                Width="70"
+                Content="{x:Static res:Resources.Common_NotificationView_No}"
+                Visibility="{Binding NoButtonVisible, Converter={cnv:BoolToVisibilityConverter}}"
+                Command="{Binding NoCommand}" />
+
+            <Button
+                Style="{StaticResource NormalButtonStyle}"
+                Margin="5,0,0,0"
+                Width="70"
+                Content="{x:Static res:Resources.Common_NotificationView_Cancel}"
+                Visibility="{Binding CancelButtonVisible, Converter={cnv:BoolToVisibilityConverter}}"
+                Command="{Binding CancelCommand}" />
+
+        </StackPanel>
+
+    </Grid>
+</pcc:PCCWindow>

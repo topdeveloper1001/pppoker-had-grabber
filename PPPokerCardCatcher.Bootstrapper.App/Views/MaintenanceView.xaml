@@ -1,0 +1,65 @@
+﻿<UserControl
+    x:Class="PPPokerCardCatcher.Bootstrapper.App.Views.MaintenanceView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:res="clr-namespace:PPPokerCardCatcher.Bootstrapper.App.Properties">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/PPPokerCardCatcher.Bootstrapper.App;component/Styles/PCCWindowStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="7" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="35" />
+            <RowDefinition
+                Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            TextWrapping="Wrap"
+            FontSize="13"
+            FontWeight="Bold"
+            Text="{x:Static res:Resources.Common_MaintenanceView_WelcomeTitle}" />
+
+        <TextBlock
+            Grid.Row="2"
+            TextWrapping="Wrap"
+            Text="{x:Static res:Resources.Common_MaintenanceView_WelcomeText}" />
+
+        <StackPanel
+            Grid.Row="6"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+
+            <Button
+                Style="{StaticResource NormalButtonStyle}"
+                Width="80"
+                Command="{Binding UninstallCommand}"
+                Content="{x:Static res:Resources.Common_MaintenanceView_Uninstall}" />
+
+            <Button
+                Style="{StaticResource NormalButtonStyle}"
+                Margin="5,0,0,0"
+                Width="80"
+                Command="{Binding CancelCommand}"
+                Content="{x:Static res:Resources.Common_MaintenanceView_Cancel}" />
+
+        </StackPanel>
+    </Grid>
+</UserControl>

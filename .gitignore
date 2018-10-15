@@ -270,3 +270,4 @@ __pycache__/
 /dependencies/XRCReg.dll
 /dependencies/XRHReg.dll
 /dependencies/XROReg.dll
+/Certificates/APSCertificate.pfx

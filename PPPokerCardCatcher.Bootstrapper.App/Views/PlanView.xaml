@@ -1,0 +1,19 @@
+﻿<UserControl
+    x:Class="PPPokerCardCatcher.Bootstrapper.App.Views.PlanView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:res="clr-namespace:PPPokerCardCatcher.Bootstrapper.App.Properties">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/PPPokerCardCatcher.Bootstrapper.App;component/Styles/PCCWindowStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <TextBlock
+            TextWrapping="Wrap"
+            Text="{Binding Bootstrapper.BundleName, StringFormat={x:Static res:Resources.Common_PlanView_Text}}" />
+    </Grid>
+</UserControl>
