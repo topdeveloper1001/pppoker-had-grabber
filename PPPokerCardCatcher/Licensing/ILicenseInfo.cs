@@ -61,5 +61,15 @@ namespace PPPokerCardCatcher.Licensing
         /// Exception in validation
         /// </summary>
         NoLicenseException ValidationException { get; set; }
+
+        /// <summary>
+        /// Tournament buy-in limit
+        /// </summary>
+        decimal TournamentLimit { get; }
+
+        /// <summary>
+        /// Cash limit
+        /// </summary>
+        int CashLimit { get; }
     }
 }

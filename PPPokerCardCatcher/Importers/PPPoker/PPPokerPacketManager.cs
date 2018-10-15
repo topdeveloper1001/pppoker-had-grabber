@@ -10,8 +10,8 @@
 // </copyright>
 //----------------------------------------------------------------------
 
-using PPPokerCardCatcher.Importers.TcpBased;
 using PPPokerCardCatcher.Importers.PPPoker.Model;
+using PPPokerCardCatcher.Importers.TcpBased;
 using System;
 using System.Collections.Generic;
 using System.Linq;

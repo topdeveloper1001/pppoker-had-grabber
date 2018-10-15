@@ -30,27 +30,28 @@ namespace PPPokerCardCatcher.Importers.PPPoker
 
                 int skip = startingPosition;
 
-
                 var packageTypeLengthBytes = bytes.Skip(skip).Take(PackageTypeHeaderLength).ToArray();
+
                 if (BitConverter.IsLittleEndian)
                 {
                     Array.Reverse(packageTypeLengthBytes);
                 }
+
                 var packageTypeLength = BitConverter.ToUInt16(packageTypeLengthBytes, 0);
                 skip += PackageTypeHeaderLength;
-
 
                 var packageTypeText = Encoding.ASCII.GetString(
                     bytes.Skip(skip + PackageTypePrefix.Length)
                         .Take(packageTypeLength - PackageTypePrefix.Length)
                         .ToArray()
                 );
+
                 skip += packageTypeLength;
 
                 if (!Enum.TryParse(packageTypeText, out PackageType packageType))
                 {
                     var dump = BitConverter.ToString(bytes.Skip(skip).ToArray()).Replace("-", " ");
-                    LogProvider.Log.Warn($"{packageTypeText}: {dump}");
+                    LogProvider.Log.Warn($"Unknown package type {packageTypeText}: {dump}");
                     packageType = PackageType.Unknown;
                 }
 

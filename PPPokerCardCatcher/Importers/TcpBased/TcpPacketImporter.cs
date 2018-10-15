@@ -15,11 +15,14 @@ using PacketDotNet;
 using PPPokerCardCatcher.Common.Extensions;
 using PPPokerCardCatcher.Common.Linq;
 using PPPokerCardCatcher.Common.Log;
+using PPPokerCardCatcher.Common.Resources;
+using PPPokerCardCatcher.Entities;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.ServiceModel;
 using System.Threading.Tasks;
 
 namespace PPPokerCardCatcher.Importers.TcpBased
@@ -37,7 +40,11 @@ namespace PPPokerCardCatcher.Importers.TcpBased
         protected const int StopTimeout = 5000;
         protected const int NoDataDelay = 100;
         protected const int DelayToProcessHands = 2000;
-    
+
+        private IDHImporterService dhImporterService;
+
+        protected bool IsAdvancedLogEnabled { get; set; }
+
 #if DEBUG
         protected abstract string HandHistoryFilePrefix
         {
@@ -49,8 +56,8 @@ namespace PPPokerCardCatcher.Importers.TcpBased
         /// Exports captured hand history to the supported DB
         /// </summary>
         protected virtual void ExportHandHistory(HandHistoryData handHistoryData, ConcurrentDictionary<long, List<HandHistoryData>> handHistoriesToProcess)
-        {
-            LogProvider.Log.Info(this, $"Hand #{handHistoryData.HandHistory.HandId} has been sent [{handHistoryData.Uuid}].");
+        {            
+            LogProvider.Log.Info(this, $"Hand #{handHistoryData.HandHistory.HandId} is being prepared [{handHistoryData.Uuid}].");
 
             var handId = handHistoryData.HandHistory.HandId;
 
@@ -85,15 +92,20 @@ namespace PPPokerCardCatcher.Importers.TcpBased
         /// </summary>
         protected virtual void ExportHandHistory(List<HandHistoryData> handHistories)
         {
+            if (dhImporterService == null)
+            {
+                var endpointAddress = CommonResourceManager.Instance.GetResourceString("SystemSettings_ImporterPipeAddress");
+                var pipeFactory = new ChannelFactory<IDHImporterService>(new NetNamedPipeBinding(), new EndpointAddress(endpointAddress));
+                dhImporterService = pipeFactory.CreateChannel();
+            }
+
             // merge hands
             var playerWithHoleCards = handHistories
                 .SelectMany(x => x.HandHistory.Players)
                 .Where(x => x.hasHoleCards)
                 .DistinctBy(x => x.SeatNumber)
                 .ToDictionary(x => x.SeatNumber, x => x.HoleCards);
-
-            //GameInfo mainGameInfo = null;
-
+            
             foreach (var handHistoryData in handHistories)
             {
                 handHistoryData.HandHistory.Players.ForEach(player =>
@@ -114,51 +126,37 @@ namespace PPPokerCardCatcher.Importers.TcpBased
 
                 File.WriteAllText($"Hands\\{HandHistoryFilePrefix}_hand_exported_{handHistoryData.Uuid}_{handHistoryData.HandHistory.HandId}.xml", handHistoryText);
 #endif
-                //var gameInfo = new GameInfo
-                //{
-                //    PokerSite = Site,
-                //    WindowHandle = handHistoryData.WindowHandle.ToInt32(),
-                //    GameNumber = handHistoryData.HandHistory.HandId,
-                //    Session = $"{handHistoryData.HandHistory.GameDescription.Identifier}{handHistoryData.Uuid}"
-                //};
 
-                //if (mainGameInfo == null)
-                //{
-                //    mainGameInfo = gameInfo;
-                //}
-                //else
-                //{
-                //    var playersCashInfo = mainGameInfo.GetPlayersCacheInfo();
+                try
+                {
+                    var handHistoryDto = new HandHistoryDto
+                    {
+                        PokerSite = EnumPokerSites.PokerKing,
+                        WindowHandle = handHistoryData.WindowHandle.ToInt32(),
+                        HandText = handHistoryText
+                    };
 
-                //    if (playersCashInfo != null)
-                //    {
-                //        gameInfo.ResetPlayersCacheInfo();
-                //        gameInfo.DoNotReset = true;
+                    dhImporterService.ImportHandHistory(handHistoryDto);
+                    LogProvider.Log.Info($"Hand #{handHistoryData.HandHistory.HandId} has been sent. [{handHistoryData.HandHistory.TableName}]");
+                }
+                catch (EndpointNotFoundException)
+                {
+                    LogProvider.Log.Error(this, $"DriveHUD isn't running. Hand #{handHistoryData.HandHistory.HandId} hasn't been sent. [{handHistoryData.HandHistory.TableName}]");
+                    dhImporterService = null;
+                }
+                catch (Exception e)
+                {
+                    if (IsAdvancedLogEnabled)
+                    {
+                        LogProvider.Log.Error(this, $"Hand #{handHistoryData.HandHistory.HandId} hasn't been sent. [{handHistoryData.HandHistory.TableName}]", e);
+                    }
+                    else
+                    {
+                        LogProvider.Log.Error(this, $"Hand #{handHistoryData.HandHistory.HandId} hasn't been sent. [{handHistoryData.HandHistory.TableName}]");
+                    }
 
-                //        foreach (var playerCashInfo in playersCashInfo)
-                //        {
-                //            var cacheInfo = new PlayerStatsSessionCacheInfo
-                //            {
-                //                Session = gameInfo.Session,
-                //                Player = new PlayerCollectionItem
-                //                {
-                //                    PlayerId = playerCashInfo.Player.PlayerId,
-                //                    Name = playerCashInfo.Player.Name,
-                //                    PokerSite = playerCashInfo.Player.PokerSite,
-                //                },
-                //                Stats = playerCashInfo.Stats.Copy(),
-                //                IsHero = handHistoryData.HandHistory.HeroName != null &&
-                //                    handHistoryData.HandHistory.HeroName.Equals(playerCashInfo.Player.Name),
-                //                GameFormat = playerCashInfo.GameFormat,
-                //                GameNumber = playerCashInfo.GameNumber
-                //            };
-
-                //            gameInfo.AddToPlayersCacheInfo(cacheInfo);
-                //        }
-                //    }
-                //}
-
-                //ProcessHand(handHistoryText, gameInfo);
+                    dhImporterService = null;
+                }
             }
         }
 

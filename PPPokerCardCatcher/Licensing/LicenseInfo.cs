@@ -22,6 +22,10 @@ namespace PPPokerCardCatcher.Licensing
     /// </summary>
     internal class LicenseInfo : ILicenseInfo
     {
+        private const string cashLimitKey = "cashlimit";
+        private const string tournamentLimitKey = "tournamentlimit";
+        private const string nolimitKey = "nolimit";
+
         private readonly SecureLicense license;
 
         private readonly LicenseType licenseType;
@@ -36,6 +40,8 @@ namespace PPPokerCardCatcher.Licensing
                 var timeMonitor = license.GetTimeMonitor();
                 ExpiryDate = DateTime.Now + timeMonitor.TimeRemaining;
             }
+
+            InitializeLimits();
         }
 
         public LicenseType LicenseType
@@ -43,6 +49,14 @@ namespace PPPokerCardCatcher.Licensing
             get
             {
                 return licenseType;
+            }
+        }
+
+        public LicenseSubType LicenseSubType
+        {
+            get
+            {
+                return GetLicenseSubType(Serial);
             }
         }
 
@@ -66,7 +80,7 @@ namespace PPPokerCardCatcher.Licensing
         {
             get
             {
-                return license != null && license.SerialNumber != null && (license.SerialNumber.StartsWith("PMT", StringComparison.InvariantCulture) || licenseType == LicenseType.Trial);
+                return license != null && license.SerialNumber != null && (license.SerialNumber.StartsWith("PPT", StringComparison.InvariantCulture) || licenseType == LicenseType.Trial);
             }
         }
 
@@ -130,6 +144,74 @@ namespace PPPokerCardCatcher.Licensing
         {
             get;
             set;
-        }     
+        }
+
+        public decimal TournamentLimit
+        {
+            get;
+            private set;
+        }
+
+        public int CashLimit
+        {
+            get;
+            private set;
+        }
+
+        private static LicenseSubType GetLicenseSubType(string serial)
+        {
+            if (string.IsNullOrWhiteSpace(serial) || serial.Length < 3)
+            {
+                return LicenseSubType.None;
+            }
+
+            switch (serial[2])
+            {
+                case 'S':
+                    return LicenseSubType.Standard;
+                case 'P':
+                    return LicenseSubType.Pro;
+                case 'T':
+                    return LicenseSubType.Trial;
+                default:
+                    return LicenseSubType.None;
+            }
+        }
+
+        /// <summary>
+        /// Initialize license limits
+        /// </summary>
+        private void InitializeLimits()
+        {
+            if (license == null || !license.Values.ContainsKey(cashLimitKey) || !license.Values.ContainsKey(tournamentLimitKey))
+            {
+                return;
+            }
+
+            var cashLimitText = license.Values[cashLimitKey];
+            var tournamentLimitText = license.Values[tournamentLimitKey];
+
+            int cashLimit = 0;
+
+            if (cashLimitText.Equals(nolimitKey))
+            {
+                CashLimit = int.MaxValue;
+            }
+            else if (int.TryParse(cashLimitText, out cashLimit))
+            {
+                CashLimit = cashLimit;
+            }
+
+            decimal tournamentLimit = 0;
+
+            if (tournamentLimitText.Equals(nolimitKey))
+            {
+                TournamentLimit = decimal.MaxValue;
+            }
+            else if (decimal.TryParse(tournamentLimitText, out tournamentLimit))
+            {
+                TournamentLimit = tournamentLimit;
+            }
+        }
     }
 }

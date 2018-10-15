@@ -21,12 +21,14 @@ using PPPokerCardCatcher.Common.Log;
 using PPPokerCardCatcher.Importers.AndroidBase;
 using PPPokerCardCatcher.Importers.PPPoker.Model;
 using PPPokerCardCatcher.Importers.TcpBased;
+using PPPokerCardCatcher.Licensing;
 using PPPokerCardCatcher.Settings;
 using ProtoBuf;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +37,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
 {
     internal class PPPImporter : TcpPacketImporter, IPPPImporter
     {
-        private bool IsAdvancedLogEnabled { get; set; }
+        private readonly ILicenseService licenseService;
 
         private readonly BlockingCollection<CapturedPacket> packetBuffer = new BlockingCollection<CapturedPacket>();
 
@@ -51,6 +53,8 @@ namespace PPPokerCardCatcher.Importers.PPPoker
 
         public PPPImporter()
         {
+            licenseService = ServiceLocator.Current.GetInstance<ILicenseService>();
+
             PackageTypeEnumerator.ForEach((PackageType enumValue, Type packageObjectType) =>
             {
                 Action<PPPokerPackage> action = LogPackage<HeartBeatREQ>;
@@ -143,18 +147,12 @@ namespace PPPokerCardCatcher.Importers.PPPoker
 
             var connectionsService = ServiceLocator.Current.GetInstance<INetworkConnectionsService>();
 
-            //var detectedTableWindows = new HashSet<IntPtr>();
-
-            //var handHistoriesToProcess = new ConcurrentDictionary<long, List<HandHistoryData>>();
-
-            //var usersRooms = new Dictionary<uint, int>();
+            var handHistoriesToProcess = new ConcurrentDictionary<long, List<HandHistoryData>>();
 
             while (!cancellationTokenSource.IsCancellationRequested)
             {
                 try
                 {
-
-
                     if (!packetBuffer.TryTake(out CapturedPacket capturedPacket))
                     {
                         Task.Delay(NoDataDelay).Wait();
@@ -195,28 +193,20 @@ namespace PPPokerCardCatcher.Importers.PPPoker
                                 LogProvider.Log.Info(this, $"Hand #{handHistory.HandId}, ClientPort={package.ClientPort}.");
                             }
 
-                            LogProvider.Log.Info(SerializationHelper.SerializeObject(handHistory));
-
                             var handHistoryData = new HandHistoryData
                             {
-                                //Uuid = package.UserId,
+                                Uuid = windowHandle.ToInt32(),
                                 HandHistory = handHistory,
                                 WindowHandle = windowHandle
                             };
 
-                            //if (!pkCatcherService.CheckHand(handHistory))
-                            //{
-                            //    LogProvider.Log.Info(Logger, $"License doesn't support cash hand {handHistory.HandId}. [BB={handHistory.GameDescription.Limit.BigBlind}]");
+                            if (!CheckHand(handHistory))
+                            {
+                                LogProvider.Log.Info(this, $"License doesn't support cash hand {handHistory.HandId}. [BB={handHistory.GameDescription.Limit.BigBlind}]");
+                                continue;
+                            }
 
-                            //    if (handHistoryData.WindowHandle != IntPtr.Zero)
-                            //    {
-                            //        SendPreImporedData("Notifications_HudLayout_PreLoadingText_PK_NoLicense", windowHandle);
-                            //    }
-
-                            //    continue;
-                            //}
-
-                            //ExportHandHistory(handHistoryData, handHistoriesToProcess);
+                            ExportHandHistory(handHistoryData, handHistoriesToProcess);
                         }
                     }
                 }
@@ -356,7 +346,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
             sb.AppendLine(BitConverter.ToString(capturedPacket.Bytes).Replace("-", " "));
             sb.AppendLine("----------body end--------------");
             sb.AppendLine("--------------ascii-------------");
-            sb.AppendLine(Encoding.ASCII.GetString(capturedPacket.Bytes));
+            sb.AppendLine(Encoding.ASCII.GetString(capturedPacket.Bytes.Skip(4).ToArray()));
             sb.AppendLine("------------ascii end-----------");
             sb.AppendLine("------------end-----------------");
 
@@ -416,6 +406,39 @@ namespace PPPokerCardCatcher.Importers.PPPoker
         private static int ShiftPlayerSeat(int seat, int shift, int tableType)
         {
             return (seat + shift + tableType - 1) % tableType + 1;
+        }
+
+        private bool CheckHand(HandHistory handHistory)
+        {
+            var registeredLicenses = licenseService.LicenseInfos.Where(x => x.IsRegistered).ToArray();
+
+            // if any license is not trial
+            if (registeredLicenses.Any(x => !x.IsTrial))
+            {
+                registeredLicenses = registeredLicenses.Where(x => !x.IsTrial).ToArray();
+            }
+
+            if (registeredLicenses.Length == 0)
+            {
+                return false;
+            }
+
+            var tournamentLimit = registeredLicenses.Max(x => x.TournamentLimit);
+            var cashLimit = registeredLicenses.Max(x => x.CashLimit);
+
+            var tournamentBuyIn = handHistory.GameDescription.IsTournament ? handHistory.GameDescription.Tournament.BuyIn.PrizePoolValue : 0;
+            var cashBuyin = handHistory.GameDescription.Limit.BigBlind;
+
+            var match = cashBuyin <= cashLimit &&
+                               tournamentBuyIn <= tournamentLimit;
+
+            if (!match)
+            {
+                LogProvider.Log.Info($"GameType: {handHistory.GameDescription.GameType}, GameCashBuyIn: {cashBuyin}, GameTournamentBuyIn: {tournamentBuyIn}");
+                LogProvider.Log.Info($"LicenseCashBuyInLimit: {cashLimit}, LicenseTournamentBuyInLimit: {tournamentLimit}");
+            }
+
+            return match;
         }
     }
 }
