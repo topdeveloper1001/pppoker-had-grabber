@@ -18,5 +18,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
     internal interface IPPPHandBuilder
     {
         bool TryBuild(PPPokerPackage package, out HandHistory handHistory);
+
+        bool IsRoomSnapShotAvailable(PPPokerPackage package);
     }
 }

@@ -153,6 +153,11 @@ namespace PPPokerCardCatcher.Importers.PPPoker
             return handHistory != null;
         }
 
+        public bool IsRoomSnapShotAvailable(PPPokerPackage package)
+        {
+            return clientRecords.TryGetValue(package.ClientPort, out ClientRecord record) && record.RoomID != 0;
+        }
+
         private bool ValidatePackages(ClientRecord record)
         {
             var dealerInfoPackage = record.Packages.FirstOrDefault(x => x.PackageType == PackageType.DealerInfoRSP);
@@ -398,6 +403,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
             record.MaxPlayers = roomInfo.SeatNum;
 
             record.IsTournament = isTournament;
+
             if (isTournament)
             {
                 var utcNow = DateTime.UtcNow;

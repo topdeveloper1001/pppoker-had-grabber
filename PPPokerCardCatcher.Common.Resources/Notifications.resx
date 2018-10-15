@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Notifications_HudLayout_PreLoadingText_CanNotBeCapturedText" xml:space="preserve">
+    <value>DriveHUD cannot load a HUD since the table was open prior to DriveHUD being loaded. DriveHUD needs to be loaded first, then a table for PPPoker can be loaded.</value>
+  </data>
   <data name="Notifications_HudLayout_PreLoadingText_Init" xml:space="preserve">
     <value>One full hand must be played before HUD appears. Please wait.</value>
   </data>

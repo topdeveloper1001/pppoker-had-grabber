@@ -189,16 +189,19 @@ namespace PPPokerCardCatcher.Importers.PPPoker
                         var process = connectionsService.GetProcess(capturedPacket);
                         var windowHandle = tableWindowProvider.GetTableWindowHandle(process);
 
-                        if (package.PackageType == PackageType.EnterRoomRSP)
+                        if (!detectedTables.Contains(windowHandle))
                         {
-                            LogProvider.Log.Info(this, $"User entered room. [{package.ClientPort}]");
+                            detectedTables.Add(windowHandle);
 
-                            if (!detectedTables.Contains(windowHandle))
+                            if (package.PackageType == PackageType.EnterRoomRSP || handBuilder.IsRoomSnapShotAvailable(package))
                             {
-                                detectedTables.Add(windowHandle);
+                                LogProvider.Log.Info(this, $"User entered room. [{package.ClientPort}]");
+                                SendShowHUDRequest("Notifications_HudLayout_PreLoadingText_Init", windowHandle);
                             }
-
-                            SendShowHUDRequest("Notifications_HudLayout_PreLoadingText_Init", windowHandle);
+                            else
+                            {
+                                SendShowHUDRequest("Notifications_HudLayout_PreLoadingText_CanNotBeCapturedText", windowHandle);
+                            }
                         }
 
                         if (handBuilder.TryBuild(package, out HandHistory handHistory))
