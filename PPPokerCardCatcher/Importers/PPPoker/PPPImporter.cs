@@ -373,9 +373,11 @@ namespace PPPokerCardCatcher.Importers.PPPoker
             sb.AppendLine("---------body begin-------------");
             sb.AppendLine(BitConverter.ToString(capturedPacket.Bytes).Replace("-", " "));
             sb.AppendLine("----------body end--------------");
+#if DEBUG
             sb.AppendLine("--------------ascii-------------");
             sb.AppendLine(Encoding.ASCII.GetString(capturedPacket.Bytes.Skip(4).ToArray()));
             sb.AppendLine("------------ascii end-----------");
+#endif        
             sb.AppendLine("------------end-----------------");
 
             File.AppendAllText(packageFileName, sb.ToString());
@@ -398,14 +400,10 @@ namespace PPPokerCardCatcher.Importers.PPPoker
 
         private readonly Dictionary<int, int> autoCenterSeats = new Dictionary<int, int>
         {
-            { 2, 1 },
-            { 3, 1 },
-            { 4, 1 },
-            { 5, 1 },
-            { 6, 1 },
-            { 7, 1 },
-            { 8, 1 },
-            { 9, 1 }
+            { 2, 2 },
+            { 3, 2 },            
+            { 6, 3 },                        
+            { 9, 5 }
         };
 
         protected override PlayerList GetPlayerList(HandHistory handHistory)
