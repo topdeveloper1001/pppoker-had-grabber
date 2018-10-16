@@ -377,8 +377,8 @@ namespace PPPokerCardCatcher.ViewModels
             IsBuyButtonVisible = true;
             IsRenewButtonVisible = true;
             IsBackButtonVisible = false;
-            IsOKButtonVisible = false;
-            IsCancelButtonVisible = true;
+            IsOKButtonVisible = true;
+            IsCancelButtonVisible = false;
             IsActivateButtonVisible = false;
 
             IsTrialProgressBarVisible = false;

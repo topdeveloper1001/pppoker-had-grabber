@@ -189,7 +189,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
                         var process = connectionsService.GetProcess(capturedPacket);
                         var windowHandle = tableWindowProvider.GetTableWindowHandle(process);
 
-                        if (!detectedTables.Contains(windowHandle))
+                        if (package.PackageType != PackageType.SelUserInfoRSP && !detectedTables.Contains(windowHandle))
                         {
                             detectedTables.Add(windowHandle);
 
@@ -199,7 +199,7 @@ namespace PPPokerCardCatcher.Importers.PPPoker
                                 SendShowHUDRequest("Notifications_HudLayout_PreLoadingText_Init", windowHandle);
                             }
                             else
-                            {
+                            {                                
                                 SendShowHUDRequest("Notifications_HudLayout_PreLoadingText_CanNotBeCapturedText", windowHandle);
                             }
                         }
@@ -462,12 +462,19 @@ namespace PPPokerCardCatcher.Importers.PPPoker
                 {
                     LogProvider.Log.Error(this, $"Failed to send request to show HUD [{windowHandle.ToInt32()}].", e);
                 }
+
+                dhImporterService = null;
             }
         }
 
         protected virtual void SendCloseHUDRequest(IntPtr windowHandle)
         {
-            SendCloseHUDRequest(new[] { windowHandle });
+            // add delay
+            Task.Run(() =>
+            {
+                Task.Delay(DelayToProcessHands * 2).Wait();
+                SendCloseHUDRequest(new[] { windowHandle });
+            });
         }
 
         protected virtual void SendCloseHUDRequest(IntPtr[] windowHandles)
@@ -491,6 +498,8 @@ namespace PPPokerCardCatcher.Importers.PPPoker
                     {
                         LogProvider.Log.Error(this, $"Failed to send request to close HUD [{windowHandle.ToInt32()}].", e);
                     }
+
+                    dhImporterService = null;
                 }
             }
         }

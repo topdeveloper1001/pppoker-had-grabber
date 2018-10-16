@@ -50,8 +50,6 @@ namespace PPPokerCardCatcher.Importers.PPPoker
 
                 if (!Enum.TryParse(packageTypeText, out PackageType packageType))
                 {
-                    var dump = BitConverter.ToString(bytes.Skip(skip).ToArray()).Replace("-", " ");
-                    LogProvider.Log.Warn($"Unknown package type {packageTypeText}: {dump}");
                     packageType = PackageType.Unknown;
                 }
 
