@@ -122,7 +122,7 @@
                         <pcc:ProgressBarEx                           
                             Height="20"
                             Value="{Binding DaysLeft, Mode=OneWay}"
-                            Maximum="365"
+                            Maximum="30"
                             BorderThickness="1"
                             Margin="0,3,0,10"
                             Visibility="{Binding IsTrialProgressBarVisible, Converter={pcc:BoolToVisibilityConverter} }" />

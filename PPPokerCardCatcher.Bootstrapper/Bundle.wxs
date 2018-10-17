@@ -20,7 +20,7 @@
           Manufacturer="$(var.Manufacturer)"
           Copyright="(c) All rights reserved."
           DisableModify="yes"
-          IconSourceFile="..\PPPokerCardCatcher\Images\pm-icon.ico"
+          IconSourceFile="..\PPPokerCardCatcher\Images\ppp-logo.ico"
           UpgradeCode="7ec8f70c-f5da-42c9-a02c-a87dbdc5a49d">
 
     <bal:Condition  Message="This software can only be installed on Windows Vista and higher.">

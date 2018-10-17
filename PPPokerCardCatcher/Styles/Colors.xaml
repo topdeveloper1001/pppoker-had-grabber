@@ -37,11 +37,11 @@
 
     <SolidColorBrush
         x:Key="ProgressBarBackgroundBrush"
-        Color="#ffc275" />
+        Color="#a6deae" />
 
     <SolidColorBrush
         x:Key="ProgressBarBorderBrush"
-        Color="#b78642" />
+        Color="#3cc179" />
 
     <Color
         x:Key="ButtonTextBlockShadowColor">#000000</Color>

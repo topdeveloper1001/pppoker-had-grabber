@@ -26,8 +26,8 @@
       <ComponentGroupRef Id="ProductComponents" />
     </Feature>
 
-    <Icon Id="DesktopIcon" SourceFile="..\PPPokerCardCatcher\Images\pm-icon.ico" />
-    <Icon Id="StartMenuIcon" SourceFile="..\PPPokerCardCatcher\Images\pm-icon.ico" />
+    <Icon Id="DesktopIcon" SourceFile="..\PPPokerCardCatcher\Images\ppp-logo.ico" />
+    <Icon Id="StartMenuIcon" SourceFile="..\PPPokerCardCatcher\Images\ppp-logo.ico" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
