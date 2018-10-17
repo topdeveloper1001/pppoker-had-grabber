@@ -238,7 +238,7 @@
                         CornerRadius="2"
                         Height="30"
                         BorderThickness="1"
-                        BorderBrush="#2b2b33">
+                        BorderBrush="#0e552d">
                         <Border.Effect>
                             <DropShadowEffect
                                 BlurRadius="0"

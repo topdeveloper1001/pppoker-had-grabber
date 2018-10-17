@@ -32,7 +32,7 @@
             Value="{StaticResource OpenSans}" />
         <Setter
             Property="Icon"
-            Value="/Images/pm-icon.ico" />
+            Value="/Images/ppp-logo.ico" />
         <Setter
             Property="Template">
             <Setter.Value>
@@ -112,7 +112,7 @@
                                     VerticalAlignment="Stretch"
                                     CornerRadius="7,7,0,0"
                                     BorderThickness="0"
-                                    Background="#2b2b33">
+                                    Background="#082b18">
                                     <DockPanel
                                         VerticalAlignment="Center">
 
@@ -160,7 +160,7 @@
                                             <TextBlock
                                                 Margin="9,0,0,0"
                                                 VerticalAlignment="Center"
-                                                Foreground="#6b6b71"
+                                                Foreground="#969696"
                                                 FontFamily="{StaticResource OpenSansSemi}"
                                                 HorizontalAlignment="Left"
                                                 FontSize="10"
@@ -181,16 +181,16 @@
                                             StartPoint="0,0"
                                             EndPoint="0,1">
                                             <GradientStop
-                                                Color="#aca39b"
+                                                Color="#a6caae"
                                                 Offset="0.0" />
                                             <GradientStop
-                                                Color="#b2a8a1"
+                                                Color="#aad0b4"
                                                 Offset="0.32" />
                                             <GradientStop
-                                                Color="#bcb2aa"
+                                                Color="#aed5b7"
                                                 Offset="0.64" />
                                             <GradientStop
-                                                Color="#bfb5ad"
+                                                Color="#b2d9bb"
                                                 Offset="1.0" />
                                         </LinearGradientBrush>
                                     </Border.Background>
@@ -316,9 +316,8 @@
                                 <!-- Content -->
                                 <Border
                                     Grid.Row="1"
-                                    Background="{StaticResource WindowContentBackgroundBrush}"
-                                    BorderBrush="{StaticResource WindowContentBorderBrush}"
-                                    BorderThickness="0,1,0,1">
+                                    Background="{StaticResource WindowContentBackgroundBrush}"                                    
+                                    BorderThickness="0">
                                     <ContentPresenter
                                         Content="{TemplateBinding Content}"
                                         Margin="{TemplateBinding Padding}" />

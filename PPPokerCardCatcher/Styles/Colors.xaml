@@ -4,11 +4,11 @@
 
     <SolidColorBrush
         x:Key="WindowButtonBrush"
-        Color="#43444d" />
+        Color="#0a4e27" />
 
     <SolidColorBrush
         x:Key="WindowActiveButtonBrush"
-        Color="#686976" />
+        Color="#449657" />
 
     <SolidColorBrush
         x:Key="WindowButtonInnerBrush"
@@ -18,9 +18,10 @@
         x:Key="WindowActiveButtonInnerBrush"
         Color="#ffffff" />
 
-    <SolidColorBrush
+    <ImageBrush
         x:Key="WindowContentBackgroundBrush"
-        Color="#dd9e4c" />
+        ImageSource="/Images/background.png"
+        Stretch="Fill" />
 
     <SolidColorBrush
         x:Key="WindowContentBorderBrush"
@@ -46,7 +47,7 @@
         x:Key="ButtonTextBlockShadowColor">#000000</Color>
 
     <Color
-        x:Key="ButtonDropShadowColor">#ffe664</Color>
+        x:Key="ButtonDropShadowColor">#a8d5b6</Color>
 
     <!--#region Start Stop button colors -->
 
@@ -129,10 +130,10 @@
         StartPoint="0,0"
         EndPoint="0,1">
         <GradientStop
-            Color="#bc873c"
+            Color="#23a25d"
             Offset="0" />
         <GradientStop
-            Color="#a77a3a"
+            Color="#35ab6b"
             Offset="1" />
     </LinearGradientBrush>
 
@@ -141,10 +142,10 @@
         StartPoint="0,0"
         EndPoint="0,1">
         <GradientStop
-            Color="#d09b50"
+            Color="#28b468"
             Offset="0" />
         <GradientStop
-            Color="#bb8e4e"
+            Color="#3cc179"
             Offset="1" />
     </LinearGradientBrush>
 
@@ -153,10 +154,10 @@
         StartPoint="0,0"
         EndPoint="0,1">
         <GradientStop
-            Color="#9e9e9e"
+            Color="#95a595"
             Offset="0" />
         <GradientStop
-            Color="#8a8a8a"
+            Color="#8aa48a"
             Offset="1" />
     </LinearGradientBrush>
 
