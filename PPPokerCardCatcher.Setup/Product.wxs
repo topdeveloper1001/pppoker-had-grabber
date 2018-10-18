@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include Variables.wxi?>
+  <Product Id="$(var.ProductCode)"
+           Name="$(var.ProductName)"
+           Language="1033"
+           Version="$(var.ProductVersion)"
+           Manufacturer="$(var.Manufacturer)"
+           UpgradeCode="94b5bb73-d25e-4be6-abbf-428264da92a8">
+
+    <Package InstallerVersion="301"
+             Compressed="yes"
+             InstallScope="perMachine"
+             Description="Installs $(var.ProductName)"
+             Keywords="$(var.ProductName),Installer,MSI" />
+
+    <MajorUpgrade Schedule="afterInstallExecute"
+                  DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <MediaTemplate EmbedCab="yes" />
+
+    <Property Id="INSTALLDESKTOPSHORTCUT" />
+    <Property Id="INSTALLPROGRAMMENUSHORTCUT" />
+
+    <Feature Id="ProductFeature" Title="$(var.ProductName) Setup" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+
+    <Icon Id="DesktopIcon" SourceFile="..\PPPokerCardCatcher\Images\ppp-logo.ico" />
+    <Icon Id="StartMenuIcon" SourceFile="..\PPPokerCardCatcher\Images\ppp-logo.ico" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="MANUFACTURERFOLDER" Name="$(var.Manufacturer)">
+          <Directory Id="INSTALLFOLDER" Name="$(var.ProductName)">
+            <Directory Id="BIN" Name="bin" />
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="DesktopFolder" />
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ProgramMenuDir" Name="$(var.ProductName)"/>
+      </Directory>
+    </Directory>
+
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="PPPokerCardCatcher.exe">
+        <File Id="PPPokerCardCatcher.exe" Source="$(var.BuildDirectory)\PPPokerCardCatcher.exe" KeyPath="yes" Checksum="yes"/>
+      </Component>
+      <Component Id="PPPokerCardCatcher.exe.config">
+        <RemoveFile Id="PPPokerCardCatcher.exe.config" Name="PPPokerCardCatcher.exe.config" On="both"/>
+        <File Id="PPPokerCardCatcher.exe.config" Name="PPPokerCardCatcher.exe.config" Source="$(var.BuildDirectory)\PPPokerCardCatcher.exe.config" Vital="yes" />
+      </Component>
+      <Component Id="PPTReg.dll" Guid="{0336FCC3-35AF-4E61-B230-548967DF7F1A}">
+        <File Id="PPTReg.dll" KeyPath="yes" Source="$(var.BuildDirectory)\PPTReg.dll" />
+      </Component>
+      <Component Id="PPSReg.dll" Guid="{5FC420E1-6ACB-46CB-9386-B3FB586EBE73}">
+        <File Id="PPSReg.dll" KeyPath="yes" Source="$(var.BuildDirectory)\PPSReg.dll" />
+      </Component>    
+      <Component Id="DeployLX.Licensing.v5.dll" Guid="{AD3C9036-DEC0-4D9A-B3BA-F202FE0B58C9}">
+        <File Id="DeployLX.Licensing.v5.dll" KeyPath="yes" Source="$(var.BuildDirectory)\DeployLX.Licensing.v5.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="Shortcuts" Guid="{71F9D772-6470-4DCE-8AD1-86A68A232735}">
+        <Shortcut Id="UninstallShortcut"  Name="Uninstall $(var.ProductName)" Description="Uninstalls $(var.ProductName) and all of its components" Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode]" />
+        <RemoveFolder Id="RemoveINSTALLDIR" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\$(var.Manufacturer)\$(var.ProductName)" Name="installed"  Type="integer"  Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="BIN">
+      <Component Id="PPPokerCardCatcher.Common.dll" Guid="{60C7C04A-62B7-41F7-9460-190A7D5DAD5E}">
+        <File Id="PPPokerCardCatcher.Common.dll" KeyPath="yes" Source="$(var.BuildDirectory)\PPPokerCardCatcher.Common.dll" />
+      </Component>
+      <Component Id="PPPokerCardCatcher.Common.Resources.dll" Guid="{B37C894A-8593-42A6-90F7-640246510143}">
+        <File Id="PPPokerCardCatcher.Common.Resources.dll" KeyPath="yes" Source="$(var.BuildDirectory)\PPPokerCardCatcher.Common.Resources.dll" />
+      </Component>
+      <Component Id="PPPokerCardCatcher.Common.Wpf.dll" Guid="{404D8FC5-D9B8-4324-9C7B-1094E234A5E2}">
+        <File Id="PPPokerCardCatcher.Common.Wpf.dll" KeyPath="yes" Source="$(var.BuildDirectory)\PPPokerCardCatcher.Common.Wpf.dll" />
+      </Component>
+      <Component Id="log4net.dll" Guid="{90AB75D6-9B38-4DFB-8593-EC27D2D2DFAE}">
+        <File Id="log4net.dll" KeyPath="yes" Source="$(var.BuildDirectory)\log4net.dll" />
+      </Component>
+      <Component Id="Microsoft.Practices.ServiceLocation.dll" Guid="{F74FD9D9-1342-4A89-98EB-0C9CC384F6C6}">
+        <File Id="Microsoft.Practices.ServiceLocation.dll" KeyPath="yes" Source="$(var.BuildDirectory)\Microsoft.Practices.ServiceLocation.dll" />
+      </Component>
+      <Component Id="Microsoft.Practices.Unity.dll" Guid="{2CCC3096-EC31-4317-905D-E06A8E6EB4E1}">
+        <File Id="Microsoft.Practices.Unity.dll" KeyPath="yes" Source="$(var.BuildDirectory)\Microsoft.Practices.Unity.dll" />
+      </Component>
+      <Component Id="Microsoft.Practices.Unity.Configuration.dll" Guid="{5FC62188-08C6-4CB4-B2D9-B17B33F75470}">
+        <File Id="Microsoft.Practices.Unity.Configuration.dll" KeyPath="yes" Source="$(var.BuildDirectory)\Microsoft.Practices.Unity.Configuration.dll" />
+      </Component>
+      <Component Id="Microsoft.Practices.Unity.RegistrationByConvention.dll" Guid="{1EA66115-EA9A-43F8-9736-9B64A2C1AD3B}">
+        <File Id="Microsoft.Practices.Unity.RegistrationByConvention.dll" KeyPath="yes" Source="$(var.BuildDirectory)\Microsoft.Practices.Unity.RegistrationByConvention.dll" />
+      </Component>
+      <Component Id="Newtonsoft.Json.dll" Guid="{61B6C864-D4DC-4F8A-835A-D7C3042E7B86}">
+        <File Id="Newtonsoft.Json.dll" KeyPath="yes" Source="$(var.BuildDirectory)\Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="Prism.dll" Guid="{3ABA594C-3A61-4369-95CC-1DDFC6B89779}">
+        <File Id="Prism.dll" KeyPath="yes" Source="$(var.BuildDirectory)\Prism.dll" />
+      </Component>
+      <Component Id="Prism.Unity.Wpf.dll" Guid="{8E073833-15FD-407A-B068-C3B381A30B7F}">
+        <File Id="Prism.Unity.Wpf.dll" KeyPath="yes" Source="$(var.BuildDirectory)\Prism.Unity.Wpf.dll" />
+      </Component>
+      <Component Id="Prism.Wpf.dll" Guid="{E51320D0-EF02-4F0D-9B49-808FFFB0AED8}">
+        <File Id="Prism.Wpf.dll" KeyPath="yes" Source="$(var.BuildDirectory)\Prism.Wpf.dll" />
+      </Component>
+      <Component Id="ReactiveUI.dll" Guid="{7B33FD75-B4B1-49D3-9EC4-63C77B3565FC}">
+        <File Id="ReactiveUI.dll" KeyPath="yes" Source="$(var.BuildDirectory)\ReactiveUI.dll" />
+      </Component>
+      <Component Id="Splat.dll" Guid="{A6933285-FCF3-48A8-8552-7F310DE5BD3A}">
+        <File Id="Splat.dll" KeyPath="yes" Source="$(var.BuildDirectory)\Splat.dll" />
+      </Component>
+      <Component Id="SharpPcap.dll" Guid="{26B56B56-2782-452D-93AE-E3DFADE81BD3}">
+        <File Id="SharpPcap.dll" KeyPath="yes" Source="$(var.BuildDirectory)\SharpPcap.dll" />
+      </Component>
+      <Component Id="System.Reactive.Core.dll" Guid="{D2B0CAB5-D91F-4FBA-8CB3-55E6C6BB29AF}">
+        <File Id="System.Reactive.Core.dll" KeyPath="yes" Source="$(var.BuildDirectory)\System.Reactive.Core.dll" />
+      </Component>
+      <Component Id="System.Reactive.Interfaces.dll" Guid="{F703CC06-78C4-45D4-BAB0-C0DB028E8E88}">
+        <File Id="System.Reactive.Interfaces.dll" KeyPath="yes" Source="$(var.BuildDirectory)\System.Reactive.Interfaces.dll" />
+      </Component>
+      <Component Id="System.Reactive.Linq.dll" Guid="{4DE3A4F8-02D5-4059-A46E-9F7AC5108F05}">
+        <File Id="System.Reactive.Linq.dll" KeyPath="yes" Source="$(var.BuildDirectory)\System.Reactive.Linq.dll" />
+      </Component>
+      <Component Id="System.Reactive.PlatformServices.dll" Guid="{6BC88CBB-5ACA-4D4F-ABF9-94605BB177EB}">
+        <File Id="System.Reactive.PlatformServices.dll" KeyPath="yes" Source="$(var.BuildDirectory)\System.Reactive.PlatformServices.dll" />
+      </Component>
+      <Component Id="System.Reactive.Windows.Threading.dll" Guid="{E3F0A26F-65FE-4293-9F6C-8EA4D09ADEAC}">
+        <File Id="System.Reactive.Windows.Threading.dll" KeyPath="yes" Source="$(var.BuildDirectory)\System.Reactive.Windows.Threading.dll" />
+      </Component>
+      <Component Id="System.Windows.Interactivity.dll" Guid="{2A7B1668-33AF-4ED8-9F56-0EFF981B88CC}">
+        <File Id="System.Windows.Interactivity.dll" KeyPath="yes" Source="$(var.BuildDirectory)\System.Windows.Interactivity.dll" />
+      </Component>
+      <Component Id="protobufnet.dll" Guid="{AA7FF0DA-588A-400D-905F-E40F3D812722}">
+        <File Id="protobufnet.dll" KeyPath="yes" Source="$(var.BuildDirectory)\protobuf-net.dll" />
+      </Component>    
+      <Component Id="PacketDotNet.dll" Guid="{BADC9F47-74BE-42EC-B798-1D47B09EC3AA}">
+        <File Id="PacketDotNet.dll" KeyPath="yes" Name="PacketDotNet.dll" Source="$(var.BuildDirectory)\PacketDotNet.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="ProgramMenuDir">
+      <Component Id="StartMenuShortcuts" Guid="{2A077003-A322-44CB-9D8E-3D016D23F724}">
+        <Condition>INSTALLPROGRAMMENUSHORTCUT</Condition>
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="$(var.ProductName)" Description="$(var.ProductName)" Target="[#PPPokerCardCatcher.exe]" Icon="StartMenuIcon" WorkingDirectory="INSTALLFOLDER" />
+        <Shortcut Id="UninstallProduct" Name="Uninstall $(var.ProductName)" Description="Uninstalls $(var.ProductName)" Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode]" />
+        <RemoveFolder Id="RemoveProgramMenuFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\$(var.Manufacturer)\$(var.ProductName)" Name="installed"  Type="integer"  Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="DesktopShortcuts" Guid="{F79BB262-A285-4467-BF33-541461BDF118}">
+        <Condition>INSTALLDESKTOPSHORTCUT</Condition>
+        <Shortcut Id="ApplicationStartDesktopShortcut" Name="$(var.ProductName)" Description="$(var.ProductName)" Target="[#PPPokerCardCatcher.exe]" Icon="StartMenuIcon" WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="RemoveDesktopFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\$(var.Manufacturer)\$(var.ProductName)" Name="installed"  Type="integer"  Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <ComponentRef Id="Shortcuts"/>
+      <ComponentRef Id="StartMenuShortcuts"/>
+      <ComponentRef Id="DesktopShortcuts"/>
+      <ComponentRef Id="PPPokerCardCatcher.exe" />
+      <ComponentRef Id="PPPokerCardCatcher.exe.config" />
+      <ComponentRef Id="PPTReg.dll" />
+      <ComponentRef Id="PPSReg.dll" />     
+      <ComponentRef Id="DeployLX.Licensing.v5.dll" />
+      <ComponentRef Id="Shortcuts" />
+      <ComponentRef Id="PPPokerCardCatcher.Common.dll" />
+      <ComponentRef Id="PPPokerCardCatcher.Common.Resources.dll" />
+      <ComponentRef Id="PPPokerCardCatcher.Common.Wpf.dll" />
+      <ComponentRef Id="log4net.dll" />
+      <ComponentRef Id="Microsoft.Practices.ServiceLocation.dll" />
+      <ComponentRef Id="Microsoft.Practices.Unity.dll" />
+      <ComponentRef Id="Microsoft.Practices.Unity.Configuration.dll" />
+      <ComponentRef Id="Microsoft.Practices.Unity.RegistrationByConvention.dll" />
+      <ComponentRef Id="Newtonsoft.Json.dll" />
+      <ComponentRef Id="Prism.dll" />
+      <ComponentRef Id="Prism.Unity.Wpf.dll" />
+      <ComponentRef Id="Prism.Wpf.dll" />
+      <ComponentRef Id="ReactiveUI.dll" />
+      <ComponentRef Id="Splat.dll" />
+      <ComponentRef Id="SharpPcap.dll" />
+      <ComponentRef Id="System.Reactive.Core.dll" />
+      <ComponentRef Id="System.Reactive.Interfaces.dll" />
+      <ComponentRef Id="System.Reactive.Linq.dll" />
+      <ComponentRef Id="System.Reactive.PlatformServices.dll" />
+      <ComponentRef Id="System.Reactive.Windows.Threading.dll" />
+      <ComponentRef Id="System.Windows.Interactivity.dll" />
+      <ComponentRef Id="protobufnet.dll" />      
+      <ComponentRef Id="PacketDotNet.dll" />
+    </ComponentGroup>
+  </Product>
+</Wix>

@@ -1,0 +1,164 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush
+        x:Key="WindowButtonBrush"
+        Color="#0a4e27" />
+
+    <SolidColorBrush
+        x:Key="WindowActiveButtonBrush"
+        Color="#449657" />
+
+    <SolidColorBrush
+        x:Key="WindowButtonInnerBrush"
+        Color="#a1a2a6" />
+
+    <SolidColorBrush
+        x:Key="WindowActiveButtonInnerBrush"
+        Color="#ffffff" />
+
+    <ImageBrush
+        x:Key="WindowContentBackgroundBrush"
+        ImageSource="/Images/background.png"
+        Stretch="Fill" />
+
+    <SolidColorBrush
+        x:Key="WindowContentBorderBrush"
+        Color="#b78340" />
+
+    <SolidColorBrush
+        x:Key="ButtonTextBlockBrush"
+        Color="#ffffff" />
+
+    <SolidColorBrush
+        x:Key="TextForegroundBrush"
+        Color="#000000" />
+
+    <SolidColorBrush
+        x:Key="ProgressBarBackgroundBrush"
+        Color="#a6deae" />
+
+    <SolidColorBrush
+        x:Key="ProgressBarBorderBrush"
+        Color="#3cc179" />
+
+    <Color
+        x:Key="ButtonTextBlockShadowColor">#000000</Color>
+
+    <Color
+        x:Key="ButtonDropShadowColor">#a8d5b6</Color>
+
+    <!--#region Start Stop button colors -->
+
+    <LinearGradientBrush
+        x:Key="StartButtonBrush"
+        StartPoint="0,0"
+        EndPoint="0,1">
+        <GradientStop
+            Color="#33cc33"
+            Offset="0" />
+        <GradientStop
+            Color="#2bac2b"
+            Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush
+        x:Key="StartButtonMouseOverBrush"
+        StartPoint="0,0"
+        EndPoint="0,1">
+        <GradientStop
+            Color="#44dd44"
+            Offset="0" />
+        <GradientStop
+            Color="#3cbd3c"
+            Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush
+        x:Key="StartButtonPressedMouseOverBrush"
+        StartPoint="0,0"
+        EndPoint="0,1">
+        <GradientStop
+            Color="#22bb22"
+            Offset="0" />
+        <GradientStop
+            Color="#1a9b1a"
+            Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush
+        x:Key="StopButtonBrush"
+        StartPoint="0,0"
+        EndPoint="0,1">
+        <GradientStop
+            Color="#cc3333"
+            Offset="0" />
+        <GradientStop
+            Color="#ac2b2b"
+            Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush
+        x:Key="StopButtonMouseOverBrush"
+        StartPoint="0,0"
+        EndPoint="0,1">
+        <GradientStop
+            Color="#dd4444"
+            Offset="0" />
+        <GradientStop
+            Color="#bd3c3c"
+            Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush
+        x:Key="StopButtonPressedMouseOverBrush"
+        StartPoint="0,0"
+        EndPoint="0,1">
+        <GradientStop
+            Color="#bb2222"
+            Offset="0" />
+        <GradientStop
+            Color="#9b1a1a"
+            Offset="1" />
+    </LinearGradientBrush>
+
+    <!--#endregion-->
+
+    <LinearGradientBrush
+        x:Key="NormalButtonBrush"
+        StartPoint="0,0"
+        EndPoint="0,1">
+        <GradientStop
+            Color="#23a25d"
+            Offset="0" />
+        <GradientStop
+            Color="#35ab6b"
+            Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush
+        x:Key="NormalButtonMouseOverBrush"
+        StartPoint="0,0"
+        EndPoint="0,1">
+        <GradientStop
+            Color="#28b468"
+            Offset="0" />
+        <GradientStop
+            Color="#3cc179"
+            Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush
+        x:Key="NormalButtonDisabledBrush"
+        StartPoint="0,0"
+        EndPoint="0,1">
+        <GradientStop
+            Color="#95a595"
+            Offset="0" />
+        <GradientStop
+            Color="#8aa48a"
+            Offset="1" />
+    </LinearGradientBrush>
+
+</ResourceDictionary>

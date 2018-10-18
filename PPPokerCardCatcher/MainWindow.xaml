@@ -1,0 +1,191 @@
+﻿<pcc:PCCWindow
+    x:Class="PPPokerCardCatcher.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pcc="http://www.pppokercardcatcher.com/winfx/2017/xaml/presentation"
+    xmlns:prism="http://www.codeplex.com/prism"
+    xmlns:v="clr-namespace:PPPokerCardCatcher.Views"
+    mc:Ignorable="d"
+    Title="{ResX Key=Common_Title}"
+    VersionTitle="{Binding Version}"
+    Style="{DynamicResource WindowBaseStyle}"
+    CanMaximize="False"
+    CanResize="False"
+    WindowStartupLocation="CenterScreen"
+    Height="242"
+    Width="350">
+    <pcc:PCCWindow.StatusBarTemplate>
+        <DataTemplate>
+            <StackPanel
+                TextBlock.FontFamily="{StaticResource OpenSansSemi}"
+                Orientation="Horizontal">
+                <TextBlock
+                    Foreground="#414348"
+                    VerticalAlignment="Center"
+                    Text="{ResX Key=Common_License}" />
+                <TextBlock
+                    Margin="5,0,0,0"
+                    Foreground="#17171a"
+                    VerticalAlignment="Center"
+                    Text="{Binding DataContext.LicenseText, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type pcc:PCCWindow}}}" />
+                <Button
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Content="{ResX Key=Common_Upgrade}"
+                    Command="{Binding DataContext.UpgradeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type pcc:PCCWindow}}}"
+                    Style="{StaticResource UpgradeButtonStyle}"
+                    Visibility="{Binding DataContext.IsUpgradable, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type pcc:PCCWindow}}, Converter={pcc:BoolToVisibilityConverter}}" />
+            </StackPanel>
+        </DataTemplate>
+    </pcc:PCCWindow.StatusBarTemplate>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="Auto" />
+            <ColumnDefinition
+                Width="*"
+                MinWidth="24" />
+            <ColumnDefinition
+                Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+
+            <Button
+                Style="{StaticResource NormalButtonStyle}"
+                Content="{ResX Key=Common_Settings}"
+                Command="{Binding SettingsCommand}" />
+
+            <Button
+                Margin="0,7,0,0"
+                Style="{StaticResource NormalButtonStyle}"
+                Command="{Binding TroubleshootCommand}"
+                Content="{ResX Key=Common_Troubleshoot}" />
+
+            <Button
+                Margin="0,7,0,0"
+                Style="{StaticResource NormalButtonStyle}"
+                Command="{Binding OnlineManualCommand}"
+                Content="{ResX Key=Common_OnlineManual}" />
+
+        </StackPanel>
+
+        <ToggleButton
+            Grid.Column="2"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontFamily="{StaticResource OpenSansSemi}"
+            Style="{StaticResource LaunchButtonStyle}"
+            IsChecked="{Binding IsRunning, Mode=OneWay}"
+            Command="{Binding StartStopCommand}" />
+
+    </Grid>
+    <i:Interaction.Triggers>
+        <prism:InteractionRequestTrigger
+            SourceObject="{Binding SettingsNotificationRequest}">
+            <pcc:ShowWindowViewAction
+                StartupLocation="CenterAssosiated"
+                SingleOnly="True"
+                ViewName="{x:Static v:RegionViewNames.SettingsPopupView}"
+                IsModal="True">
+                <pcc:ShowWindowViewAction.WindowStyle>
+                    <Style
+                        TargetType="{x:Type pcc:PCCWindow}"
+                        BasedOn="{StaticResource WindowBaseStyle}">
+                        <Setter
+                            Property="Width"
+                            Value="350" />
+                        <Setter
+                            Property="Height"
+                            Value="350" />
+                        <Setter
+                            Property="CanResize"
+                            Value="False" />
+                        <Setter
+                            Property="CanMaximize"
+                            Value="False" />
+                    </Style>
+                </pcc:ShowWindowViewAction.WindowStyle>
+            </pcc:ShowWindowViewAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger
+            SourceObject="{Binding RegistrationNotificationRequest}">
+            <pcc:ShowWindowViewAction
+                StartupLocation="CenterAssosiated"
+                SingleOnly="True"
+                ViewName="{x:Static v:RegionViewNames.RegistrationPopupView}"
+                IsModal="True">
+                <pcc:ShowWindowViewAction.WindowStyle>
+                    <Style
+                        TargetType="{x:Type pcc:PCCWindow}"
+                        BasedOn="{StaticResource WindowBaseStyle}">
+                        <Setter
+                            Property="Width"
+                            Value="550" />
+                        <Setter
+                            Property="Height"
+                            Value="350" />
+                        <Setter
+                            Property="CanResize"
+                            Value="False" />
+                        <Setter
+                            Property="CanMaximize"
+                            Value="False" />
+                        <Setter
+                            Property="CanMinimize"
+                            Value="False" />
+                        <Setter
+                            Property="CanClose"
+                            Value="False" />
+                        <Setter
+                            Property="ShowInTaskbar"
+                            Value="False" />
+                    </Style>
+                </pcc:ShowWindowViewAction.WindowStyle>
+            </pcc:ShowWindowViewAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger
+            SourceObject="{Binding UpdateNotificationRequest}">
+            <pcc:ShowWindowViewAction
+                StartupLocation="CenterAssosiated"
+                SingleOnly="True"
+                ViewName="{x:Static v:RegionViewNames.UpdatePopupView}"
+                IsModal="True">
+                <pcc:ShowWindowViewAction.WindowStyle>
+                    <Style
+                        TargetType="{x:Type pcc:PCCWindow}"
+                        BasedOn="{StaticResource WindowBaseStyle}">
+                        <Setter
+                            Property="Width"
+                            Value="480" />
+                        <Setter
+                            Property="MinHeight"
+                            Value="150" />
+                        <Setter
+                            Property="MaxHeight"
+                            Value="400" />
+                        <Setter
+                            Property="CanResize"
+                            Value="False" />
+                        <Setter
+                            Property="CanMaximize"
+                            Value="False" />
+                        <Setter
+                            Property="CanMinimize"
+                            Value="False" />
+                        <Setter
+                            Property="CanClose"
+                            Value="False" />
+                        <Setter
+                            Property="ShowInTaskbar"
+                            Value="False" />
+                    </Style>
+                </pcc:ShowWindowViewAction.WindowStyle>
+            </pcc:ShowWindowViewAction>
+        </prism:InteractionRequestTrigger>
+    </i:Interaction.Triggers>
+</pcc:PCCWindow>

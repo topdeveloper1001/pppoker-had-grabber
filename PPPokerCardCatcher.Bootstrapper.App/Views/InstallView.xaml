@@ -1,0 +1,129 @@
+﻿<UserControl
+    x:Class="PPPokerCardCatcher.Bootstrapper.App.Views.InstallView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:res="clr-namespace:PPPokerCardCatcher.Bootstrapper.App.Properties">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/PPPokerCardCatcher.Bootstrapper.App;component/Styles/PCCWindowStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="7" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="35" />
+            <RowDefinition
+                Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            TextWrapping="Wrap"
+            FontSize="13"
+            FontWeight="Bold"
+            Text="{x:Static res:Resources.Common_InstallView_WelcomeTitle}" />
+
+        <TextBlock
+            Grid.Row="2"
+            TextWrapping="Wrap"
+            Text="{x:Static res:Resources.Common_InstallView_WelcomeText}" />
+
+        <Grid
+            Grid.Row="4">
+
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                FontWeight="Bold"
+                Text="{x:Static res:Resources.Common_InstallView_DestinationLocation}" />
+
+            <Grid
+                Margin="0,5,0,0"
+                Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox
+                    Style="{StaticResource TextBoxStyle}"
+                    Background="{StaticResource TextBoxBackgroundBrush}"                    
+                    Text="{Binding InstallationPath, UpdateSourceTrigger=PropertyChanged}"
+                    Height="25"
+                    VerticalContentAlignment="Center"
+                    IsReadOnly="True" />
+
+                <Button
+                    Grid.Column="1"
+                    Margin="5,0,0,0"
+                    Style="{StaticResource NormalButtonStyle}"
+                    Height="25"
+                    Width="75"
+                    Command="{Binding BrowseCommand}"
+                    Content="{x:Static res:Resources.Common_InstallView_Browse}" />
+
+            </Grid>
+
+            <CheckBox
+                Margin="0,5,0,0"
+                Grid.Row="2"
+                Background="{StaticResource TextBoxBackgroundBrush}"
+                Content="{x:Static res:Resources.Common_InstallView_CreateDesktopShortcut}"
+                IsChecked="{Binding CreateDesktopShortcut}" />
+
+            <CheckBox
+                Margin="0,5,0,0"
+                Grid.Row="3"
+                Background="{StaticResource TextBoxBackgroundBrush}"
+                Content="{x:Static res:Resources.Common_InstallView_CreateProgramMenuShortcut}"
+                IsChecked="{Binding CreateProgramMenuShortcut}" />
+
+        </Grid>
+
+        <StackPanel
+            Grid.Row="6"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+
+            <Button
+                Style="{StaticResource NormalButtonStyle}"
+                Width="80"
+                Command="{Binding InstallCommand}"
+                Content="{x:Static res:Resources.Common_InstallView_Install}" />
+
+            <Button
+                Style="{StaticResource NormalButtonStyle}"
+                Margin="5,0,0,0"
+                Width="80"
+                Command="{Binding CancelCommand}"
+                Content="{x:Static res:Resources.Common_InstallView_Cancel}" />
+
+        </StackPanel>
+    </Grid>
+</UserControl>

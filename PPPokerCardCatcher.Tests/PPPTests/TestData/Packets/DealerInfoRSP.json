@@ -1,0 +1,24 @@
+﻿{
+  "Dealer": 1,
+  "SmallBlind": 2,
+  "BigBlind": 3,
+  "Stacks": [
+    {
+      "SeatID": 3,
+      "Chips": 50000
+    },
+    {
+      "SeatID": 4,
+      "Chips": 326300
+    },
+    {
+      "SeatID": 0,
+      "Chips": 50000
+    },
+    {
+      "SeatID": 1,
+      "Chips": 548000
+    }
+  ],
+  "GameID": "181009052124-43350-01039-1"
+}
